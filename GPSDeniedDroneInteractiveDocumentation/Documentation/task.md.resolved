@@ -19,3 +19,9 @@
 - [x] Sec 7: Mathematical Interpretation.
 - [x] Sec 8: Engineering Conclusion.
 - [x] Final visual polish, GSAP animations, spacing rules.
+
+# Phase-3 Robust Stabilization
+- [/] Collect Phase-3 datasets and media.
+- [ ] Build `/simulation/phase-3` page structure.
+- [ ] Implement final metric validation and conclusions.
+- [ ] Ensure seamless GSAP animations and responsive design.

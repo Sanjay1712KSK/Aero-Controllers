@@ -1,5 +1,5 @@
 "use client"
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Navbar } from '../../components/Navbar'
 import { gsap } from 'gsap'
@@ -57,6 +57,48 @@ const FadeSection = ({ children, delay = 0, yOffset = 40, className = "", style 
         return () => ctx.revert()
     }, [yOffset, delay])
     return <section ref={sectionRef} className={className} style={{ width: '100%', ...style }}>{children}</section>
+}
+
+// ─── EXPANDABLE GRAPH COMPONENT ──────────────────────────────────────────────
+const ExpandableGraph = ({ src, alt, width = 800, height = 500, style = {} }) => {
+    const [isExpanded, setIsExpanded] = useState(false)
+
+    return (
+        <>
+            {/* Thumbnail */}
+            <div
+                style={{ cursor: 'pointer', ...style }}
+                onClick={() => setIsExpanded(true)}
+            >
+                <Image src={src} alt={alt} width={width} height={height} style={{ width: '100%', height: 'auto', borderRadius: 4, display: 'block' }} />
+            </div>
+
+            {/* Fullscreen Modal Form */}
+            {isExpanded && (
+                <div
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 9999,
+                        background: 'rgba(2, 5, 10, 0.95)', backdropFilter: 'blur(8px)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        padding: '40px', cursor: 'pointer'
+                    }}
+                    onClick={() => setIsExpanded(false)}
+                >
+                    <div style={{ position: 'relative', width: '100%', maxWidth: 1400, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Image
+                            src={src}
+                            alt={alt}
+                            fill
+                            style={{ objectFit: 'contain', borderRadius: 8 }}
+                        />
+                        <div style={{ position: 'absolute', top: -40, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
+                            Click anywhere to close
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    )
 }
 
 // ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
@@ -156,7 +198,7 @@ export default function Phase2Page() {
                     <LandscapeRow gap={48}>
                         <div style={{ flex: 1, maxWidth: 600 }}>
                             <div className="graph-card">
-                                <Image src="/Aero-Controllers/phase-2/trajectory_comparison.png" alt="Trajectory Consistency" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                <ExpandableGraph src="/Aero-Controllers/phase-2/trajectory_comparison.png" alt="Trajectory Consistency" />
                                 <div className="graph-caption">Run-1 vs Run-2 Lateral Path Overlap</div>
                             </div>
                         </div>
@@ -183,7 +225,7 @@ export default function Phase2Page() {
                         <LandscapeRow gap={48}>
                             <div style={{ flex: 1, maxWidth: 600 }}>
                                 <div className="graph-card">
-                                    <Image src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Magnitude" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <ExpandableGraph src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Magnitude" />
                                     <div className="graph-caption">Angular Velocity Magnitude Over Time</div>
                                 </div>
                             </div>
@@ -207,7 +249,7 @@ export default function Phase2Page() {
                         <LandscapeRow gap={48} reverse>
                             <div style={{ flex: 1, maxWidth: 600 }}>
                                 <div className="graph-card">
-                                    <Image src="/Aero-Controllers/phase-2/angular_velocity_per_axis.png" alt="Angular Per Axis" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <ExpandableGraph src="/Aero-Controllers/phase-2/angular_velocity_per_axis.png" alt="Angular Per Axis" />
                                     <div className="graph-caption">Per-Axis Velocity Breakdown</div>
                                 </div>
                             </div>
@@ -233,7 +275,7 @@ export default function Phase2Page() {
                     <LandscapeRow gap={48}>
                         <div style={{ flex: 1, maxWidth: 600 }}>
                             <div className="graph-card">
-                                <Image src="/Aero-Controllers/phase-2/angular_velocity_difference.png" alt="Velocity Difference" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                <ExpandableGraph src="/Aero-Controllers/phase-2/angular_velocity_difference.png" alt="Velocity Difference" />
                                 <div className="graph-caption">Velocity Deviation Magnitude Between Runs</div>
                             </div>
                         </div>
@@ -261,7 +303,7 @@ export default function Phase2Page() {
                             {/* A) Barometer */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                                 <div className="graph-card">
-                                    <Image src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <ExpandableGraph src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude" width={600} height={400} />
                                     <div className="graph-caption">Barometer Altitude Output</div>
                                 </div>
                                 <div>
@@ -273,7 +315,7 @@ export default function Phase2Page() {
                             {/* B) IMU */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                                 <div className="graph-card">
-                                    <Image src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Acceleration" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <ExpandableGraph src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Acceleration" width={600} height={400} />
                                     <div className="graph-caption">IMU Linear Acceleration (X)</div>
                                 </div>
                                 <div>

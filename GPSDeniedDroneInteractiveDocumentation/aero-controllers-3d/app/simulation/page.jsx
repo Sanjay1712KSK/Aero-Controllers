@@ -1,446 +1,323 @@
 "use client"
-import React, { useLayoutEffect, useRef } from 'react'
-import Link from 'next/link'
-import { Navbar } from '../components/Navbar'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { Navbar } from '../../components/Navbar' // Adjusted relative path as Navbar is in app/components
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
-// Register ScrollTrigger
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
 // ─── THEME TOKENS ────────────────────────────────────────────────────────────
 const T = {
-    bgBase: '#050A14', // Product page deep dark
-    bgAlt: '#0A1122',
-    bgBand: '#02050A', // Dark band for contrast sections
+    bgBase: '#02050A',
+    bgAlt: '#050A14', // Hero bg
+    secStrip: '#0B1220', // Metrics / Math block bg
+    graphBg: '#111827',
     border: '#1E2D4A',
+    graphBorder: '#1F2937',
     textPri: '#FFFFFF',
     textSec: '#A3B8CC',
     textMuted: '#5C7A99',
     cyan: '#00E5FF',
     green: '#00FF66',
-    red: '#FF3333',
-    yellow: '#FFB800'
+    redBox: '#3A0A0A',
+    redText: '#FF4D4D'
 }
 
-// ─── REUSABLE COMPONENTS ─────────────────────────────────────────────────────
+// ─── REUSABLE ROW COMPONENT ──────────────────────────────────────────────────
+const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, marginTop = 0 }) => (
+    <div style={{
+        display: 'flex',
+        flexDirection: reverse ? 'row-reverse' : 'row',
+        alignItems: align,
+        justifyContent: 'space-between',
+        width: '100%',
+        maxWidth: 1200,
+        margin: `${marginTop}px auto 0 auto`,
+        gap: `${gap}px`
+    }}>
+        {children}
+    </div>
+)
 
-// Fades in elements as they scroll into view
-const FadeSection = ({ children, delay = 0, yOffset = 40, className = "" }) => {
+const FadeSection = ({ children, delay = 0, yOffset = 40, className = "", style = {} }) => {
     const sectionRef = useRef(null)
-
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             gsap.fromTo(sectionRef.current,
                 { opacity: 0, y: yOffset },
                 {
                     opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay,
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: 'top 85%',
-                    }
+                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
                 }
             )
         }, sectionRef)
         return () => ctx.revert()
     }, [yOffset, delay])
-
-    return <div ref={sectionRef} className={className}>{children}</div>
+    return <section ref={sectionRef} className={className} style={{ width: '100%', ...style }}>{children}</section>
 }
 
-// Hover-expand Axis Card
-const AxisCard = ({ title, desc1, desc2 }) => {
-    const cardRef = useRef(null)
-
-    const handleMouseEnter = () => {
-        gsap.to(cardRef.current, { y: -8, boxShadow: '0 20px 40px rgba(0,229,255,0.1)', borderColor: T.cyan, duration: 0.3, ease: 'power2.out' })
-    }
-    const handleMouseLeave = () => {
-        gsap.to(cardRef.current, { y: 0, boxShadow: '0 10px 30px rgba(0,0,0,0.4)', borderColor: T.border, duration: 0.3, ease: 'power2.out' })
-    }
+// ─── EXPANDABLE GRAPH COMPONENT ──────────────────────────────────────────────
+const ExpandableGraph = ({ src, alt, width = 800, height = 500, style = {} }) => {
+    const [isExpanded, setIsExpanded] = useState(false)
 
     return (
-        <div
-            ref={cardRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                background: T.bgAlt,
-                border: `1px solid ${T.border}`,
-                borderRadius: 12,
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 16,
-                cursor: 'default',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.4)'
-            }}
-        >
-            <h3 style={{ fontSize: '1.5rem', color: T.textPri, fontWeight: 300, textAlign: 'center', marginBottom: 8 }}>{title}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', textAlign: 'center' }}>
-                <p style={{ color: T.textSec, fontSize: '0.95rem', margin: 0 }}>• {desc1}</p>
-                <p style={{ color: T.textSec, fontSize: '0.95rem', margin: 0 }}>• {desc2}</p>
+        <>
+            {/* Thumbnail */}
+            <div
+                style={{ cursor: 'pointer', ...style }}
+                onClick={() => setIsExpanded(true)}
+            >
+                <Image src={src} alt={alt} width={width} height={height} style={{ width: '100%', height: 'auto', borderRadius: 4, display: 'block' }} />
             </div>
-        </div>
+
+            {/* Fullscreen Modal Form */}
+            {isExpanded && (
+                <div
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 9999,
+                        background: 'rgba(2, 5, 10, 0.95)', backdropFilter: 'blur(8px)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        padding: '40px', cursor: 'pointer'
+                    }}
+                    onClick={() => setIsExpanded(false)}
+                >
+                    <div style={{ position: 'relative', width: '100%', maxWidth: 1400, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Image
+                            src={src}
+                            alt={alt}
+                            fill
+                            style={{ objectFit: 'contain', borderRadius: 8 }}
+                        />
+                        <div style={{ position: 'absolute', top: -40, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
+                            Click anywhere to close
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 
-// Counter animation
-const StatCounter = ({ label, value, unit = "", highlightColor = T.textPri }) => {
-    const counterRef = useRef(null)
-    const valObj = { val: 0 }
-
-    useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            gsap.to(valObj, {
-                val: value,
-                duration: 2,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: counterRef.current,
-                    start: "top 80%"
-                },
-                onUpdate: () => {
-                    if (counterRef.current) {
-                        // Check if integer
-                        const formatted = Number.isInteger(value)
-                            ? Math.round(valObj.val)
-                            : valObj.val.toFixed(2)
-                        counterRef.current.innerHTML = formatted + unit
-                    }
-                }
-            })
-        })
-        return () => ctx.revert()
-    }, [value, unit])
-
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', textAlign: 'center' }}>
-            <div style={{ fontSize: '0.85rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>{label}</div>
-            <div style={{ fontSize: '3.5rem', fontWeight: 300, color: highlightColor, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
-                <span ref={counterRef}>0</span>
-            </div>
-        </div>
-    )
-}
-
-// ─── MAIN PAGE COMPONENT ─────────────────────────────────────────────────────
-
+// ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 export default function Phase1Page() {
-    const containerRef = useRef(null)
-
-    useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            // Initial load animations
-            gsap.fromTo('.nav-link',
-                { opacity: 0, y: -10 },
-                { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out' }
-            )
-            gsap.fromTo('.hero-text',
-                { opacity: 0, x: -30 },
-                { opacity: 1, x: 0, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
-            )
-            gsap.fromTo('.hero-visual',
-                { opacity: 0, scale: 0.95 },
-                { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out', delay: 0.4 }
-            )
-        }, containerRef)
-        return () => ctx.revert()
-    }, [])
-
     return (
-        <div ref={containerRef} style={{ background: T.bgBase, color: T.textPri, fontFamily: 'sans-serif', overflowX: 'hidden' }}>
-
+        <div style={{ background: T.bgBase, color: T.textPri, fontFamily: 'sans-serif', overflowX: 'hidden' }}>
             <Navbar activePath="/simulation" />
+
+            {/* INTERACTIVE STYLES */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                .graph-card {
+                    background: ${T.graphBg};
+                    border: 1px solid ${T.graphBorder};
+                    padding: 24px;
+                    border-radius: 8px;
+                    transition: border-color 0.3s ease, transform 0.3s ease;
+                    position: relative;
+                }
+                .graph-card:hover { border-color: ${T.cyan}; transform: translateY(-3px); }
+                .graph-caption { opacity: 0; transition: opacity 0.3s ease; text-align: center; color: ${T.textSec}; margin-top: 12px; font-size: 0.9rem; }
+                .graph-card:hover .graph-caption { opacity: 1; }
+                
+                .metric-number { transition: color 0.3s ease; }
+                .metric-block:hover .metric-number { color: ${T.green}; }
+                
+                .eq-box { position: relative; display: inline-block; cursor: pointer; transition: text-decoration 0.2s; }
+                .eq-box:hover { text-decoration: underline; }
+                .eq-tooltip {
+                    visibility: hidden; opacity: 0; width: max-content;
+                    background-color: ${T.border}; color: #fff; text-align: center;
+                    border-radius: 4px; padding: 6px 12px; position: absolute;
+                    z-index: 10; bottom: 125%; left: 50%; transform: translateX(-50%);
+                    transition: opacity 0.3s; font-size: 0.85rem; font-family: sans-serif;
+                }
+                .eq-box:hover .eq-tooltip { visibility: visible; opacity: 1; }
+            `}} />
 
             <main style={{ paddingTop: 72 }}>
 
                 {/* 1️⃣ HERO SECTION */}
-                <section style={{
-                    minHeight: '90vh', display: 'flex', alignItems: 'center', padding: '0 100px',
-                    borderBottom: `1px solid ${T.border}`
-                }}>
-                    <div style={{ display: 'flex', width: '100%', gap: 80, alignItems: 'center' }}>
-                        {/* Left Text */}
-                        <div style={{ flex: 1 }}>
-                            <div className="hero-text" style={{ color: T.red, textTransform: 'uppercase', letterSpacing: 2, fontSize: '0.9rem', marginBottom: 16 }}>Phase-1</div>
-                            <h1 className="hero-text" style={{ fontSize: 'clamp(48px, 6vw, 84px)', fontWeight: 300, lineHeight: 1.05, marginBottom: 24, letterSpacing: '-1px' }}>
-                                Baseline Instability Analysis
-                            </h1>
-                            <p className="hero-text" style={{ fontSize: '1.25rem', color: T.textSec, fontWeight: 300, marginBottom: 48, maxWidth: 600, lineHeight: 1.5 }}>
-                                Pre-learning quadrotor behavior under stochastic wind disturbance.
-                            </p>
+                <section style={{ height: '65vh', minHeight: 600, background: T.bgAlt, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}` }}>
+                    <div style={{ display: 'flex', width: '100%', maxWidth: 1200, gap: 40, alignItems: 'center' }}>
 
-                            {/* Technical Badges */}
-                            <div className="hero-text" style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                                {['Control: Static / No Learning', 'Wind: Stochastic + Gust Injection', 'Physics: UE5 + AirSim', 'Metric: ‖ω‖ (rad/s)'].map(badge => (
-                                    <div key={badge} style={{
-                                        padding: '8px 16px', background: T.bgAlt, border: `1px solid ${T.border}`,
-                                        borderRadius: 4, fontSize: '0.85rem', color: T.textSec, letterSpacing: 0.5
-                                    }}>
-                                        {badge}
+                        {/* LEFT (60%) */}
+                        <div style={{ flex: '6' }}>
+                            <div style={{ color: T.redText, textTransform: 'uppercase', letterSpacing: 2, fontSize: '0.85rem', marginBottom: 16 }}>Phase-1</div>
+                            <h1 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 16, lineHeight: 1.1 }}>Phase-1 Baseline Instability Study</h1>
+                            <p style={{ fontSize: '1.2rem', color: T.textSec, marginBottom: 32, lineHeight: 1.5, maxWidth: 600 }}>
+                                Quantitative evaluation of uncontrolled quadrotor rotational behavior under wind disturbance injection.
+                            </p>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec }}>
+                                {['High angular velocity variance', 'Frequent instability spikes', 'Underdamped roll and pitch', 'No disturbance rejection'].map(item => (
+                                    <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                        <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.redText }} /> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* RIGHT (40%) Framed Summary */}
+                        <div style={{ flex: '4', border: `1px solid ${T.border}`, borderRadius: 8, padding: 32, background: T.bgBase }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                                {[
+                                    { v: "High", l: "E[||ω||]" },
+                                    { v: "High", l: "Var(||ω||)" },
+                                    { v: "≫ 0", l: "N_spikes" },
+                                    { v: "None", l: "Convergence" }
+                                ].map((stat, i) => (
+                                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: i < 3 ? `1px solid ${T.border}` : 'none', paddingBottom: i < 3 ? 16 : 0 }}>
+                                        <span style={{ fontSize: '12px', color: T.textMuted }}>{stat.l}</span>
+                                        <span style={{ fontSize: '28px', fontWeight: 300, color: T.textPri }}>{stat.v}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Right Visual */}
-                        <div className="hero-visual" style={{
-                            flex: 1, height: '600px', position: 'relative', borderRadius: 16, overflow: 'hidden',
-                            border: `1px solid ${T.border}`, boxShadow: `0 30px 60px ${T.red}15`
-                        }}>
-                            <iframe
-                                src="https://www.youtube.com/embed/MDs1X7NSu_I?autoplay=1&loop=1&mute=1&playlist=MDs1X7NSu_I&controls=0&modestbranding=1&playsinline=1"
-                                allow="autoplay; encrypted-media"
-                                style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }}
-                            />
-                            {/* Vignette Overlay */}
-                            <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 40%, rgba(5,10,20,0.8) 100%)' }} />
-                        </div>
                     </div>
                 </section>
 
-                {/* 2️⃣ THE CORE METRIC */}
-                <section style={{ padding: '160px 100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <FadeSection>
-                        <h2 style={{ fontSize: '2rem', fontWeight: 300, color: T.textPri, marginBottom: 40, textAlign: 'center' }}>
-                            Total Rotational Instability
-                        </h2>
-                    </FadeSection>
-
-                    <FadeSection delay={0.2} style={{ marginBottom: 40 }}>
-                        <div style={{
-                            fontSize: 'clamp(32px, 4vw, 56px)', fontFamily: 'serif', fontStyle: 'italic', letterSpacing: 2,
-                            padding: '40px 80px', border: `1px solid ${T.border}`, background: T.bgAlt, borderRadius: 12
-                        }}>
-                            ‖ω‖ = √(ωₓ² + ω_y² + ω_z²)
-                        </div>
-                    </FadeSection>
-
-                    <FadeSection delay={0.3}>
-                        <p style={{ fontSize: '1.1rem', color: T.textSec, textAlign: 'center', maxWidth: 600, marginBottom: 80, lineHeight: 1.6 }}>
-                            The magnitude of angular velocity represents total rotational instability. <br />
-                            Higher values indicate uncontrolled oscillatory response.
-                        </p>
-                    </FadeSection>
-
-                    {/* Graph */}
-                    <FadeSection delay={0.4} style={{ width: '100%', maxWidth: 1000, marginBottom: 80 }}>
-                        <div style={{ width: '100%', height: 'auto', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}` }}>
-                            <Image
-                                src="/Aero-Controllers/phase-1/magnitude-graph.png"
-                                alt="Angular Velocity Magnitude Graph"
-                                width={1200} height={600}
-                                style={{ width: '100%', height: 'auto', display: 'block' }}
-                            />
-                        </div>
-                    </FadeSection>
-
-                    {/* 3-Column Highlights */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32, width: '100%', maxWidth: 1000, marginTop: 24 }}>
-                        <FadeSection delay={0.5} style={{ display: 'flex', justifyContent: 'center' }}><StatCounter label="Max Spike" value={1.05} unit=" rad/s" highlightColor={T.cyan} /></FadeSection>
-                        <FadeSection delay={0.6} style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', textAlign: 'center' }}>
-                                <div style={{ fontSize: '0.85rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Variance</div>
-                                <div style={{ fontSize: '3.5rem', fontWeight: 300, color: T.textPri }}>High</div>
+                {/* 2️⃣ METRICS STRIP */}
+                <section style={{ height: 120, background: T.secStrip, borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 1200, height: '100%' }}>
+                        {[
+                            { l: "Mean ||ω||", v: "High" }, { l: "Var ||ω||", v: "High" }, { l: "Max Spike", v: "> 1.0 rad/s" },
+                            { l: "Spike Count", v: "Frequent" }, { l: "Damping", v: "Poor" }, { l: "Convergence", v: "None" }
+                        ].map((m, i) => (
+                            <div key={i} className="metric-block" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRight: i < 5 ? `1px solid ${T.border}` : 'none' }}>
+                                <div className="metric-number" style={{ fontSize: '26px', fontWeight: 300, color: T.textPri }}>{m.v}</div>
+                                <div style={{ fontSize: '12px', color: T.textSec, textTransform: 'uppercase', letterSpacing: 1, marginTop: 4 }}>{m.l}</div>
                             </div>
-                        </FadeSection>
-                        <FadeSection delay={0.7} style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', textAlign: 'center' }}>
-                                <div style={{ fontSize: '0.85rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Stability</div>
-                                <div style={{ fontSize: '3.5rem', fontWeight: 300, color: T.red }}>Poor</div>
-                            </div>
-                        </FadeSection>
-                    </div>
-                </section>
-
-                {/* 3️⃣ INTERACTIVE AXIS BREAKDOWN */}
-                <section style={{ padding: '0 100px 160px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <FadeSection>
-                        <h2 style={{ fontSize: '2rem', fontWeight: 300, color: T.textPri, marginBottom: 60, textAlign: 'center' }}>
-                            Axis-Level Instability Dynamics
-                        </h2>
-                    </FadeSection>
-
-                    <FadeSection delay={0.2} style={{ width: '100%', maxWidth: 1000, marginBottom: 60 }}>
-                        <div style={{ width: '100%', height: 'auto', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}` }}>
-                            <Image
-                                src="/Aero-Controllers/phase-1/axis-graph.png"
-                                alt="Angular Velocity Per Axis Graph"
-                                width={1200} height={600}
-                                style={{ width: '100%', height: 'auto', display: 'block' }}
-                            />
-                        </div>
-                    </FadeSection>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32, width: '100%', maxWidth: 1000, marginTop: 24 }}>
-                        <FadeSection delay={0.3}><AxisCard title="Roll (ωx)" desc1="Large oscillatory swings" desc2="Crosswind sensitivity" /></FadeSection>
-                        <FadeSection delay={0.4}><AxisCard title="Pitch (ωy)" desc1="Dominant instability axis" desc2="±1 rad/s excursions" /></FadeSection>
-                        <FadeSection delay={0.5}><AxisCard title="Yaw (ωz)" desc1="Relatively stable" desc2="Minor disturbance coupling" /></FadeSection>
-                    </div>
-                </section>
-
-                {/* 4️⃣ INSTABILITY EVENT DETECTION */}
-                <section style={{ padding: '0 100px 160px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <FadeSection>
-                        <h2 style={{ fontSize: '2rem', fontWeight: 300, color: T.textPri, marginBottom: 60, textAlign: 'center' }}>
-                            Instability Event Detection
-                        </h2>
-                    </FadeSection>
-
-                    <FadeSection delay={0.2} style={{ width: '100%', maxWidth: 1000, marginBottom: 60 }}>
-                        <div style={{ width: '100%', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}` }}>
-                            <Image
-                                src="/Aero-Controllers/phase-1/spikes-graph.png"
-                                alt="Angular Velocity Spikes Graph"
-                                width={1200} height={600}
-                                style={{ width: '100%', height: 'auto', display: 'block' }}
-                            />
-                        </div>
-                    </FadeSection>
-
-                    {/* Stats Below Graph */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32, width: '100%', maxWidth: 1000, marginBottom: 60, marginTop: 24 }}>
-                        <FadeSection delay={0.3} style={{ display: 'flex', justifyContent: 'center' }}><StatCounter label="Total Spike Events" value={54} highlightColor={T.cyan} /></FadeSection>
-                        <FadeSection delay={0.4} style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', textAlign: 'center' }}>
-                                <div style={{ fontSize: '0.85rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Threshold</div>
-                                <div style={{ fontSize: '2.5rem', fontWeight: 300, color: T.textPri }}>0.17 rad/s</div>
-                            </div>
-                        </FadeSection>
-                        <FadeSection delay={0.5} style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center', textAlign: 'center' }}>
-                                <div style={{ fontSize: '0.85rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: 1 }}>Instability Index I</div>
-                                <div style={{ fontSize: '2.5rem', fontWeight: 300, color: T.red }}>High</div>
-                            </div>
-                        </FadeSection>
-                    </div>
-
-                    <FadeSection delay={0.6} style={{ width: '100%', maxWidth: 800 }}>
-                        <div style={{
-                            padding: '20px', background: `${T.cyan}10`, border: `1px solid ${T.cyan}30`, borderRadius: 8,
-                            color: T.textPri, fontSize: '1.05rem', lineHeight: 1.6, textAlign: 'center'
-                        }}>
-                            Frequent threshold crossings confirm lack of adaptive disturbance rejection.
-                        </div>
-                    </FadeSection>
-                </section>
-
-                {/* 5️⃣ ENGINEERING INTERPRETATION (Dark Band) */}
-                <section style={{
-                    background: T.bgBand, padding: '120px 100px', borderTop: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}`,
-                    display: 'flex', flexDirection: 'column', alignItems: 'center'
-                }}>
-                    <FadeSection>
-                        <h2 style={{ fontSize: '2rem', fontWeight: 300, color: T.textPri, marginBottom: 80, textAlign: 'center' }}>
-                            What Is Physically Happening?
-                        </h2>
-                    </FadeSection>
-
-                    <div style={{ display: 'flex', gap: 24, width: '100%', maxWidth: 1000, marginBottom: 80 }}>
-                        {['Wind → Tilt', 'Overshoot → Oscillation', 'Underdamped Response'].map((step, i) => (
-                            <React.Fragment key={step}>
-                                <FadeSection delay={i * 0.1} style={{
-                                    flex: 1, background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8,
-                                    padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    fontSize: '1.1rem', fontWeight: 400, color: T.cyan, textAlign: 'center'
-                                }}>
-                                    {step}
-                                </FadeSection>
-                                {i < 2 && (
-                                    <FadeSection delay={(i * 0.1) + 0.05} style={{ display: 'flex', alignItems: 'center', color: T.border }}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                                    </FadeSection>
-                                )}
-                            </React.Fragment>
                         ))}
                     </div>
-
-                    <FadeSection delay={0.4}>
-                        <p style={{
-                            fontSize: '1.4rem', color: T.textPri, fontWeight: 300, textAlign: 'center',
-                            maxWidth: 800, lineHeight: 1.5, fontStyle: 'italic'
-                        }}>
-                            "Behavior resembles a poorly tuned PD controller with no adaptive gain scheduling."
-                        </p>
-                    </FadeSection>
                 </section>
 
-
-
-                {/* 7️⃣ THE MATHEMATICAL INSTABILITY METRIC */}
-                <section style={{ padding: '0 100px 160px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <FadeSection>
-                        <div style={{
-                            fontSize: 'clamp(28px, 3vw, 40px)', fontFamily: 'serif', fontStyle: 'italic', letterSpacing: 2,
-                            padding: '40px 80px', border: `1px solid ${T.border}`, background: T.bgAlt, borderRadius: 12, marginBottom: 40,
-                            display: 'flex', alignItems: 'center', gap: 16
-                        }}>
-                            <span>I =</span>
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '1.5rem', lineHeight: 1 }}>
-                                <span>1</span>
-                                <span style={{ width: '100%', height: 1, background: T.textPri, margin: '4px 0' }} />
-                                <span>T</span>
+                {/* 3️⃣ OVERALL ANGULAR VELOCITY MAGNITUDE */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
+                    <LandscapeRow gap={48}>
+                        <div style={{ flex: 1, maxWidth: 600 }}>
+                            <div className="graph-card">
+                                <ExpandableGraph src="/Aero-Controllers/phase-1/magnitude-graph.png" alt="Overall Angular Velocity Magnitude" />
+                                <div className="graph-caption">Total Rotational Instability Over Time</div>
                             </div>
-                            <span style={{ fontSize: '3rem', fontWeight: 300 }}>∫</span>
-                            <span>‖ω(t)‖² dt</span>
                         </div>
-                    </FadeSection>
-
-                    <FadeSection delay={0.2}>
-                        <p style={{ fontSize: '1.1rem', color: T.textSec, textAlign: 'center' }}>
-                            High I indicates sustained rotational energy and poor stabilization.
-                        </p>
-                    </FadeSection>
-                </section>
-
-                {/* 8️⃣ FINAL ENGINEERING SUMMARY PANEL */}
-                <section style={{ padding: '0 100px 160px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <FadeSection style={{ width: '100%', maxWidth: 1000 }}>
-                        <div style={{
-                            background: `linear-gradient(135deg, ${T.bgAlt}, ${T.bgBase})`,
-                            border: `1px solid ${T.border}`, borderRadius: 16, padding: '80px',
-                            boxShadow: `0 40px 80px rgba(0,0,0,0.5)`,
-                            position: 'relative', overflow: 'hidden'
-                        }}>
-                            {/* Inner Glow */}
-                            <div style={{ position: 'absolute', top: 0, left: '20%', right: '20%', height: 1, background: `linear-gradient(90deg, transparent, ${T.red}, transparent)`, opacity: 0.5 }} />
-
-                            <h2 style={{ fontSize: '2.5rem', fontWeight: 300, color: T.textPri, marginBottom: 40 }}>
-                                Phase-1 Verdict
-                            </h2>
-
-                            <ul style={{
-                                listStyle: 'none', padding: 0, margin: '0 0 60px 0', display: 'flex', flexDirection: 'column', gap: 20
-                            }}>
-                                {['High angular velocity variance', 'Frequent instability spikes', 'No disturbance rejection', 'Underdamped rotational response'].map(item => (
-                                    <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: '1.2rem', color: T.textSec }}>
-                                        <span style={{ color: T.red }}>✖</span> {item}
-                                    </li>
-                                ))}
+                        <div style={{ flex: 1, paddingRight: 40 }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Uncontrolled Rotational Response</h2>
+                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                <li>• Multiple bursts &gt; 1.0 rad/s</li>
+                                <li>• Large corrective oscillations</li>
+                                <li>• No smooth stabilization behavior</li>
                             </ul>
-
-                            <div style={{
-                                paddingTop: 40, borderTop: `1px solid ${T.border}`, fontSize: '1.2rem', lineHeight: 1.6, color: T.textPri, fontWeight: 300
-                            }}>
-                                These limitations necessitated the development of a nonlinear adaptive learning-based controller <br />
-                                <span style={{ color: T.cyan, fontWeight: 400 }}>→ Proceed to Phase-3</span>
+                            <div className="eq-box" style={{ padding: '16px 24px', background: T.redBox, border: `1px solid ${T.redText}`, borderRadius: 8, color: T.redText, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.2rem', display: 'inline-block' }}>
+                                Var(||ω||) is high<br />E[||ω||] is large
+                                <span className="eq-tooltip" style={{ background: T.redText }}>System reacts to wind but does not damp oscillations.</span>
                             </div>
                         </div>
-                    </FadeSection>
-                </section>
+                    </LandscapeRow>
+                </FadeSection>
 
-                {/* 🔥 Final Phase-1 One-Liner */}
-                <section style={{ padding: '0 100px 80px', textAlign: 'center' }}>
-                    <FadeSection>
-                        <p style={{ fontSize: '0.9rem', color: T.textMuted, maxWidth: 800, margin: '0 auto', letterSpacing: 0.5, lineHeight: 1.5 }}>
-                            Phase-1 exposes the uncontrolled nonlinear rotational dynamics of the quadrotor under wind disturbance, establishing a quantitative instability baseline for adaptive reinforcement learning control.
-                        </p>
-                    </FadeSection>
-                </section>
+                {/* 4️⃣ PER-AXIS ANGULAR VELOCITY */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
+                    <LandscapeRow gap={48} reverse>
+                        <div style={{ flex: 1, maxWidth: 600 }}>
+                            <div className="graph-card">
+                                <ExpandableGraph src="/Aero-Controllers/phase-1/axis-graph.png" alt="Per-Axis Angular Velocity" />
+                                <div className="graph-caption">Per-Axis Rotational Breakdown</div>
+                            </div>
+                        </div>
+                        <div style={{ flex: 1, paddingLeft: 40 }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Axis-Level Instability Characteristics</h2>
+                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                <li>• Wind induces tilt</li>
+                                <li>• Roll & pitch overshoot significantly</li>
+                                <li>• Corrective torques amplify oscillation</li>
+                            </ul>
+                            <div className="eq-box" style={{ padding: '12px 20px', border: `1px solid ${T.border}`, background: T.bgAlt, borderRadius: 8, color: T.textPri, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.1rem', display: 'inline-block' }}>
+                                Underdamped rotational response
+                                <span className="eq-tooltip">Behavior resembles a poorly tuned PD controller.</span>
+                            </div>
+                        </div>
+                    </LandscapeRow>
+                </FadeSection>
+
+                {/* 5️⃣ INSTABILITY SPIKE DETECTION */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
+                    <LandscapeRow gap={48}>
+                        <div style={{ flex: 1, maxWidth: 600 }}>
+                            <div className="graph-card">
+                                <ExpandableGraph src="/Aero-Controllers/phase-1/spikes-graph.png" alt="Instability Spike Detection" />
+                                <div className="graph-caption">Frequent Threshold Crossings Over Time</div>
+                            </div>
+                        </div>
+                        <div style={{ flex: 1, paddingRight: 40 }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Instability Event Frequency</h2>
+                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                <li>• Frequent threshold violations</li>
+                                <li>• Dense spike regions</li>
+                                <li>• System cannot remain within safe angular envelope</li>
+                            </ul>
+                            <div className="eq-box" style={{ padding: '16px 24px', border: `1px solid ${T.border}`, borderRadius: 8, color: T.cyan, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.2rem', display: 'inline-block' }}>
+                                N_spikes ≫ 0
+                                <span className="eq-tooltip">Where N_spikes = count(||ω|| &gt; ω_threshold)</span>
+                            </div>
+                        </div>
+                    </LandscapeRow>
+                </FadeSection>
+
+                {/* 6️⃣ ENERGY INSTABILITY METRIC */}
+                <FadeSection style={{ background: T.secStrip, padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+                    <div className="eq-box" style={{
+                        fontSize: 'clamp(28px, 3vw, 40px)', fontFamily: 'serif', fontStyle: 'italic', letterSpacing: 2,
+                        padding: '40px 80px', border: `1px solid ${T.border}`, background: T.bgAlt, borderRadius: 12, marginBottom: 32,
+                        display: 'flex', alignItems: 'center', gap: 16
+                    }}>
+                        <span>I =</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '1.5rem', lineHeight: 1 }}>
+                            <span>1</span>
+                            <span style={{ width: '100%', height: 1, background: T.textPri, margin: '4px 0' }} />
+                            <span>T</span>
+                        </div>
+                        <span style={{ fontSize: '3rem', fontWeight: 300 }}>∫</span>
+                        <span>‖ω(t)‖² dt</span>
+                        <span className="eq-tooltip">High instability integral represents high rotational energy and no convergence.</span>
+                    </div>
+
+                    <div style={{ fontSize: '1.2rem', color: T.redText, background: T.redBox, padding: '12px 24px', borderRadius: 8, border: `1px solid ${T.redText}` }}>
+                        I_Phase1 is large
+                    </div>
+
+                </FadeSection>
+
+                {/* 7️⃣ ENGINEERING CONCLUSION */}
+                <FadeSection style={{ padding: '120px 40px 80px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                    <h2 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 32 }}>Phase-1 Engineering Verdict</h2>
+                    <p style={{ fontSize: '1.2rem', color: T.textSec, maxWidth: 800, lineHeight: 1.6, marginBottom: 48 }}>
+                        Phase-1 demonstrates uncontrolled nonlinear rotational dynamics under wind disturbance, characterized by high angular velocity variance, frequent spike events, and absence of convergence behavior.
+                    </p>
+
+                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 16, color: T.textPri, fontSize: '1.1rem', marginBottom: 64 }}>
+                        <li>✖ Cannot suppress rotational spikes</li>
+                        <li>✖ Exhibits high oscillatory behavior</li>
+                        <li>♦ Requires nonlinear disturbance rejection control</li>
+                    </ul>
+
+                    {/* 8️⃣ TRANSITION TO PHASE-2 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '32px 48px', border: `1px solid ${T.border}`, borderRadius: 8, background: T.bgAlt, width: '100%', maxWidth: 800 }}>
+                        <div style={{ display: 'flex', gap: 24, alignItems: 'center', width: '100%', justifyContent: 'center' }}>
+                            <div style={{ color: T.textMuted }}>Phase-1 <br /><span style={{ color: T.textPri }}>Baseline Instability</span></div>
+                            <div style={{ color: T.textMuted }}>➔</div>
+                            <div style={{ color: T.textPri }}>Phase-2 <br /><span style={{ color: T.cyan }}>Quantified Improvement</span></div>
+                            <div style={{ color: T.textMuted }}>➔</div>
+                            <div style={{ color: T.textMuted }}>Phase-3 <br /><span style={{ color: T.textSec }}>Multi-Wind Robustness</span></div>
+                        </div>
+                        <div style={{ color: T.textSec, fontSize: '1rem', borderTop: `1px solid ${T.border}`, paddingTop: 24, textAlign: 'center' }}>
+                            Phase-2 introduces quantitative validation of stabilization improvement across repeated disturbance injection trials.
+                        </div>
+                    </div>
+                </FadeSection>
 
             </main>
         </div>
