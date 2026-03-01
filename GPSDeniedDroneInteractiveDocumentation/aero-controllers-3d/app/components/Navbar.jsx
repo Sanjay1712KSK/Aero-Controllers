@@ -29,22 +29,25 @@ export function Navbar({ activePath }) {
     // Is current path a simulation path?
     const isSimActive = activePath?.startsWith('/simulation')
 
+    // Fixed hydration mismatch by pre-defining style out of inline JSX
+    const navStyle = {
+        position: 'fixed',
+        top: 0, left: 0, right: 0,
+        height: 72,
+        background: `${T.bgBase}ee`,
+        backdropFilter: 'blur(10px)',
+        borderBottom: `1px solid ${T.border}`,
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 5rem',
+        fontFamily: 'sans-serif',
+        pointerEvents: 'auto'
+    }
+
     return (
-        <nav style={{
-            position: 'fixed',
-            top: 0, left: 0, right: 0,
-            height: 72,
-            background: `${T.bgBase}ee`,
-            backdropFilter: 'blur(10px)',
-            borderBottom: `1px solid ${T.border}`,
-            zIndex: 9999, // Extremely high so nothing overlaps
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '0 5rem',
-            fontFamily: 'sans-serif',
-            pointerEvents: 'auto'
-        }}>
+        <nav style={navStyle}>
             <div style={{ letterSpacing: '0.14em', fontWeight: 700, color: T.textPri, textTransform: 'uppercase' }}>
                 AERO-CONTROLLERS
             </div>
