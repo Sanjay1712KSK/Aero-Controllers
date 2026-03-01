@@ -304,6 +304,32 @@ export default function Phase1Page() {
                         <li>♦ Requires nonlinear disturbance rejection control</li>
                     </ul>
 
+                    {/* 🎥 OPTIONAL VIDEO SECTION */}
+                    <div style={{ width: '100%', maxWidth: 1200, marginBottom: 80 }}>
+                        <LandscapeRow gap={48}>
+                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                                <div style={{ border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: T.bgBase, position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                                    <iframe
+                                        src="https://www.youtube.com/embed/MDs1X7NSu_I"
+                                        allowFullScreen
+                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                                    ></iframe>
+                                </div>
+                                <div style={{ color: T.textSec, fontSize: '1.1rem', letterSpacing: 1 }}>Manual Checkpoint Simulation</div>
+                            </div>
+                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                                <div style={{ border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: T.bgBase, position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                                    <iframe
+                                        src="https://www.youtube.com/embed/MDs1X7NSu_I"
+                                        allowFullScreen
+                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                                    ></iframe>
+                                </div>
+                                <div style={{ color: T.textSec, fontSize: '1.1rem', letterSpacing: 1 }}>Wind Injection Uncontrolled Response</div>
+                            </div>
+                        </LandscapeRow>
+                    </div>
+
                     {/* 8️⃣ TRANSITION TO PHASE-2 */}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '32px 48px', border: `1px solid ${T.border}`, borderRadius: 8, background: T.bgAlt, width: '100%', maxWidth: 800 }}>
                         <div style={{ display: 'flex', gap: 24, alignItems: 'center', width: '100%', justifyContent: 'center' }}>
