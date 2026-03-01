@@ -198,7 +198,7 @@ export default function Phase2Page() {
                 {/* 🧩 SECTION 3 — Trajectory Repeatability (XY Plane) */}
                 <FadeSection style={{ padding: '120px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderBottom: `1px solid ${T.border}` }}>
 
-                    <GraphImage src="/Aero-Controllers/phase-2/Trajectory Comparision (x & y).png" alt="Trajectory Comparison" />
+                    <GraphImage src="/Aero-Controllers/phase-2/trajectory_comparison.png" alt="Trajectory Comparison" />
 
                     <div style={{ width: '100%', maxWidth: 600 }}>
                         <h3 style={{ fontSize: '2rem', fontWeight: 300, marginBottom: 24, textAlign: 'center' }}>Nearly Overlapping Trajectories</h3>
@@ -221,7 +221,7 @@ export default function Phase2Page() {
                         <div style={{ flex: '1.5' }}>
                             {/* Max width here handled by flex layout, margins reset for split view */}
                             <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                                <Image src="/Aero-Controllers/phase-2/Angular Velocity Magnitude Comparision.png" alt="Angular Velocity Magnitude Comparison" width={800} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
+                                <Image src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Velocity Magnitude Comparison" width={800} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
                             </div>
                         </div>
 
@@ -248,7 +248,7 @@ export default function Phase2Page() {
 
                 {/* 🧩 SECTION 5 — Per-Axis Control Behavior */}
                 <FadeSection style={{ padding: '120px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderBottom: `1px solid ${T.border}` }}>
-                    <GraphImage src="/Aero-Controllers/phase-2/Angular Velocity Per Axis.png" alt="Angular Velocity Per Axis" />
+                    <GraphImage src="/Aero-Controllers/phase-2/angular_velocity_per_axis.png" alt="Angular Velocity Per Axis" />
 
                     <div style={{ display: 'flex', gap: 24, width: '100%', maxWidth: 1100, marginTop: '24px' }}>
                         <div style={{ flex: 1, padding: '24px', background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8, textAlign: 'center' }}>
@@ -270,10 +270,10 @@ export default function Phase2Page() {
                 <FadeSection style={{ padding: '120px 40px', background: T.bgAlt, borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, width: '100%', maxWidth: 1100, marginBottom: 40 }}>
                         <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                            <Image src="/Aero-Controllers/phase-2/Barometer Altitude Comaparision.png" alt="Barometer Altitude Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
+                            <Image src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
                         </div>
                         <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                            <Image src="/Aero-Controllers/phase-2/IMU Linear Acceleration X Comparision.png" alt="IMU Linear Acceleration Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
+                            <Image src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Linear Acceleration Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
                         </div>
                     </div>
 
