@@ -1,7 +1,7 @@
-## GPS-Denied Autonomous Drone Stabilization
+# GPS-Denied Autonomous Drone Stabilization
 Learning-Based Rotational & Translational Stability Under Stochastic Wind
 
-# Overview
+## Overview
 
 Autonomous drones operating in GPS-denied environments (indoor, underground, urban canyon, disaster zones) rely on Inertial Navigation Systems (INS), which suffer cumulative drift due to IMU bias and integration error.
 
@@ -17,7 +17,7 @@ Generalizes across calm, mixed, and strong stochastic wind regimes
 
 The system is trained and evaluated entirely in a high-fidelity simulation environment using PPO reinforcement learning.
 
-🧠 Problem Statement
+## Problem Statement
 
 Pure INS navigation accumulates drift over time, leading to:
 
@@ -31,8 +31,9 @@ Failure under external disturbance
 
 This repository implements a real-time learning-based stabilizer that maintains bounded state behavior without GPS correction.
 
-🏗 System Architecture
-Components
+## System Architecture
+
+### Components
 
 Simulation Engine: Unreal Engine 5 + AirSim
 
