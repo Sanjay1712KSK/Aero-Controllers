@@ -327,7 +327,25 @@ export default function Phase2Page() {
                     </div>
                 </FadeSection>
 
-                {/* 7️⃣ MATHEMATICAL INTERPRETATION BLOCK */}
+                {/* 7️⃣ OPTIONAL VIDEO SECTION */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '100%', maxWidth: 1000, marginBottom: 32 }}>
+                        <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24, textAlign: 'center' }}>Mid-Evolution Evaluation Run</h2>
+                        <p style={{ fontSize: '1.2rem', color: T.textSec, marginBottom: 48, textAlign: 'center', lineHeight: 1.5 }}>
+                            Simulation log generating the above deterministic and non-deterministic wind training metrics.
+                        </p>
+
+                        <div style={{ border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: T.bgBase, position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                            <iframe
+                                src="https://www.youtube.com/embed/Vugx3RBhP7Q"
+                                allowFullScreen
+                                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                            ></iframe>
+                        </div>
+                    </div>
+                </FadeSection>
+
+                {/* 8️⃣ MATHEMATICAL INTERPRETATION BLOCK */}
                 <FadeSection style={{ background: T.secStrip, padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, width: '100%', maxWidth: 1200, justifyContent: 'center' }}>
                         {[
@@ -347,7 +365,7 @@ export default function Phase2Page() {
                     </div>
                 </FadeSection>
 
-                {/* 8️⃣ ENGINEERING VERDICT */}
+                {/* 9️⃣ ENGINEERING VERDICT */}
                 <FadeSection style={{ padding: '120px 40px 160px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                     <h2 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 32 }}>Phase-2 Engineering Validation</h2>
                     <p style={{ fontSize: '1.2rem', color: T.textSec, maxWidth: 800, lineHeight: 1.6, marginBottom: 64 }}>
