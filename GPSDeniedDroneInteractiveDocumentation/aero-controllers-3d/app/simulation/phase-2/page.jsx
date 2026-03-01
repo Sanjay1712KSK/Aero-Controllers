@@ -1,6 +1,5 @@
 "use client"
 import React, { useLayoutEffect, useRef } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { Navbar } from '../../components/Navbar'
 import { gsap } from 'gsap'
@@ -13,322 +12,313 @@ if (typeof window !== "undefined") {
 // ─── THEME TOKENS ────────────────────────────────────────────────────────────
 const T = {
     bgBase: '#02050A',
-    bgAlt: '#080C16',
+    bgAlt: '#050A14', // Hero bg
+    secStrip: '#0B1220', // Metrics / Math block bg
+    graphBg: '#111827',
     border: '#1E2D4A',
+    graphBorder: '#1F2937',
     textPri: '#FFFFFF',
     textSec: '#A3B8CC',
     textMuted: '#5C7A99',
     cyan: '#00E5FF',
     green: '#00FF66',
-    red: '#FF3333',
+    redBox: '#3A0A0A',
+    redText: '#FF4D4D'
 }
 
-// ─── REUSABLE COMPONENTS ─────────────────────────────────────────────────────
+// ─── REUSABLE ROW COMPONENT ──────────────────────────────────────────────────
+const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, marginTop = 0 }) => (
+    <div style={{
+        display: 'flex',
+        flexDirection: reverse ? 'row-reverse' : 'row',
+        alignItems: align,
+        justifyContent: 'space-between',
+        width: '100%',
+        maxWidth: 1200,
+        margin: `${marginTop}px auto 0 auto`,
+        gap: `${gap}px`
+    }}>
+        {children}
+    </div>
+)
 
 const FadeSection = ({ children, delay = 0, yOffset = 40, className = "", style = {} }) => {
     const sectionRef = useRef(null)
-
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             gsap.fromTo(sectionRef.current,
                 { opacity: 0, y: yOffset },
                 {
                     opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay,
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: 'top 85%',
-                    }
+                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
                 }
             )
         }, sectionRef)
         return () => ctx.revert()
     }, [yOffset, delay])
-
-    return <div ref={sectionRef} className={className} style={style}>{children}</div>
+    return <section ref={sectionRef} className={className} style={{ width: '100%', ...style }}>{children}</section>
 }
 
-const MetricCell = ({ label, value }) => (
-    <div style={{
-        display: 'flex', flexDirection: 'column', padding: '16px 24px',
-        borderRight: `1px solid ${T.border}`, borderBottom: `1px solid ${T.border}`,
-        alignItems: 'center', justifyContent: 'center'
-    }}>
-        <div style={{ fontSize: '0.85rem', color: T.textMuted, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>{label}</div>
-        <div style={{ fontSize: '2rem', fontWeight: 300, color: T.textPri, fontVariantNumeric: 'tabular-nums' }}>{value}</div>
-    </div>
-)
-
-const MathCell = ({ title, mathDesc }) => (
-    <div style={{
-        background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8,
-        padding: '32px 24px', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16
-    }}>
-        <div style={{ fontSize: '1.2rem', color: T.textPri, fontWeight: 300 }}>{title}</div>
-        <div style={{ fontSize: '1.5rem', color: T.cyan, fontFamily: 'serif', fontStyle: 'italic' }}>{mathDesc}</div>
-    </div>
-)
-
-const GraphImage = ({ src, alt, maxWidth = 1100 }) => (
-    <div style={{ width: '100%', maxWidth: maxWidth, margin: '60px auto 40px auto', position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-        <Image src={src} alt={alt} width={1200} height={600} style={{ width: '100%', height: 'auto', display: 'block' }} />
-    </div>
-)
-
-// ─── MAIN PAGE COMPONENT ─────────────────────────────────────────────────────
-
+// ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 export default function Phase2Page() {
-    const containerRef = useRef(null)
-
-    useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            // Initial load animations
-            gsap.fromTo('.hero-text',
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
-            )
-            gsap.fromTo('.hero-videos fade-in',
-                { opacity: 0, scale: 0.95 },
-                { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out', delay: 0.6 }
-            )
-
-            // Fade out hero on scroll
-            gsap.to('.hero-wrapper', {
-                opacity: 0,
-                y: -50,
-                scrollTrigger: {
-                    trigger: '.hero-wrapper',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true
-                }
-            })
-        }, containerRef)
-        return () => ctx.revert()
-    }, [])
-
     return (
-        <div ref={containerRef} style={{ background: T.bgBase, color: T.textPri, fontFamily: 'sans-serif', overflowX: 'hidden' }}>
-
+        <div style={{ background: T.bgBase, color: T.textPri, fontFamily: 'sans-serif', overflowX: 'hidden' }}>
             <Navbar activePath="/simulation/phase-2" />
+
+            {/* INTERACTIVE STYLES */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                .graph-card {
+                    background: ${T.graphBg};
+                    border: 1px solid ${T.graphBorder};
+                    padding: 24px;
+                    border-radius: 8px;
+                    transition: border-color 0.3s ease, transform 0.3s ease;
+                    position: relative;
+                }
+                .graph-card:hover { border-color: ${T.cyan}; transform: translateY(-3px); }
+                .graph-caption { opacity: 0; transition: opacity 0.3s ease; text-align: center; color: ${T.textSec}; margin-top: 12px; font-size: 0.9rem; }
+                .graph-card:hover .graph-caption { opacity: 1; }
+                
+                .metric-number { transition: color 0.3s ease; }
+                .metric-block:hover .metric-number { color: ${T.green}; }
+                
+                .eq-box { position: relative; display: inline-block; cursor: pointer; transition: text-decoration 0.2s; }
+                .eq-box:hover { text-decoration: underline; }
+                .eq-tooltip {
+                    visibility: hidden; opacity: 0; width: max-content;
+                    background-color: ${T.border}; color: #fff; text-align: center;
+                    border-radius: 4px; padding: 6px 12px; position: absolute;
+                    z-index: 10; bottom: 125%; left: 50%; transform: translateX(-50%);
+                    transition: opacity 0.3s; font-size: 0.85rem; font-family: sans-serif;
+                }
+                .eq-box:hover .eq-tooltip { visibility: visible; opacity: 1; }
+            `}} />
 
             <main style={{ paddingTop: 72 }}>
 
-                {/* 🧩 SECTION 1 — Hero Introduction */}
-                <section className="hero-wrapper" style={{
-                    minHeight: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    padding: '0 5rem', borderBottom: `1px solid ${T.border}`, overflow: 'hidden'
-                }}>
-                    <div style={{ display: 'flex', width: '100%', maxWidth: 1400, gap: '4rem', alignItems: 'center' }}>
+                {/* 1️⃣ HERO SECTION */}
+                <section style={{ height: '65vh', minHeight: 600, background: T.bgAlt, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}` }}>
+                    <div style={{ display: 'flex', width: '100%', maxWidth: 1200, gap: 40, alignItems: 'center' }}>
 
-                        {/* Left Content */}
-                        <div style={{ flex: 1, zIndex: 10 }}>
-                            <div className="hero-text" style={{ color: T.cyan, fontSize: '0.85rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 }}>
-                                Phase-2: Quantitative Stability Validation
-                            </div>
-                            <h1 className="hero-text" style={{ fontSize: 'clamp(48px, 5vw, 72px)', fontWeight: 300, letterSpacing: '-1.5px', marginBottom: 32, lineHeight: 1.1 }}>
-                                From Visual Improvement<br />to Measured Performance
-                            </h1>
-                            <p className="hero-text" style={{ fontSize: '1.25rem', color: T.textSec, fontWeight: 300, lineHeight: 1.6, maxWidth: 600, marginBottom: 40 }}>
-                                Phase-2 introduces numerical evaluation metrics across repeated runs under identical wind conditions to validate stabilization consistency.
+                        {/* LEFT (60%) */}
+                        <div style={{ flex: '6' }}>
+                            <h1 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 16, lineHeight: 1.1 }}>Phase-2 Stability Validation</h1>
+                            <p style={{ fontSize: '1.2rem', color: T.textSec, marginBottom: 32, lineHeight: 1.5, maxWidth: 600 }}>
+                                Quantitative validation of rotational damping and trajectory repeatability under controlled disturbance injection.
                             </p>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec }}>
+                                {['Reduced rotational variance', 'Bounded angular magnitude', 'High trajectory overlap', 'Low RMSE across runs'].map(item => (
+                                    <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                        <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.cyan }} /> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                            {/* Technical Badges */}
-                            <div className="hero-text" style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                                {['Control: Stochastic Learning', 'Wind: Identical Turbulence', 'Validation: Repeatable Runs', 'Metric: Consistency'].map(badge => (
-                                    <div key={badge} style={{
-                                        padding: '8px 16px', background: T.bgAlt, border: `1px solid ${T.border}`,
-                                        borderRadius: 4, fontSize: '0.85rem', color: T.textSec, letterSpacing: 0.5
-                                    }}>
-                                        {badge}
+                        {/* RIGHT (40%) Framed Summary */}
+                        <div style={{ flex: '4', border: `1px solid ${T.border}`, borderRadius: 8, padding: 32, background: T.bgBase }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                                {[
+                                    { v: "0.1203", l: "RMSE Ω,mag" },
+                                    { v: "0.00677", l: "Var(ωx)" },
+                                    { v: "0.00769", l: "Var(ωy)" },
+                                    { v: "0.3661", l: "RMSE Pos,Z" }
+                                ].map((stat, i) => (
+                                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: i < 3 ? `1px solid ${T.border}` : 'none', paddingBottom: i < 3 ? 16 : 0 }}>
+                                        <span style={{ fontSize: '12px', color: T.textMuted }}>{stat.l}</span>
+                                        <span style={{ fontSize: '28px', fontWeight: 300, color: T.textPri }}>{stat.v}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Right Visual */}
-                        <div className="hero-visual" style={{
-                            flex: 1, height: '600px', position: 'relative', borderRadius: 16, overflow: 'hidden',
-                            border: `1px solid ${T.border}`, boxShadow: `0 30px 60px rgba(0,229,255,0.05)`
-                        }}>
-                            <iframe
-                                src="https://www.youtube.com/embed/Vugx3RBhP7Q?autoplay=1&loop=1&mute=1&playlist=Vugx3RBhP7Q&controls=0&modestbranding=1&playsinline=1"
-                                allow="autoplay; encrypted-media"
-                                style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }}
-                            />
-                            {/* Vignette Overlay */}
-                            <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 40%, rgba(5,10,20,0.8) 100%)', pointerEvents: 'none' }} />
-                        </div>
                     </div>
                 </section>
 
-                {/* 🧩 SECTION 2 — Stability Metrics Dashboard */}
-                <FadeSection style={{ padding: '120px 40px', background: T.bgAlt, borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 64, textAlign: 'center' }}>Extracted Stability Metrics</h2>
-
-                    <div style={{ width: '100%', maxWidth: 1000, background: T.bgBase, borderTop: `1px solid ${T.border}`, borderLeft: `1px solid ${T.border}`, borderRadius: '12px 12px 0 0', overflow: 'hidden' }}>
-
-                        {/* Row 1: Position RMSE */}
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
-                            <MetricCell label="RMSE Pos,X" value="3.0076" />
-                            <MetricCell label="RMSE Pos,Y" value="3.8208" />
-                            <MetricCell label="RMSE Pos,Z" value="0.3661" />
-                        </div>
+                {/* 2️⃣ METRICS STRIP */}
+                <section style={{ height: 120, background: T.secStrip, borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 1200, height: '100%' }}>
+                        {[
+                            { l: "RMSE X", v: "3.0076" }, { l: "RMSE Y", v: "3.8208" }, { l: "RMSE Z", v: "0.3661" },
+                            { l: "RMSE Ω", v: "0.1203" }, { l: "Var ωx", v: "0.00677" }, { l: "Var ωy", v: "0.00769" }
+                        ].map((m, i) => (
+                            <div key={i} className="metric-block" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRight: i < 5 ? `1px solid ${T.border}` : 'none' }}>
+                                <div className="metric-number" style={{ fontSize: '26px', fontWeight: 300, color: T.textPri }}>{m.v}</div>
+                                <div style={{ fontSize: '12px', color: T.textSec, textTransform: 'uppercase', letterSpacing: 1, marginTop: 4 }}>{m.l}</div>
+                            </div>
+                        ))}
                     </div>
+                </section>
 
-                    <div style={{ color: T.textSec, fontSize: '1.1rem', marginTop: 24, marginBottom: 64, textAlign: 'center', maxWidth: 600 }}>
-                        Low RMSE indicates consistent spatial behavior across repeated runs.
-                    </div>
-
-                    <div style={{ width: '100%', maxWidth: 1000, background: T.bgBase, borderTop: `1px solid ${T.border}`, borderLeft: `1px solid ${T.border}`, borderRadius: '12px 12px 0 0', overflow: 'hidden' }}>
-
-                        {/* Row 2: Rotational Stability */}
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-                            <MetricCell label="RMSE Ω magnitude" value="0.1203" />
-                            <MetricCell label="Var(ωx)" value="0.00677" />
-                            <MetricCell label="Var(ωy)" value="0.00769" />
-                            <MetricCell label="Var(ωz)" value="≈ 10⁻⁶" />
-                        </div>
-                    </div>
-
-                    <div style={{ color: T.textSec, fontSize: '1.1rem', marginTop: 24, textAlign: 'center', maxWidth: 600 }}>
-                        Lower angular variance → smoother dynamics → reduced oscillatory energy.
-                    </div>
-                </FadeSection>
-
-                {/* 🧩 SECTION 3 — Trajectory Repeatability (XY Plane) */}
-                <FadeSection style={{ padding: '120px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderBottom: `1px solid ${T.border}` }}>
-
-                    <GraphImage src="/Aero-Controllers/phase-2/trajectory_comparison.png" alt="Trajectory Comparison" />
-
-                    <div style={{ width: '100%', maxWidth: 600 }}>
-                        <h3 style={{ fontSize: '2rem', fontWeight: 300, marginBottom: 24, textAlign: 'center' }}>Nearly Overlapping Trajectories</h3>
-
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 24 }}>
-                            <p style={{ margin: 0 }}>• Run-1 and Run-2 show minimal divergence</p>
-                            <p style={{ margin: 0 }}>• Lateral deviation remains bounded</p>
-                            <p style={{ margin: 0 }}>• No spatial drift amplification</p>
-                        </div>
-
-                        <div style={{ padding: '16px 24px', background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8, display: 'inline-block', color: T.cyan, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.2rem' }}>
-                            ‖Δp‖ remains bounded.
-                        </div>
-                    </div>
-                </FadeSection>
-
-                {/* 🧩 SECTION 4 — Angular Velocity Behavior (Split) */}
-                <FadeSection style={{ padding: '120px 40px', background: T.bgAlt, borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: 'flex', gap: 60, alignItems: 'center', width: '100%', maxWidth: 1100, margin: '0 auto' }}>
-                        <div style={{ flex: '1.5' }}>
-                            {/* Max width here handled by flex layout, margins reset for split view */}
-                            <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                                <Image src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Velocity Magnitude Comparison" width={800} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                {/* 3️⃣ TRAJECTORY CONSISTENCY */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
+                    <LandscapeRow gap={48}>
+                        <div style={{ flex: 1, maxWidth: 600 }}>
+                            <div className="graph-card">
+                                <Image src="/Aero-Controllers/phase-2/trajectory_comparison.png" alt="Trajectory Consistency" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                <div className="graph-caption">Run-1 vs Run-2 Lateral Path Overlap</div>
                             </div>
                         </div>
+                        <div style={{ flex: 1, paddingRight: 40 }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Bounded Translational Deviation</h2>
+                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                <li>• Runs nearly overlap</li>
+                                <li>• No lateral divergence</li>
+                                <li>• No exponential growth</li>
+                            </ul>
+                            <div className="eq-box" style={{ padding: '16px 24px', border: `1px solid ${T.border}`, borderRadius: 8, color: T.cyan, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.2rem', display: 'inline-block' }}>
+                                ||Δp(t)|| &lt; ε
+                                <span className="eq-tooltip">Translational error is strictly bounded over time.</span>
+                            </div>
+                        </div>
+                    </LandscapeRow>
+                </FadeSection>
 
-                        <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: 32 }}>
-                            <h3 style={{ fontSize: '2rem', fontWeight: 300, margin: 0 }}>Angular Velocity Behavior</h3>
+                {/* 4️⃣ ANGULAR VELOCITY STABILITY */}
+                <section style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 96 }}>
 
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, color: T.textSec, fontSize: '1.1rem' }}>
-                                <p style={{ margin: 0 }}>• Similar peak magnitudes</p>
-                                <p style={{ margin: 0 }}>• No exponential growth</p>
-                                <p style={{ margin: 0 }}>• Transient spikes decay rapidly</p>
-                                <p style={{ margin: 0 }}>• Controlled energy envelope</p>
+                    {/* A) Magnitude */}
+                    <FadeSection>
+                        <LandscapeRow gap={48}>
+                            <div style={{ flex: 1, maxWidth: 600 }}>
+                                <div className="graph-card">
+                                    <Image src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Magnitude" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <div className="graph-caption">Angular Velocity Magnitude Over Time</div>
+                                </div>
+                            </div>
+                            <div style={{ flex: 1, paddingRight: 40 }}>
+                                <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Bounded Rotational Energy</h2>
+                                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                    <li>• Both runs tightly bounded</li>
+                                    <li>• Transient spikes decay rapidly</li>
+                                    <li>• No runaway instability</li>
+                                </ul>
+                                <div className="eq-box" style={{ padding: '16px 24px', background: T.redBox, border: `1px solid ${T.redText}`, borderRadius: 8, color: T.redText, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.2rem', display: 'inline-block' }}>
+                                    sup<sub>t</sub> ||ω(t)|| &lt; ω_max
+                                    <span className="eq-tooltip" style={{ background: T.redText }}>Maximum angular velocity remains within safe operational limits.</span>
+                                </div>
+                            </div>
+                        </LandscapeRow>
+                    </FadeSection>
+
+                    {/* B) Per-Axis */}
+                    <FadeSection>
+                        <LandscapeRow gap={48} reverse>
+                            <div style={{ flex: 1, maxWidth: 600 }}>
+                                <div className="graph-card">
+                                    <Image src="/Aero-Controllers/phase-2/angular_velocity_per_axis.png" alt="Angular Per Axis" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <div className="graph-caption">Per-Axis Velocity Breakdown</div>
+                                </div>
+                            </div>
+                            <div style={{ flex: 1, paddingLeft: 40 }}>
+                                <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Axis-Specific Damping</h2>
+                                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                    <li>• Roll & pitch heavily damped</li>
+                                    <li>• Yaw structurally stable</li>
+                                    <li>• No cross-axis amplification</li>
+                                </ul>
+                                <div className="eq-box" style={{ padding: '12px 20px', border: `1px solid ${T.border}`, background: T.bgAlt, borderRadius: 8, color: T.textPri, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.1rem', display: 'inline-block' }}>
+                                    Var(ωx), Var(ωy) ↓
+                                    <span className="eq-tooltip">Variance indicates significantly reduced oscillation.</span>
+                                </div>
+                            </div>
+                        </LandscapeRow>
+                    </FadeSection>
+
+                </section>
+
+                {/* 5️⃣ ENERGY & DIFFERENCE RESPONSE */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
+                    <LandscapeRow gap={48}>
+                        <div style={{ flex: 1, maxWidth: 600 }}>
+                            <div className="graph-card">
+                                <Image src="/Aero-Controllers/phase-2/angular_velocity_difference.png" alt="Velocity Difference" width={800} height={500} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                <div className="graph-caption">Velocity Deviation Magnitude Between Runs</div>
+                            </div>
+                        </div>
+                        <div style={{ flex: 1, paddingRight: 40 }}>
+                            <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 24 }}>Bounded Disturbance Energy</h2>
+                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem', marginBottom: 32 }}>
+                                <li>• Low deviation baseline</li>
+                                <li>• Disturbance spikes recover rapidly</li>
+                                <li>• Controlled oscillatory behavior</li>
+                            </ul>
+                            <div className="eq-box" style={{ padding: '16px 24px', border: `1px solid ${T.border}`, borderRadius: 8, color: T.cyan, fontFamily: 'serif', fontStyle: 'italic', fontSize: '1.2rem', display: 'inline-block' }}>
+                                ∫ ||ω(t)||² dt &lt; ∞
+                                <span className="eq-tooltip">Total accumulated discrepancy energy is bounded and finite.</span>
+                            </div>
+                        </div>
+                    </LandscapeRow>
+                </FadeSection>
+
+                {/* 6️⃣ SENSOR VALIDATION SECTION */}
+                <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '100%', maxWidth: 1200 }}>
+                        <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 64, textAlign: 'center' }}>Sensor Flow Consistency</h2>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
+                            {/* A) Barometer */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                                <div className="graph-card">
+                                    <Image src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <div className="graph-caption">Barometer Altitude Output</div>
+                                </div>
+                                <div>
+                                    <div style={{ color: T.cyan, fontSize: '1.1rem', fontWeight: 500, marginBottom: 8 }}>RMSE Pos,Z = 0.3661</div>
+                                    <p style={{ color: T.textSec, margin: 0, lineHeight: 1.6 }}>Vertical axis highly stable.<br />Minimal sensor drift.</p>
+                                </div>
                             </div>
 
-                            <div style={{ padding: '16px 24px', borderLeft: `2px solid ${T.cyan}`, color: T.textPri, fontSize: '1.2rem', fontFamily: 'serif', fontStyle: 'italic' }}>
-                                sup<sub style={{ fontSize: '0.7em', fontStyle: 'normal' }}>t</sub> ‖ω(t)‖ &lt; ω_max
-                            </div>
-
-                            <div style={{ color: T.textMuted, fontSize: '1rem' }}>
-                                Interpretation: No runaway instability.
+                            {/* B) IMU */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                                <div className="graph-card">
+                                    <Image src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Acceleration" width={600} height={400} style={{ width: '100%', height: 'auto', borderRadius: 4 }} />
+                                    <div className="graph-caption">IMU Linear Acceleration (X)</div>
+                                </div>
+                                <div>
+                                    <div style={{ color: T.cyan, fontSize: '1.1rem', fontWeight: 500, marginBottom: 8 }}>Smooth acceleration transitions</div>
+                                    <p style={{ color: T.textSec, margin: 0, lineHeight: 1.6 }}>No chaotic spikes.<br />Controlled torque response.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </FadeSection>
 
-                {/* 🧩 SECTION 5 — Per-Axis Control Behavior */}
-                <FadeSection style={{ padding: '120px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderBottom: `1px solid ${T.border}` }}>
-                    <GraphImage src="/Aero-Controllers/phase-2/angular_velocity_per_axis.png" alt="Angular Velocity Per Axis" />
-
-                    <div style={{ display: 'flex', gap: 24, width: '100%', maxWidth: 1100, marginTop: '24px' }}>
-                        <div style={{ flex: 1, padding: '24px', background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8, textAlign: 'center' }}>
-                            <div style={{ color: T.textPri, fontSize: '1.2rem', fontWeight: 500, marginBottom: 8 }}>Roll</div>
-                            <div style={{ color: T.textSec }}>controlled correction</div>
-                        </div>
-                        <div style={{ flex: 1, padding: '24px', background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8, textAlign: 'center' }}>
-                            <div style={{ color: T.textPri, fontSize: '1.2rem', fontWeight: 500, marginBottom: 8 }}>Pitch</div>
-                            <div style={{ color: T.textSec }}>damped oscillation</div>
-                        </div>
-                        <div style={{ flex: 1, padding: '24px', background: T.bgAlt, border: `1px solid ${T.border}`, borderRadius: 8, textAlign: 'center' }}>
-                            <div style={{ color: T.textPri, fontSize: '1.2rem', fontWeight: 500, marginBottom: 8 }}>Yaw</div>
-                            <div style={{ color: T.textSec }}>stable axis</div>
-                        </div>
+                {/* 7️⃣ MATHEMATICAL INTERPRETATION BLOCK */}
+                <FadeSection style={{ background: T.secStrip, padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, width: '100%', maxWidth: 1200, justifyContent: 'center' }}>
+                        {[
+                            { title: "Variance Reduction", eq: "Var(ω) ↓", desc: "Stabilizes oscillation" },
+                            { title: "Bounded State", eq: "||x(t)|| ≤ C", desc: "Prevent divergence" },
+                            { title: "Energy Finite", eq: "∫ ||ω(t)||² dt < ∞", desc: "Decaying transients" },
+                            { title: "Low RMSE", eq: "Low RMSE_IMU", desc: "Repeatable dynamics" }
+                        ].map((card, i) => (
+                            <div key={i} style={{ flex: '1 1 250px', maxWidth: 300, padding: 32, background: T.bgBase, border: `1px solid ${T.border}`, borderRadius: 8, textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 16 }}>
+                                <div style={{ fontSize: '1.8rem', color: T.cyan, fontFamily: 'serif', fontStyle: 'italic' }}>{card.eq}</div>
+                                <div>
+                                    <div style={{ fontWeight: 500, color: T.textPri, marginBottom: 4 }}>{card.title}</div>
+                                    <div style={{ fontSize: '0.9rem', color: T.textSec }}>{card.desc}</div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </FadeSection>
 
-                {/* 🧩 SECTION 6 — Sensor-Level Consistency */}
-                <FadeSection style={{ padding: '120px 40px', background: T.bgAlt, borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, width: '100%', maxWidth: 1100, marginBottom: 40 }}>
-                        <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                            <Image src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                        </div>
-                        <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                            <Image src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Linear Acceleration Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                        </div>
-                    </div>
-
-                    <div style={{ width: '100%', maxWidth: 600, display: 'flex', flexDirection: 'column', gap: 24 }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec, fontSize: '1.1rem' }}>
-                            <div style={{ color: T.textPri, fontWeight: 500, marginBottom: 4 }}>Key takeaway:</div>
-                            <p style={{ margin: 0 }}>• Minimal vertical drift</p>
-                            <p style={{ margin: 0 }}>• Smooth acceleration transitions</p>
-                            <p style={{ margin: 0 }}>• No chaotic spikes</p>
-                        </div>
-                        <div style={{ padding: '20px 24px', background: T.bgBase, border: `1px solid ${T.cyan}`, borderRadius: 8, color: T.textPri, fontSize: '1.1rem' }}>
-                            <span style={{ color: T.cyan, fontWeight: 500 }}>RMSE Pos,Z = 0.3661</span> → strong vertical stabilization.
-                        </div>
-                    </div>
-                </FadeSection>
-
-                {/* 🧩 SECTION 7 — Mathematical Interpretation */}
-                <FadeSection style={{ padding: '120px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, width: '100%', maxWidth: 1000, marginBottom: 48 }}>
-                        <MathCell title="1️⃣ Reduced rotational variance" mathDesc="Var(ω) ↓" />
-                        <MathCell title="2️⃣ Bounded state deviation" mathDesc="‖x(t)‖ ≤ C" />
-                        <MathCell title="3️⃣ Finite rotational energy" mathDesc="∫ ‖ω(t)‖² dt < ∞" />
-                        <MathCell title="4️⃣ Repeatable sensor response" mathDesc="Low RMSE_IMU" />
-                    </div>
-
-                    <p style={{ fontSize: '1.25rem', color: T.textSec, fontWeight: 300, lineHeight: 1.6, maxWidth: 600, textAlign: 'center', margin: 0 }}>
-                        Phase-2 demonstrates measurable stabilization improvement and controlled dynamic response under identical wind conditions.
+                {/* 8️⃣ ENGINEERING VERDICT */}
+                <FadeSection style={{ padding: '120px 40px 160px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                    <h2 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 32 }}>Phase-2 Engineering Validation</h2>
+                    <p style={{ fontSize: '1.2rem', color: T.textSec, maxWidth: 800, lineHeight: 1.6, marginBottom: 64 }}>
+                        Phase-2 confirms reduced rotational instability, improved damping behavior, and high repeatability across controlled disturbance injections, establishing quantitative stability improvement prior to stochastic robustness testing.
                     </p>
-                </FadeSection>
 
-                {/* 🧩 SECTION 8 — Engineering Conclusion */}
-                <FadeSection style={{ padding: '160px 40px', background: T.bgAlt, borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 48 }}>Stabilization is Now Measurable</h2>
-
-                    <div style={{ width: '100%', maxWidth: 600, display: 'flex', flexDirection: 'column', gap: 16, color: T.textSec, fontSize: '1.2rem', textAlign: 'left', marginBottom: 64 }}>
-                        <p style={{ margin: '0 0 16px 0', color: T.textPri }}>Phase-2 confirms:</p>
-                        <p style={{ margin: 0 }}>• Reduced rotational instability</p>
-                        <p style={{ margin: 0 }}>• Damped oscillatory behavior</p>
-                        <p style={{ margin: 0 }}>• Bounded trajectory deviation</p>
-                        <p style={{ margin: 0 }}>• Sensor-level repeatability</p>
-                        <p style={{ margin: 0 }}>• Improved disturbance rejection</p>
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 80, fontSize: '1.5rem', color: T.textPri }}>
-                        <div style={{ opacity: 0.6 }}>Phase-2 validates improvement.</div>
-                        <div style={{ color: T.cyan }}>Phase-3 tests robustness.</div>
-                    </div>
-
-                    <h1 style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 300, lineHeight: 1.2, maxWidth: 1100, color: T.textPri, borderTop: `1px solid ${T.border}`, paddingTop: 64 }}>
-                        Phase-2 quantitatively validates improved rotational stability and trajectory repeatability through RMSE reduction, variance control, and bounded angular velocity behavior under controlled disturbances.
-                    </h1>
-
-                    {/* Final Video Placement at Bottom as specified */}
-                    <div style={{ width: '100%', maxWidth: 1100, margin: '80px auto 0 auto', border: `1px solid ${T.border}`, borderRadius: 12, overflow: 'hidden', background: '#000', position: 'relative', aspectRatio: '21/9' }}>
-                        <iframe src="https://www.youtube.com/embed/Vugx3RBhP7Q?autoplay=1&loop=1&mute=1&playlist=Vugx3RBhP7Q&controls=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; fullscreen" style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }} allowFullScreen />
+                    {/* Transition Box */}
+                    <div style={{ display: 'flex', gap: 24, border: `1px solid ${T.border}`, padding: '32px 48px', borderRadius: 8, background: T.bgAlt, alignItems: 'center' }}>
+                        <div style={{ color: T.textMuted }}>Phase-1 <br /><span style={{ color: T.textSec }}>Baseline Instability</span></div>
+                        <div style={{ color: T.textMuted }}>➔</div>
+                        <div style={{ color: T.textPri }}>Phase-2 <br /><span style={{ color: T.cyan }}>Quantified Improvement</span></div>
+                        <div style={{ color: T.textMuted }}>➔</div>
+                        <div style={{ color: T.textMuted }}>Phase-3 <br /><span style={{ color: T.textSec }}>Multi-Wind Robustness</span></div>
                     </div>
                 </FadeSection>
 
