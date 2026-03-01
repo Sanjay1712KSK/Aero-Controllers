@@ -84,14 +84,14 @@ const ExpandableGraph = ({ src, alt, width = 800, height = 500, style = {} }) =>
                     }}
                     onClick={() => setIsExpanded(false)}
                 >
-                    <div style={{ position: 'relative', width: '100%', maxWidth: 1400, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'relative', width: '90vw', height: '90vh', maxWidth: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: T.bgBase, border: `1px solid ${T.border}`, borderRadius: 12, padding: 24, boxShadow: `0 20px 40px rgba(0,0,0,0.5)` }}>
                         <Image
                             src={src}
                             alt={alt}
                             fill
-                            style={{ objectFit: 'contain', borderRadius: 8 }}
+                            style={{ objectFit: 'contain', padding: 24 }}
                         />
-                        <div style={{ position: 'absolute', top: -40, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
+                        <div style={{ position: 'absolute', top: -30, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
                             Click anywhere to close
                         </div>
                     </div>

@@ -84,14 +84,14 @@ const ExpandableGraph = ({ src, alt, width = 800, height = 500, style = {} }) =>
                     }}
                     onClick={() => setIsExpanded(false)}
                 >
-                    <div style={{ position: 'relative', width: '100%', maxWidth: 1400, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ position: 'relative', width: '90vw', height: '90vh', maxWidth: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: T.bgBase, border: `1px solid ${T.border}`, borderRadius: 12, padding: 24, boxShadow: `0 20px 40px rgba(0,0,0,0.5)` }}>
                         <Image
                             src={src}
                             alt={alt}
                             fill
-                            style={{ objectFit: 'contain', borderRadius: 8 }}
+                            style={{ objectFit: 'contain', padding: 24 }}
                         />
-                        <div style={{ position: 'absolute', top: -40, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
+                        <div style={{ position: 'absolute', top: -30, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
                             Click anywhere to close
                         </div>
                     </div>
@@ -317,24 +317,23 @@ export default function Phase1Page() {
                             <div style={{ color: T.textSec, fontSize: '1.1rem', letterSpacing: 1 }}>Wind Injection Uncontrolled Response</div>
                         </div>
                     </div>
-                </div>
 
-                {/* 8️⃣ TRANSITION TO PHASE-2 */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '32px 48px', border: `1px solid ${T.border}`, borderRadius: 8, background: T.bgAlt, width: '100%', maxWidth: 800 }}>
-                    <div style={{ display: 'flex', gap: 24, alignItems: 'center', width: '100%', justifyContent: 'center' }}>
-                        <div style={{ color: T.textMuted }}>Phase-1 <br /><span style={{ color: T.textPri }}>Baseline Instability</span></div>
-                        <div style={{ color: T.textMuted }}>➔</div>
-                        <div style={{ color: T.textPri }}>Phase-2 <br /><span style={{ color: T.cyan }}>Quantified Improvement</span></div>
-                        <div style={{ color: T.textMuted }}>➔</div>
-                        <div style={{ color: T.textMuted }}>Phase-3 <br /><span style={{ color: T.textSec }}>Multi-Wind Robustness</span></div>
+                    {/* 8️⃣ TRANSITION TO PHASE-2 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '32px 48px', border: `1px solid ${T.border}`, borderRadius: 8, background: T.bgAlt, width: '100%', maxWidth: 800 }}>
+                        <div style={{ display: 'flex', gap: 24, alignItems: 'center', width: '100%', justifyContent: 'center' }}>
+                            <div style={{ color: T.textMuted }}>Phase-1 <br /><span style={{ color: T.textPri }}>Baseline Instability</span></div>
+                            <div style={{ color: T.textMuted }}>➔</div>
+                            <div style={{ color: T.textPri }}>Phase-2 <br /><span style={{ color: T.cyan }}>Quantified Improvement</span></div>
+                            <div style={{ color: T.textMuted }}>➔</div>
+                            <div style={{ color: T.textMuted }}>Phase-3 <br /><span style={{ color: T.textSec }}>Multi-Wind Robustness</span></div>
+                        </div>
+                        <div style={{ color: T.textSec, fontSize: '1rem', borderTop: `1px solid ${T.border}`, paddingTop: 24, textAlign: 'center' }}>
+                            Phase-2 introduces quantitative validation of stabilization improvement across repeated disturbance injection trials.
+                        </div>
                     </div>
-                    <div style={{ color: T.textSec, fontSize: '1rem', borderTop: `1px solid ${T.border}`, paddingTop: 24, textAlign: 'center' }}>
-                        Phase-2 introduces quantitative validation of stabilization improvement across repeated disturbance injection trials.
-                    </div>
-                </div>
-            </FadeSection>
+                </FadeSection>
 
-        </main>
+            </main>
         </div >
     )
 }
