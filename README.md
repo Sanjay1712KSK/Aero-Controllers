@@ -45,7 +45,8 @@ Disturbance Model: Stochastic wind injection
 
 Evaluation Metrics: RMSE, variance, angular energy, stability score
 
-📂 Repository Structure
+### Repository Structure
+
 GPSDeniedDrone/
 │
 ├── ControlPyScripts/          # Training + Evaluation scripts
@@ -58,8 +59,9 @@ GPSDeniedDrone/
 ├── Simulation Media/          # Evaluation videos & demo outputs
 │
 └── README.md
-🔬 Phase Breakdown
-🚨 Phase-1 — Baseline Instability
+
+## Phase Breakdown
+### Phase-1 — Baseline Instability
 
 High angular velocity variance
 
@@ -71,7 +73,7 @@ No disturbance rejection
 
 This phase establishes uncontrolled system behavior.
 
-📊 Phase-2 — Quantified Stability Improvement
+### Phase-2 — Quantified Stability Improvement
 
 Introduces:
 
@@ -85,7 +87,7 @@ Trajectory consistency metrics
 
 Demonstrates measurable stabilization improvement.
 
-🔥 Phase-3 — Stochastic Multi-Wind Robustness
+### Phase-3 — Stochastic Multi-Wind Robustness
 
 600k timestep PPO training
 
@@ -103,7 +105,9 @@ Strong	86+
 
 All regimes remain >85/100, indicating robust generalization.
 
-📈 Key Technical Results
+### Phase 4 ( Currently In Progress ) - INS drfit Supression Training and evaluation
+
+### Key Technical Results
 
 Bounded angular velocity behavior
 
@@ -115,7 +119,7 @@ No policy collapse under strong disturbance
 
 Stable performance across checkpoints
 
-Mathematically:
+### Mathematically:
 
 sup ||ω(t)|| < ω_max
 
@@ -123,7 +127,7 @@ sup ||ω(t)|| < ω_max
 
 ||Δp(t)|| < ε
 
-🎮 Simulation Environment
+## Simulation Environment
 
 Unreal Engine 5.5
 
@@ -133,7 +137,7 @@ Custom wind disturbance injection
 
 Deterministic and stochastic evaluation pipelines
 
-🧪 Training Details
+## Training Details
 
 Algorithm: PPO
 
@@ -149,7 +153,7 @@ Position drift
 
 Policy trained under stochastic wind randomization
 
-🌐 Interactive Documentation
+## Interactive Documentation
 
 The project includes a fully interactive technical documentation frontend built with:
 
@@ -163,11 +167,11 @@ Graph-based analysis panels
 
 Embedded simulation videos
 
-📎 Live Demo here:
+## Live Demo here:
 
 [https://your-username.github.io/repo-name](https://sanjay1712ksk.github.io/Aero-Controllers/)
 
-🎥 Demonstration Media
+## Demonstration Media
 
 Includes:
 
