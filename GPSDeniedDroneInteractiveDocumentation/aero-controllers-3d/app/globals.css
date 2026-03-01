@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #02040a;
+  /* Darker navy */
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+
+/* UI Overlay */
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem 5rem;
+  font-size: 0.85rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: auto;
+}
+
+.brand {
+  font-weight: 700;
+  color: #fff;
+}
+
+.nav-links span {
+  margin-left: 2.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-links span:hover {
+  color: #00f0ff;
+}
+
+.story-wrapper {
+  position: relative;
+  width: 100vw;
+  /* Driven by page.js styles: height: 800vh */
+}
+
+.story-section {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Text Overlays - fixed center */
+.scene-text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 60%);
+  opacity: 0;
+  visibility: hidden;
+
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  will-change: opacity, transform, visibility;
+  backface-visibility: hidden;
+}
+
+.scene-text-container.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scene-line {
+  font-size: clamp(48px, 4vw, 64px);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.scene-subline {
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 400;
+  color: #e2e8f0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.scene-smallcap {
+  font-size: clamp(16px, 1.2vw, 20px);
+  font-weight: 300;
+  color: #94a3b8;
+  margin-top: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
