@@ -318,7 +318,7 @@ Embedded simulation videos
 
 ## Live Demo here:
 
-[https://your-username.github.io/repo-name](https://sanjay1712ksk.github.io/Aero-Controllers/)
+https://sanjay1712ksk.github.io/Aero-Controllers/
 
 ## Demonstration Media
 
