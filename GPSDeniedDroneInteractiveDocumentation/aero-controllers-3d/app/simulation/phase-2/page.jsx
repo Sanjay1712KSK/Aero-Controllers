@@ -114,27 +114,49 @@ export default function Phase2Page() {
             <main style={{ paddingTop: 72 }}>
 
                 {/* 🧩 SECTION 1 — Hero Introduction */}
-                <section className="hero-wrapper" style={{ minHeight: '90vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}`, position: 'relative' }}>
+                <section className="hero-wrapper" style={{
+                    minHeight: '90vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    padding: '0 5rem', borderBottom: `1px solid ${T.border}`, overflow: 'hidden'
+                }}>
+                    <div style={{ display: 'flex', width: '100%', maxWidth: 1400, gap: '4rem', alignItems: 'center' }}>
 
-                    <div className="hero-text" style={{ color: T.cyan, fontSize: '0.85rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 }}>
-                        Phase-2: Quantitative Stability Validation
-                    </div>
-                    <h1 className="hero-text" style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 300, letterSpacing: '-1px', marginBottom: 24, lineHeight: 1.1, maxWidth: 900 }}>
-                        From Visual Improvement to Measured Performance
-                    </h1>
-                    <p className="hero-text" style={{ fontSize: '1.25rem', color: T.textSec, fontWeight: 300, lineHeight: 1.6, maxWidth: 600, margin: '0 auto 64px auto' }}>
-                        Phase-2 introduces numerical evaluation metrics across repeated runs under identical wind conditions to validate stabilization consistency.
-                    </p>
+                        {/* Left Content */}
+                        <div style={{ flex: 1, zIndex: 10 }}>
+                            <div className="hero-text" style={{ color: T.cyan, fontSize: '0.85rem', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 }}>
+                                Phase-2: Quantitative Stability Validation
+                            </div>
+                            <h1 className="hero-text" style={{ fontSize: 'clamp(48px, 5vw, 72px)', fontWeight: 300, letterSpacing: '-1.5px', marginBottom: 32, lineHeight: 1.1 }}>
+                                From Visual Improvement<br />to Measured Performance
+                            </h1>
+                            <p className="hero-text" style={{ fontSize: '1.25rem', color: T.textSec, fontWeight: 300, lineHeight: 1.6, maxWidth: 600, marginBottom: 40 }}>
+                                Phase-2 introduces numerical evaluation metrics across repeated runs under identical wind conditions to validate stabilization consistency.
+                            </p>
 
-                    {/* Minimal side-by-side preview */}
-                    <div className="hero-text hero-videos" style={{ display: 'flex', gap: 24, justifyContent: 'center', width: '100%', maxWidth: 800 }}>
-                        <div style={{ flex: 1, border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: '#000', position: 'relative', aspectRatio: '16/9' }}>
-                            <div style={{ position: 'absolute', top: 12, left: 16, zIndex: 10, fontSize: '0.75rem', color: T.textPri, letterSpacing: 1, background: 'rgba(0,0,0,0.5)', padding: '4px 8px', borderRadius: 4 }}>RUN 1</div>
-                            <iframe src="https://www.youtube.com/embed/Vugx3RBhP7Q?autoplay=1&loop=1&mute=1&playlist=Vugx3RBhP7Q&controls=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover', opacity: 0.8, pointerEvents: 'none' }} />
+                            {/* Technical Badges */}
+                            <div className="hero-text" style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                                {['Control: Stochastic Learning', 'Wind: Identical Turbulence', 'Validation: Repeatable Runs', 'Metric: Consistency'].map(badge => (
+                                    <div key={badge} style={{
+                                        padding: '8px 16px', background: T.bgAlt, border: `1px solid ${T.border}`,
+                                        borderRadius: 4, fontSize: '0.85rem', color: T.textSec, letterSpacing: 0.5
+                                    }}>
+                                        {badge}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div style={{ flex: 1, border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: '#000', position: 'relative', aspectRatio: '16/9' }}>
-                            <div style={{ position: 'absolute', top: 12, left: 16, zIndex: 10, fontSize: '0.75rem', color: T.textPri, letterSpacing: 1, background: 'rgba(0,0,0,0.5)', padding: '4px 8px', borderRadius: 4 }}>RUN 2</div>
-                            <iframe src="https://www.youtube.com/embed/Vugx3RBhP7Q?autoplay=1&loop=1&mute=1&playlist=Vugx3RBhP7Q&controls=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media" style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover', opacity: 0.8, pointerEvents: 'none' }} />
+
+                        {/* Right Visual */}
+                        <div className="hero-visual" style={{
+                            flex: 1, height: '600px', position: 'relative', borderRadius: 16, overflow: 'hidden',
+                            border: `1px solid ${T.border}`, boxShadow: `0 30px 60px rgba(0,229,255,0.05)`
+                        }}>
+                            <iframe
+                                src="https://www.youtube.com/embed/Vugx3RBhP7Q?autoplay=1&loop=1&mute=1&playlist=Vugx3RBhP7Q&controls=0&modestbranding=1&playsinline=1"
+                                allow="autoplay; encrypted-media"
+                                style={{ width: '100%', height: '100%', border: 'none', objectFit: 'cover' }}
+                            />
+                            {/* Vignette Overlay */}
+                            <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, transparent 40%, rgba(5,10,20,0.8) 100%)', pointerEvents: 'none' }} />
                         </div>
                     </div>
                 </section>
