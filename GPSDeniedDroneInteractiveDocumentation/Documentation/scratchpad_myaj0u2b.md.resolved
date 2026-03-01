@@ -1,0 +1,20 @@
+# Task: Verify Header Layout
+
+- [x] Open http://localhost:3000/
+- [x] Check header on root page:
+    - [x] Logo "AERO-CONTROLLERS" on the far left.
+    - [x] Links "STORY", "CONTROL & STABILITY FRAMEWORK", "SIMULATION" on the far right in uppercase.
+- [x] Take screenshot of root page header.
+- [x] Navigate to http://localhost:3000/technical (Control & Stability Framework).
+- [x] Check header on technical page:
+    - [x] Logo "AERO-CONTROLLERS" on the far left.
+    - [x] Links "STORY", "CONTROL & STABILITY FRAMEWORK", "SIMULATION" on the far right in uppercase.
+- [x] Take screenshot of technical page header.
+- [x] Report findings.
+
+## Findings:
+- Both root and technical pages follow the same header layout.
+- "AERO-CONTROLLERS" is on the far left.
+- "STORY", "CONTROL & STABILITY FRAMEWORK", and "SIMULATION" are on the far right in uppercase.
+- On the technical page, "CONTROL & STABILITY FRAMEWORK" is active with a cyan underline.
+- The layout matches the user's requested specification.

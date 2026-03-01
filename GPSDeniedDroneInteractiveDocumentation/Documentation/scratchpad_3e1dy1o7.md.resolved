@@ -1,0 +1,23 @@
+# Redesign Verification: Technical Tab
+
+## Task Checklist
+- [x] Open http://localhost:3000/technical
+- [x] Scroll and verify centering of equation blocks
+- [x] Screenshot '01 — Quadrotor Dynamics' and '02 — State & Control Formulation'
+- [!] Verify hover logic for variables and screenshot hover state (**FAILED**: No panel appears on hover, JS search found no related elements)
+- [x] Check '08 — Theoretical Guarantee' for color highlighting and screenshot
+- [x] Confirm aerospace console aesthetic (**MINOR ISSUE**: Blue vignette/glow at edges violates "no glow" rule)
+
+## Findings
+- **Centering**: All equation blocks and explanation panels are perfectly centered. Max width of 1200px is respected.
+- **Section Flow**: The 8 sections requested are present and follow the specified structure.
+- **Color Coding**: 
+    - State errors in cyan (#22D3EE).
+    - Penalty terms in deep red (#991B1B).
+    - Lyapunov stability green terms (#22C55E) and red wind terms.
+    - Matches user request perfectly.
+- **Header**: Height 72px, fixed top, correct spacing (Story, Technical, Simulation), uppercase AERO-CONTROLLER with letter spacing.
+- **Aesthetic**: Dark themed, aerospace feel. No glass blur or neon as requested.
+- **ISSUES FOUND**:
+    1. **Nomenclature Hover**: Floating nomenclature panels do not appear when hovering over variables. JS search did not find any such elements in the DOM.
+    2. **Glow/Gradients**: There is a blue vignette/glow effect at the top and bottom edges of the viewport and header, which contradicts the "No glow, No gradients" rule.

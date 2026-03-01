@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPS-Denied Drone Navigation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- PAGE 1: STORY (Scroll-Driven Cinematic Experience) -->
+    <main id="story-container">
+      
+      <!-- Scene 1: GPS Loss -->
+      <section class="scene" id="scene-1">
+        <div class="content-wrapper centered">
+          <h1 class="headline fade-in delay-1">GPS Signal Lost.</h1>
+          <h2 class="subheadline fade-in delay-2">The drone continues flying.</h2>
+        </div>
+        <div class="background-element drone-silhouette"></div>
+      </section>
+
+      <!-- Scene 2: Invisible Drift -->
+      <section class="scene" id="scene-2">
+        <div class="content-wrapper text-left">
+          <p class="story-text slide-up">Inside the drone...</p>
+          <p class="story-text slide-up">tiny motion sensors are working.</p>
+          <p class="story-text slide-up">They measure acceleration.</p>
+          <p class="story-text slide-up">They measure rotation.</p>
+          <p class="story-text slide-up highlight">But they slowly accumulate error.</p>
+        </div>
+        <div class="background-element visual-drift"></div>
+      </section>
+
+      <!-- Scene 3: Error Amplification -->
+      <section class="scene" id="scene-3">
+        <div class="content-wrapper split-layout">
+          <div class="text-side">
+            <h1 class="headline">Small errors grow.</h1>
+            <p class="story-text slide-up">A 0.1° rotation bias</p>
+            <p class="story-text slide-up highlight">becomes meters of position drift.</p>
+          </div>
+          <div class="visual-side">
+            <div class="split-screen expected">Expected</div>
+            <div class="split-screen actual">Actual Divergence</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 4: Wind Disturbance -->
+      <section class="scene wind-disturbance" id="scene-4">
+        <div class="content-wrapper">
+          <p class="story-text slide-up">Then wind hits.</p>
+          <p class="story-text slide-up">Instability amplifies.</p>
+          <p class="story-text slide-up">Controllers react.</p>
+          <p class="story-text slide-up highlight-red">But too late.</p>
+        </div>
+        <div class="particles"></div>
+      </section>
+
+      <!-- Scene 5: Collapse -->
+      <section class="scene" id="scene-5">
+        <div class="content-wrapper centered">
+          <h1 class="headline fade-in">Navigation collapses.</h1>
+          <h2 class="subheadline fade-in delay-2 highlight-red">The mission fails.</h2>
+        </div>
+      </section>
+
+      <!-- Scene 6: Our Question -->
+      <section class="scene calm" id="scene-6">
+        <div class="content-wrapper centered">
+          <h1 class="headline">What if the drone could learn?</h1>
+          <div class="text-grid">
+            <p class="story-text slide-up">Not just follow rules.</p>
+            <p class="story-text slide-up highlight">But adapt.</p>
+            <p class="story-text slide-up mt-2">Not just react.</p>
+            <p class="story-text slide-up highlight">But correct itself.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 7: Our Solution -->
+      <section class="scene" id="scene-7">
+        <div class="content-wrapper centered">
+          <h1 class="headline highlight">We trained it under chaos.</h1>
+          <p class="story-text slide-up">Strong wind.</p>
+          <p class="story-text slide-up">Stochastic disturbance.</p>
+          <p class="story-text slide-up accent">600,000 learning steps.</p>
+          <h2 class="subheadline mt-4 fade-in">It learned to stay stable.</h2>
+        </div>
+      </section>
+
+      <!-- Scene 8: The Next Leap -->
+      <section class="scene" id="scene-8">
+        <div class="content-wrapper text-left">
+          <div class="diagram-container slide-up">
+            <span class="box">IMU</span> &rarr;
+            <span class="box glow">Learning Model</span> &rarr;
+            <span class="box">Bias Correction</span> &rarr;
+            <span class="box">EKF</span> &rarr;
+            <span class="box">State Estimate</span>
+          </div>
+          <div class="text-group mt-4">
+            <h1 class="headline">Stability is only the beginning.</h1>
+            <p class="story-text slide-up">Now we teach it to detect drift.</p>
+            <p class="story-text slide-up highlight">And correct its own inertial bias.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Scene -->
+      <section class="scene" id="scene-final">
+        <div class="content-wrapper centered">
+          <h1 class="headline huge fade-in">When GPS disappears...</h1>
+          <h1 class="headline huge highlight fade-in delay-1 mb-4">our drone adapts.</h1>
+          <div class="paper-title slide-up delay-2">
+            <h2>Aero-Controllers</h2>
+            <p>Learning-Aided INS Drift Suppression for GPS-Denied Quadrotor Flight</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- PAGE 2: TECHNICAL DEEP DIVE -->
+    <div id="technical-container">
+      <div class="glass-bg"></div>
+      <div class="tech-content">
+        <h2 class="section-title">Technical Deep Dive</h2>
+        
+        <section class="tech-section" id="tech-1">
+          <h3>1. Problem Definition</h3>
+          <p>In GPS-denied environments, quadrotors rely solely on inertial measurements for state estimation and control.</p>
+          <p>IMU bias and noise accumulate over time, causing:</p>
+          <ul>
+            <li>Position drift</li>
+            <li>Orientation error</li>
+            <li>Navigation instability</li>
+            <li>Amplified disturbance response</li>
+          </ul>
+          <p>Classical PID and EKF methods assume bounded noise and predictable disturbances. Real-world turbulence violates these assumptions.</p>
+        </section>
+
+        <section class="tech-section" id="tech-2">
+          <h3>2. Research Gap</h3>
+          <div class="grid-2">
+            <div class="tech-card">
+              <h4>Existing Systems</h4>
+              <ul>
+                <li>Fixed-gain PID</li>
+                <li>EKF bias estimation</li>
+                <li>Disturbance observers</li>
+              </ul>
+            </div>
+            <div class="tech-card limitation-card">
+              <h4>Limitations</h4>
+              <ul>
+                <li>Limited adaptability</li>
+                <li>Static noise models</li>
+                <li>Weak generalization</li>
+                <li>No learning-based bias prediction</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="tech-section" id="tech-3">
+          <h3>3. Phase 3: Disturbance-Resilient Stabilization</h3>
+          <div class="grid-2">
+            <div class="tech-card glow-card">
+              <h4>Method</h4>
+              <ul>
+                <li>PPO reinforcement learning</li>
+                <li>Wind-injected simulation</li>
+                <li>Multi-regime training</li>
+                <li>600k timesteps</li>
+              </ul>
+            </div>
+            <div class="tech-card">
+              <h4>Outcome</h4>
+              <ul>
+                <li>85% stability under strong wind</li>
+                <li>Reduced angular variance</li>
+                <li>Cross-regime robustness</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="tech-section" id="tech-4">
+          <h3>4. Phase 4: Learning-Aided INS Drift Suppression</h3>
+          <div class="timeline-list">
+            <div class="timeline-item">Log IMU bias accumulation</div>
+            <div class="timeline-item">Quantify baseline INS+EKF drift</div>
+            <div class="timeline-item">Train sequence model (LSTM / Transformer)</div>
+            <div class="timeline-item">Predict bias corrections (Δbg, Δba)</div>
+            <div class="timeline-item">Fuse correction into EKF</div>
+            <div class="timeline-item">Compare ATE and RPE metrics</div>
+          </div>
+          <div class="target-box mt-3">
+            <strong>Target:</strong> &ge; 30% drift reduction.
+          </div>
+        </section>
+
+        <section class="tech-section" id="tech-5">
+          <h3>5. Contribution</h3>
+          <div class="contribution-box">
+            <p>Hybrid autonomy architecture combining:</p>
+            <div class="highlight-text">Learning-based disturbance rejection</div>
+            <p>and</p>
+            <div class="highlight-text">Learning-enhanced inertial bias suppression.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- PAGE 3: SIMULATION SHOWCASE (Placeholder for Now) -->
+    <div id="simulation-container">
+      <h2 class="section-title centered">Simulation Showcase</h2>
+      <div class="dashboard-grid">
+        <div class="dash-card video-player-container">
+          <div class="placeholder-text">Video Player Placeholder</div>
+        </div>
+        <div class="dash-card stability-score-graph">
+          <div class="placeholder-text">Stability Score Graph Placeholder</div>
+        </div>
+        <div class="dash-card wind-regime-selector">
+          <div class="placeholder-text">Wind Regime Selector Dropdown Placeholder</div>
+        </div>
+        <div class="dash-card metrics-comparison">
+          <div class="placeholder-text">Metrics Comparison Table Placeholder</div>
+        </div>
+        <div class="dash-card before-after-slider">
+          <div class="placeholder-text">Before vs After Slider Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

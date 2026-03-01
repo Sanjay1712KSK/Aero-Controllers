@@ -1,0 +1,13 @@
+# Task Checklist
+- [/] Open http://localhost:3000/ (Encountered Build Error)
+- [ ] Scroll through the page and observe 3D typography
+- [ ] Verify background words: ERROR, DRIFT, INSTABILITY, FAILURE, LEARN, ADAPT
+- [ ] Verify mountain walls (3 layers) and twilight sky
+- [ ] Take screenshot at Scene 4 (DRIFT)
+- [ ] Take screenshot at Scene 9 (ADAPT)
+- [ ] Check for 60fps performance
+- [ ] Confirm typography doesn't block the drone
+- [ ] Final report
+
+## Issues Found
+- Build error in `app/page.js`: `useLayoutEffect` requires `"use client"` directive. I am restricted to the `browser` folder and cannot edit `app/page.js`.

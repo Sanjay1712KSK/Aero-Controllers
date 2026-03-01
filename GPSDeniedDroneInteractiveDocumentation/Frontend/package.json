@@ -1,0 +1,18 @@
+{
+  "name": "gps-denied-drone-docs",
+  "version": "1.0.0",
+  "description": "Premium storytelling website for GPS-denied drone navigation",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.14.2",
+    "vite": "^7.3.1"
+  }
+}

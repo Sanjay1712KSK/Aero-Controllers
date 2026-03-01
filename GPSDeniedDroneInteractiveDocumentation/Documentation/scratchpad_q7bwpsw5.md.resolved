@@ -1,0 +1,17 @@
+# Task Plan: Verify Technical Page Redesign
+
+## Checklist
+- [x] Open http://localhost:3000/technical
+- [x] Verify uniform pitch black background (#040914)
+- [x] Scroll to Section 08 - Theoretical Guarantee
+- [x] Verify hover functionality on `e_pᵀ` or `K_w`
+- [x] Capture screenshot of hover panel
+- [x] Capture screenshot of Section 08
+- [x] Final verification of visibility and behavior
+
+## Notes
+- Background is uniform #040914 across the entire page.
+- Section 08 is Lyapunov Stability Interpretation.
+- Color coding: Cyan for state variables (V(e), conclusion), Green for stabilizing terms (K_w, K_p, K_att), Red for disturbance (f_wind).
+- Hover panels work correctly in Section 08 and other sections, showing Symbol, Definition, Units, and Role.
+- Floating panels are high-contrast and appear slightly to the right of the equation components.

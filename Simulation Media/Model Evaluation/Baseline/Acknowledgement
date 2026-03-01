@@ -1,0 +1,3 @@
+Phase-1 demonstrates that sensor-only path following is insufficient under real-world disturbances, motivating the use of a learning-based controller to actively correct deviations and ensure robust trajectory tracking.
+
+Phase 1 establishes a baseline autonomous flight using predefined waypoints and raw onboard sensor feedback without any learning-based correction. This phase serves to observe and acknowledge the natural effects of environmental disturbances, sensor noise, and external forces on the drone’s stability and path tracking. The results from this phase confirm that sensor-only navigation is insufficient for maintaining a stable and accurate trajectory under real-world conditions.

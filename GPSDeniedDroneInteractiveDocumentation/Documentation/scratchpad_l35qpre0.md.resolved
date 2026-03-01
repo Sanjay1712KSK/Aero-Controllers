@@ -1,0 +1,10 @@
+# Task Plan
+- [x] Navigate to http://localhost:3000/
+- [ ] Scroll through the page to observe the 3D drone scene and text overlays
+    - Initial scroll of 500px didn't show text overlays yet.
+- [ ] Verify drone visibility in dark lighting
+    - Drone is visible, background is dark industrial/warehouse style.
+- [ ] Verify text overlay behavior (centering, gradient, fading)
+- [ ] Check red and blue trajectory lines visibility
+- [ ] Capture screenshots of each state
+- [ ] Report on cinematic feel and performance

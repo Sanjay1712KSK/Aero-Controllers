@@ -1,0 +1,42 @@
+# Organize Frontend Project Files Walkthrough
+
+## Summary of Changes
+1. **Created New Directory**: We successfully created the `GPSDeniedDroneInteractiveDocumentation` directory at the root of your repository to house all your frontend projects.
+2. **Moved Directories**: The `Frontend`, `Frontend3D`, and `aero-controllers-3d` folders were moved inside `GPSDeniedDroneInteractiveDocumentation`.
+3. **Updated GitHub Actions Workflow**: Modified [.github/workflows/nextjs.yml](file:///s:/GPSDeniedDroneDocumentation/.github/workflows/nextjs.yml) so the GitHub Pages deployment process correctly paths into `GPSDeniedDroneInteractiveDocumentation/aero-controllers-3d/` for its cache and correct working directory.
+
+## Validation Results
+We ran the Next.js `npm run build` process inside the newly positioned `aero-controllers-3d` directory to confirm everything works properly:
+```
+✓ Compiled successfully in 2.2s
+✓ Finished TypeScript in 65.4ms
+✓ Collecting page data using 11 workers in 414.5ms
+✓ Generating static pages using 11 workers (7/7) in 405.2ms
+✓ Finalizing page optimization in 565.1ms
+```
+The build produced static optimized assets cleanly!
+
+## Submodule Remediation
+1. **GitHub Workspace Checkout Error**: Discovered that a `ControlPyScripts` directory had a leftover submodule "gitlink" in Git, which caused the Vercel/Pages checkout action to fail.
+2. **Fixed Submodule & Large File Bloat**: 
+   - Untracked the `.git` references inside the nested Python folders.
+   - Pushed the actual folder contents to the repository smoothly.
+   - Excluded large `.mp4`, `.zip`, and `.csv` generated evaluation/training logs from the git index via a `.gitignore` update to avoid hitting GitHub's 100MB file size limit limits while allowing the functional script files to be safely committed.
+
+## Navigation Hotfix
+1. **Broken Next.js Links**: Identified that on the `localhost:3000` index page, the navigation menu was constructed using plain text `<span>` tags rather than functioning `<Link href="...">` components.
+2. **Restored Routing**: Wrapped the "Story" (`/`) and "Simulation" (`/simulation`) text elements in proper Next.js routing tags, linking the components of your site back together allowing seamless transitions from the Story page to the technical pages.
+
+## Phase-1 Simulation UI Implementation
+Successfully created the stunning product-style showcase page bridging the technical and simulation domains:
+1. **Interactive GSAP Layout**: Implemented smooth `ScrollTrigger` animations across 8 core sections for a cinematic scroll feel.
+2. **Dynamic Mathematical Interpretation**: Brought "Total Rotational Instability" metrics to life using stylized graphs alongside animated `StatCounters`.
+3. **Engineering Insights**: Designed dark-themed analysis bands and hover-reactive "Axis-Level Instability" cards to convey physical quadrotor constraints.
+4. **Integration**: Correctly pulled the required drone videos and matplotlib graphs, serving them cleanly within the Next.js application at `/simulation/phase-1`.
+
+## Resolving GitHub Deployment Limits via Git LFS
+During the deployment phase, we encountered physical size limits on GitHub (`curl 22 HTTP 500`) due to the accumulated history of large media assets (mp4, zip, onnx, pt), culminating in a ~2.5GB payload. To fix this, we properly implemented **Git LFS**:
+1. Untracked and removed locally cached massive objects (`node_modules`, `.next`, `dist`).
+2. Configured broad `.gitattributes` tracking rules across the repository for heavy media extensions.
+3. Executed a complete history rewrite utilizing `git lfs migrate import --everything`.
+4. Delivered a clean, force-pushed repository state enabling GitHub to accept the data efficiently over LFS.

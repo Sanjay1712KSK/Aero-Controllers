@@ -1,0 +1,20 @@
+# Task: Verify Technical Stack & System Architecture Page
+
+## Checklist
+- [x] Open http://localhost:3000/architecture
+- [x] Verify global navigation bar
+    - [x] "AERO-CONTROLLERS" on left
+    - [x] Links on right
+    - [x] "SYSTEM ARCHITECTURE" is cyan
+- [x] Scroll through page and check for visual bugs/overlaps
+- [x] Verify GSAP fade animations (observed working on scroll)
+- [x] Verify all 10 sections content and structure
+- [x] Take screenshot of top hero header
+- [x] Take screenshot of Section 02 (Closed-Loop Control Flow)
+- [x] Report final findings
+
+## Notes
+- URL: http://localhost:3000/architecture
+- Target color for active tab: Cyan
+- Animation library: GSAP
+- Expected Sections: 10

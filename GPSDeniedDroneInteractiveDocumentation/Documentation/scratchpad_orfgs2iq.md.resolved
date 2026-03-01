@@ -1,0 +1,14 @@
+# Verification Task: 3D Drone Scene
+
+- [ ] Verify scrollbar exists and page has height.
+- [ ] Scroll through Stage 1-8.
+- [ ] Verify Text Stage 1: "GPS Signal Lost."
+- [ ] Verify Text Stage 2: "Inside the drone..."
+- [ ] Verify Text Stage 3: "A tiny bias..."
+- [ ] Verify Text Stage 4: "Now add wind."
+- [ ] Verify Text Stage 5: "Navigation collapses." + Screenshot.
+- [ ] Verify Text Stage 6: "What if the drone could learn?"
+- [ ] Verify Text Stage 7: "Trained under chaos."
+- [ ] Verify Text Stage 8: "When GPS disappears..." + Screenshot.
+- [ ] Confirm drone behavior (drift, tilt, lighting, etc.)
+- [ ] Check performance/scrubbing.

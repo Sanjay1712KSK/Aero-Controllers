@@ -1,0 +1,7 @@
+# Technical Page Verification Checklist
+
+- [x] Open http://localhost:3000/technical
+- [/] Verify equations in Hero Section (Section 1) - Equations look well-aligned.
+- [/] Verify Section 2 (Full State Formulation) - Equation visible. Hitbox/Hover behavior: `w_t` stays highlighted regardless of which variable in the vector is targeted. Floating panel not yet visible.
+- [x] Verify Section 4 (MDP Formulation) - Equations `(S, A, P, R, γ)` and `π*_θ` are aligned correctly. Side panel doesn't seem to update on hover yet.
+- [ ] Final summary of UI feel and layout

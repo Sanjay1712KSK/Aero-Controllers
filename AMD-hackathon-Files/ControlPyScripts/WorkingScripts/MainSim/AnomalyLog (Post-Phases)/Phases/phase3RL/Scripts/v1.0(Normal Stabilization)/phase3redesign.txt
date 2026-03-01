@@ -1,0 +1,1 @@
+i want the model to trained fully as the drone should reach its final destination from its starting location. Can we add randomized weather anomalies or determined weather anomalies?

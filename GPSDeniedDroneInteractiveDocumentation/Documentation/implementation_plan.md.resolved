@@ -1,0 +1,41 @@
+# Fix Navigation Routing
+
+## Objective
+The root [page.js](file:///s:/GPSDeniedDroneDocumentation/GPSDeniedDroneInteractiveDocumentation/aero-controllers-3d/app/page.js) file has a navigation bar in the `ui-overlay` section, but several of the links are just unclickable `<span>` tags. To make sure the user can click through the "Story", "Technical Framework", "System Architecture", and "Simulation" pages freely, we need to wrap the text in proper Next.js `<Link>` components.
+
+## Proposed Changes
+
+### [MODIFY] [GPSDeniedDroneInteractiveDocumentation/aero-controllers-3d/app/page.js](file:///s:/GPSDeniedDroneDocumentation/GPSDeniedDroneInteractiveDocumentation/aero-controllers-3d/app/page.js)
+Update the `header.top-bar` links at the bottom of the file from:
+```javascript
+<div className="nav-links" style={{ display: 'flex', gap: '2rem' }}>
+  <span style={{ color: '#fff' }}>STORY</span>
+  <Link href="/technical" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <span>CONTROL & STABILITY FRAMEWORK</span>
+  </Link>
+  <Link href="/architecture" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <span>SYSTEM ARCHITECTURE</span>
+  </Link>
+  <span>SIMULATION</span>
+</div>
+```
+To use actual links for all endpoints:
+```javascript
+<div className="nav-links" style={{ display: 'flex', gap: '2rem' }}>
+  <Link href="/" style={{ textDecoration: 'none', color: '#fff' }}>
+    <span>STORY</span>
+  </Link>
+  <Link href="/technical" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <span>CONTROL & STABILITY FRAMEWORK</span>
+  </Link>
+  <Link href="/architecture" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <span>SYSTEM ARCHITECTURE</span>
+  </Link>
+  <Link href="/simulation" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <span>SIMULATION</span>
+  </Link>
+</div>
+```
+
+## Verification Plan
+After updating the file, the Next.js hot-reloader will automatically apply the changes to the user's running `localhost:3000` instance so they can click the "Simulation" navigation link directly to reach the archive wall.

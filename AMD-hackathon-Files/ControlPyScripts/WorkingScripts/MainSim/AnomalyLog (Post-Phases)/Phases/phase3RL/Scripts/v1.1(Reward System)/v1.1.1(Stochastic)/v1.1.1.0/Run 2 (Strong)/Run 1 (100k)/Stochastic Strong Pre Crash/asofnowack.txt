@@ -1,0 +1,1012 @@
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 61         |
+|    time_elapsed         | 2060       |
+|    total_timesteps      | 273120     |
+| train/                  |            |
+|    approx_kl            | 0.17665842 |
+|    clip_fraction        | 0.529      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.19       |
+|    explained_variance   | -0.888     |
+|    learning_rate        | 0.0003     |
+|    loss                 | 1.83       |
+|    n_updates            | 21310      |
+|    policy_gradient_loss | -0.0379    |
+|    std                  | 0.165      |
+|    value_loss           | 5.23       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 166 | STOCHASTIC STRONG (XY-ONLY)
+---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 200       |
+|    ep_rew_mean          | -1.13e+03 |
+| time/                   |           |
+|    fps                  | 3         |
+|    iterations           | 62        |
+|    time_elapsed         | 2096      |
+|    total_timesteps      | 273248    |
+| train/                  |           |
+|    approx_kl            | 0.4862397 |
+|    clip_fraction        | 0.702     |
+|    clip_range           | 0.2       |
+|    entropy_loss         | 1.18      |
+|    explained_variance   | 0.214     |
+|    learning_rate        | 0.0003    |
+|    loss                 | 7.85e+03  |
+|    n_updates            | 21320     |
+|    policy_gradient_loss | 0.0635    |
+|    std                  | 0.165     |
+|    value_loss           | 2.39e+04  |
+---------------------------------------
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 200          |
+|    ep_rew_mean          | -1.13e+03    |
+| time/                   |              |
+|    fps                  | 3            |
+|    iterations           | 63           |
+|    time_elapsed         | 2125         |
+|    total_timesteps      | 273376       |
+| train/                  |              |
+|    approx_kl            | 0.0051845526 |
+|    clip_fraction        | 0.0273       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | 1.18         |
+|    explained_variance   | 0.242        |
+|    learning_rate        | 0.0003       |
+|    loss                 | 3.29e+04     |
+|    n_updates            | 21330        |
+|    policy_gradient_loss | -0.00807     |
+|    std                  | 0.165        |
+|    value_loss           | 2.24e+04     |
+------------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 167 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 64         |
+|    time_elapsed         | 2161       |
+|    total_timesteps      | 273504     |
+| train/                  |            |
+|    approx_kl            | 0.03772174 |
+|    clip_fraction        | 0.151      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.18       |
+|    explained_variance   | -16.2      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 4.3        |
+|    n_updates            | 21340      |
+|    policy_gradient_loss | -0.0183    |
+|    std                  | 0.164      |
+|    value_loss           | 64.5       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 168 | STOCHASTIC STRONG (XY-ONLY)
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 200          |
+|    ep_rew_mean          | -1.13e+03    |
+| time/                   |              |
+|    fps                  | 3            |
+|    iterations           | 65           |
+|    time_elapsed         | 2197         |
+|    total_timesteps      | 273632       |
+| train/                  |              |
+|    approx_kl            | 0.0086253695 |
+|    clip_fraction        | 0.104        |
+|    clip_range           | 0.2          |
+|    entropy_loss         | 1.19         |
+|    explained_variance   | 0.244        |
+|    learning_rate        | 0.0003       |
+|    loss                 | 1.36e+04     |
+|    n_updates            | 21350        |
+|    policy_gradient_loss | -0.00408     |
+|    std                  | 0.164        |
+|    value_loss           | 2.48e+04     |
+------------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 66          |
+|    time_elapsed         | 2226        |
+|    total_timesteps      | 273760      |
+| train/                  |             |
+|    approx_kl            | 0.012784098 |
+|    clip_fraction        | 0.118       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.26        |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.08e+03    |
+|    n_updates            | 21360       |
+|    policy_gradient_loss | -0.0114     |
+|    std                  | 0.164       |
+|    value_loss           | 6.27e+03    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 169 | STOCHASTIC STRONG (XY-ONLY)
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 200          |
+|    ep_rew_mean          | -1.13e+03    |
+| time/                   |              |
+|    fps                  | 3            |
+|    iterations           | 67           |
+|    time_elapsed         | 2262         |
+|    total_timesteps      | 273888       |
+| train/                  |              |
+|    approx_kl            | 0.0151604535 |
+|    clip_fraction        | 0.242        |
+|    clip_range           | 0.2          |
+|    entropy_loss         | 1.19         |
+|    explained_variance   | 0.46         |
+|    learning_rate        | 0.0003       |
+|    loss                 | 68.1         |
+|    n_updates            | 21370        |
+|    policy_gradient_loss | -0.0136      |
+|    std                  | 0.165        |
+|    value_loss           | 3.75e+03     |
+------------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 68          |
+|    time_elapsed         | 2291        |
+|    total_timesteps      | 274016      |
+| train/                  |             |
+|    approx_kl            | 0.008777358 |
+|    clip_fraction        | 0.122       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.18        |
+|    explained_variance   | 0.24        |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.49e+04    |
+|    n_updates            | 21380       |
+|    policy_gradient_loss | -0.0115     |
+|    std                  | 0.165       |
+|    value_loss           | 2.37e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 170 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 69          |
+|    time_elapsed         | 2327        |
+|    total_timesteps      | 274144      |
+| train/                  |             |
+|    approx_kl            | 0.046753995 |
+|    clip_fraction        | 0.326       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | -24.2       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 7.24        |
+|    n_updates            | 21390       |
+|    policy_gradient_loss | -0.0458     |
+|    std                  | 0.164       |
+|    value_loss           | 27          |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 171 | STOCHASTIC STRONG (XY-ONLY)
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 200          |
+|    ep_rew_mean          | -1.13e+03    |
+| time/                   |              |
+|    fps                  | 3            |
+|    iterations           | 70           |
+|    time_elapsed         | 2363         |
+|    total_timesteps      | 274272       |
+| train/                  |              |
+|    approx_kl            | 0.0145632345 |
+|    clip_fraction        | 0.291        |
+|    clip_range           | 0.2          |
+|    entropy_loss         | 1.19         |
+|    explained_variance   | 0.218        |
+|    learning_rate        | 0.0003       |
+|    loss                 | 6.97e+03     |
+|    n_updates            | 21400        |
+|    policy_gradient_loss | 0.0104       |
+|    std                  | 0.164        |
+|    value_loss           | 2.25e+04     |
+------------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 71          |
+|    time_elapsed         | 2393        |
+|    total_timesteps      | 274400      |
+| train/                  |             |
+|    approx_kl            | 0.010964993 |
+|    clip_fraction        | 0.0555      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.234       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.04e+04    |
+|    n_updates            | 21410       |
+|    policy_gradient_loss | -0.00647    |
+|    std                  | 0.164       |
+|    value_loss           | 2.27e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 172 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 72         |
+|    time_elapsed         | 2428       |
+|    total_timesteps      | 274528     |
+| train/                  |            |
+|    approx_kl            | 0.10824826 |
+|    clip_fraction        | 0.361      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.19       |
+|    explained_variance   | -12.5      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 1.48       |
+|    n_updates            | 21420      |
+|    policy_gradient_loss | -0.0289    |
+|    std                  | 0.164      |
+|    value_loss           | 12.8       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 173 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 73          |
+|    time_elapsed         | 2464        |
+|    total_timesteps      | 274656      |
+| train/                  |             |
+|    approx_kl            | 0.094370246 |
+|    clip_fraction        | 0.627       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.261       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.22e+04    |
+|    n_updates            | 21430       |
+|    policy_gradient_loss | 0.0187      |
+|    std                  | 0.164       |
+|    value_loss           | 2.25e+04    |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 74          |
+|    time_elapsed         | 2494        |
+|    total_timesteps      | 274784      |
+| train/                  |             |
+|    approx_kl            | 0.007325578 |
+|    clip_fraction        | 0.0578      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.249       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.35e+04    |
+|    n_updates            | 21440       |
+|    policy_gradient_loss | -0.00471    |
+|    std                  | 0.164       |
+|    value_loss           | 2.37e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 174 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 75          |
+|    time_elapsed         | 2529        |
+|    total_timesteps      | 274912      |
+| train/                  |             |
+|    approx_kl            | 0.079292595 |
+|    clip_fraction        | 0.302       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | -17.5       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.8         |
+|    n_updates            | 21450       |
+|    policy_gradient_loss | -0.0168     |
+|    std                  | 0.164       |
+|    value_loss           | 12.7        |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 175 | STOCHASTIC STRONG (XY-ONLY)
+---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 200       |
+|    ep_rew_mean          | -1.13e+03 |
+| time/                   |           |
+|    fps                  | 3         |
+|    iterations           | 76        |
+|    time_elapsed         | 2565      |
+|    total_timesteps      | 275040    |
+| train/                  |           |
+|    approx_kl            | 1.3838007 |
+|    clip_fraction        | 0.789     |
+|    clip_range           | 0.2       |
+|    entropy_loss         | 1.19      |
+|    explained_variance   | 0.25      |
+|    learning_rate        | 0.0003    |
+|    loss                 | 967       |
+|    n_updates            | 21460     |
+|    policy_gradient_loss | 0.0661    |
+|    std                  | 0.164     |
+|    value_loss           | 2.42e+04  |
+---------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 77          |
+|    time_elapsed         | 2595        |
+|    total_timesteps      | 275168      |
+| train/                  |             |
+|    approx_kl            | 0.022405121 |
+|    clip_fraction        | 0.13        |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.263       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 2.61e+03    |
+|    n_updates            | 21470       |
+|    policy_gradient_loss | -0.0207     |
+|    std                  | 0.164       |
+|    value_loss           | 1.97e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 176 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 78          |
+|    time_elapsed         | 2631        |
+|    total_timesteps      | 275296      |
+| train/                  |             |
+|    approx_kl            | 0.023374733 |
+|    clip_fraction        | 0.174       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.289       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 148         |
+|    n_updates            | 21480       |
+|    policy_gradient_loss | -0.0144     |
+|    std                  | 0.164       |
+|    value_loss           | 375         |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 177 | STOCHASTIC STRONG (XY-ONLY)
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 200          |
+|    ep_rew_mean          | -1.13e+03    |
+| time/                   |              |
+|    fps                  | 3            |
+|    iterations           | 79           |
+|    time_elapsed         | 2666         |
+|    total_timesteps      | 275424       |
+| train/                  |              |
+|    approx_kl            | 0.0054151798 |
+|    clip_fraction        | 0.0883       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | 1.19         |
+|    explained_variance   | 0.255        |
+|    learning_rate        | 0.0003       |
+|    loss                 | 2.12e+03     |
+|    n_updates            | 21490        |
+|    policy_gradient_loss | -0.0133      |
+|    std                  | 0.164        |
+|    value_loss           | 2.47e+04     |
+------------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 80          |
+|    time_elapsed         | 2696        |
+|    total_timesteps      | 275552      |
+| train/                  |             |
+|    approx_kl            | 0.016290637 |
+|    clip_fraction        | 0.223       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | -0.0562     |
+|    learning_rate        | 0.0003      |
+|    loss                 | 28.7        |
+|    n_updates            | 21500       |
+|    policy_gradient_loss | -0.0125     |
+|    std                  | 0.164       |
+|    value_loss           | 80.1        |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 178 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 81          |
+|    time_elapsed         | 2732        |
+|    total_timesteps      | 275680      |
+| train/                  |             |
+|    approx_kl            | 0.007791187 |
+|    clip_fraction        | 0.0883      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.2         |
+|    explained_variance   | 0.201       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.66e+04    |
+|    n_updates            | 21510       |
+|    policy_gradient_loss | 0.00445     |
+|    std                  | 0.164       |
+|    value_loss           | 2.16e+04    |
+-----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 82          |
+|    time_elapsed         | 2762        |
+|    total_timesteps      | 275808      |
+| train/                  |             |
+|    approx_kl            | 0.014505878 |
+|    clip_fraction        | 0.12        |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.2         |
+|    explained_variance   | 0.251       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 7.43e+03    |
+|    n_updates            | 21520       |
+|    policy_gradient_loss | -0.00882    |
+|    std                  | 0.164       |
+|    value_loss           | 2.32e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 179 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 83         |
+|    time_elapsed         | 2798       |
+|    total_timesteps      | 275936     |
+| train/                  |            |
+|    approx_kl            | 0.30536857 |
+|    clip_fraction        | 0.52       |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | -19.2      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 4.89       |
+|    n_updates            | 21530      |
+|    policy_gradient_loss | -0.0312    |
+|    std                  | 0.164      |
+|    value_loss           | 23.2       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 180 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 84         |
+|    time_elapsed         | 2835       |
+|    total_timesteps      | 276064     |
+| train/                  |            |
+|    approx_kl            | 0.03654334 |
+|    clip_fraction        | 0.409      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | 0.257      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 1.39e+04   |
+|    n_updates            | 21540      |
+|    policy_gradient_loss | 0.0468     |
+|    std                  | 0.164      |
+|    value_loss           | 2.16e+04   |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 85          |
+|    time_elapsed         | 2864        |
+|    total_timesteps      | 276192      |
+| train/                  |             |
+|    approx_kl            | 0.017354583 |
+|    clip_fraction        | 0.113       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.2         |
+|    explained_variance   | 0.27        |
+|    learning_rate        | 0.0003      |
+|    loss                 | 9.36e+03    |
+|    n_updates            | 21550       |
+|    policy_gradient_loss | -0.0177     |
+|    std                  | 0.164       |
+|    value_loss           | 2.18e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 181 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 86         |
+|    time_elapsed         | 2901       |
+|    total_timesteps      | 276320     |
+| train/                  |            |
+|    approx_kl            | 0.10474044 |
+|    clip_fraction        | 0.52       |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.19       |
+|    explained_variance   | -0.227     |
+|    learning_rate        | 0.0003     |
+|    loss                 | 7.58       |
+|    n_updates            | 21560      |
+|    policy_gradient_loss | -0.0156    |
+|    std                  | 0.164      |
+|    value_loss           | 29.1       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 182 | STOCHASTIC STRONG (XY-ONLY)
+---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 200       |
+|    ep_rew_mean          | -1.13e+03 |
+| time/                   |           |
+|    fps                  | 3         |
+|    iterations           | 87        |
+|    time_elapsed         | 2937      |
+|    total_timesteps      | 276448    |
+| train/                  |           |
+|    approx_kl            | 0.3152027 |
+|    clip_fraction        | 0.708     |
+|    clip_range           | 0.2       |
+|    entropy_loss         | 1.19      |
+|    explained_variance   | 0.254     |
+|    learning_rate        | 0.0003    |
+|    loss                 | 9.84e+03  |
+|    n_updates            | 21570     |
+|    policy_gradient_loss | 0.0524    |
+|    std                  | 0.164     |
+|    value_loss           | 2.32e+04  |
+---------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 88          |
+|    time_elapsed         | 2967        |
+|    total_timesteps      | 276576      |
+| train/                  |             |
+|    approx_kl            | 0.014333952 |
+|    clip_fraction        | 0.109       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.19        |
+|    explained_variance   | 0.266       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.95e+04    |
+|    n_updates            | 21580       |
+|    policy_gradient_loss | -0.00681    |
+|    std                  | 0.164       |
+|    value_loss           | 2.42e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 183 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 89         |
+|    time_elapsed         | 3003       |
+|    total_timesteps      | 276704     |
+| train/                  |            |
+|    approx_kl            | 0.13594991 |
+|    clip_fraction        | 0.298      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.19       |
+|    explained_variance   | -4.53      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 8.02       |
+|    n_updates            | 21590      |
+|    policy_gradient_loss | -0.0382    |
+|    std                  | 0.164      |
+|    value_loss           | 18.7       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 184 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 90         |
+|    time_elapsed         | 3039       |
+|    total_timesteps      | 276832     |
+| train/                  |            |
+|    approx_kl            | 0.53506076 |
+|    clip_fraction        | 0.72       |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | 0.229      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 1.02e+04   |
+|    n_updates            | 21600      |
+|    policy_gradient_loss | 0.173      |
+|    std                  | 0.163      |
+|    value_loss           | 2.29e+04   |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 91          |
+|    time_elapsed         | 3069        |
+|    total_timesteps      | 276960      |
+| train/                  |             |
+|    approx_kl            | 0.014060031 |
+|    clip_fraction        | 0.0633      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.2         |
+|    explained_variance   | 0.27        |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.31e+03    |
+|    n_updates            | 21610       |
+|    policy_gradient_loss | -0.0131     |
+|    std                  | 0.164       |
+|    value_loss           | 6.38e+03    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 185 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 92          |
+|    time_elapsed         | 3105        |
+|    total_timesteps      | 277088      |
+| train/                  |             |
+|    approx_kl            | 0.042247336 |
+|    clip_fraction        | 0.334       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.2         |
+|    explained_variance   | 0.463       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 3.5e+03     |
+|    n_updates            | 21620       |
+|    policy_gradient_loss | -0.0268     |
+|    std                  | 0.164       |
+|    value_loss           | 3.73e+03    |
+-----------------------------------------
+------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 200          |
+|    ep_rew_mean          | -1.13e+03    |
+| time/                   |              |
+|    fps                  | 3            |
+|    iterations           | 93           |
+|    time_elapsed         | 3134         |
+|    total_timesteps      | 277216       |
+| train/                  |              |
+|    approx_kl            | 0.0062803896 |
+|    clip_fraction        | 0.0156       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | 1.2          |
+|    explained_variance   | 0.234        |
+|    learning_rate        | 0.0003       |
+|    loss                 | 6.07e+03     |
+|    n_updates            | 21630        |
+|    policy_gradient_loss | -0.0113      |
+|    std                  | 0.164        |
+|    value_loss           | 2.13e+04     |
+------------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 186 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 94         |
+|    time_elapsed         | 3171       |
+|    total_timesteps      | 277344     |
+| train/                  |            |
+|    approx_kl            | 0.03552483 |
+|    clip_fraction        | 0.373      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | -27.6      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 2.17       |
+|    n_updates            | 21640      |
+|    policy_gradient_loss | -0.0329    |
+|    std                  | 0.164      |
+|    value_loss           | 16.2       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 187 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 95         |
+|    time_elapsed         | 3207       |
+|    total_timesteps      | 277472     |
+| train/                  |            |
+|    approx_kl            | 0.06463246 |
+|    clip_fraction        | 0.595      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | 0.255      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 6.58e+03   |
+|    n_updates            | 21650      |
+|    policy_gradient_loss | 0.0454     |
+|    std                  | 0.164      |
+|    value_loss           | 2.31e+04   |
+----------------------------------------
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 96         |
+|    time_elapsed         | 3236       |
+|    total_timesteps      | 277600     |
+| train/                  |            |
+|    approx_kl            | 0.02370329 |
+|    clip_fraction        | 0.192      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | 0.256      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 5.75e+03   |
+|    n_updates            | 21660      |
+|    policy_gradient_loss | -0.0136    |
+|    std                  | 0.164      |
+|    value_loss           | 2.28e+04   |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 188 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 97         |
+|    time_elapsed         | 3272       |
+|    total_timesteps      | 277728     |
+| train/                  |            |
+|    approx_kl            | 0.37036785 |
+|    clip_fraction        | 0.527      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.2        |
+|    explained_variance   | -6.79      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 5.26       |
+|    n_updates            | 21670      |
+|    policy_gradient_loss | 0.0189     |
+|    std                  | 0.163      |
+|    value_loss           | 20.9       |
+----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 189 | STOCHASTIC STRONG (XY-ONLY)
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -1.13e+03  |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 98         |
+|    time_elapsed         | 3308       |
+|    total_timesteps      | 277856     |
+| train/                  |            |
+|    approx_kl            | 0.10210217 |
+|    clip_fraction        | 0.468      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | 1.22       |
+|    explained_variance   | 0.243      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 9.91e+03   |
+|    n_updates            | 21680      |
+|    policy_gradient_loss | -0.000322  |
+|    std                  | 0.163      |
+|    value_loss           | 2.29e+04   |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 99          |
+|    time_elapsed         | 3338        |
+|    total_timesteps      | 277984      |
+| train/                  |             |
+|    approx_kl            | 0.007121435 |
+|    clip_fraction        | 0.114       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.22        |
+|    explained_variance   | 0.249       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 4.56e+03    |
+|    n_updates            | 21690       |
+|    policy_gradient_loss | -0.00872    |
+|    std                  | 0.162       |
+|    value_loss           | 2.34e+04    |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 190 | STOCHASTIC STRONG (XY-ONLY)
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 100         |
+|    time_elapsed         | 3374        |
+|    total_timesteps      | 278112      |
+| train/                  |             |
+|    approx_kl            | 0.070537366 |
+|    clip_fraction        | 0.312       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | 1.22        |
+|    explained_variance   | -17.9       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 1.03        |
+|    n_updates            | 21700       |
+|    policy_gradient_loss | 0.00899     |
+|    std                  | 0.162       |
+|    value_loss           | 26.1        |
+-----------------------------------------
+TERMINATED: MAX_STEPS_REACHED
+
+ EPISODE 191 | STOCHASTIC STRONG (XY-ONLY)
+---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 200       |
+|    ep_rew_mean          | -1.13e+03 |
+| time/                   |           |
+|    fps                  | 3         |
+|    iterations           | 101       |
+|    time_elapsed         | 3410      |
+|    total_timesteps      | 278240    |
+| train/                  |           |
+|    approx_kl            | 0.8034459 |
+|    clip_fraction        | 0.793     |
+|    clip_range           | 0.2       |
+|    entropy_loss         | 1.23      |
+|    explained_variance   | 0.244     |
+|    learning_rate        | 0.0003    |
+|    loss                 | 1.28e+04  |
+|    n_updates            | 21710     |
+|    policy_gradient_loss | 0.15      |
+|    std                  | 0.162     |
+|    value_loss           | 2.33e+04  |
+---------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -1.13e+03   |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 102         |
+|    time_elapsed         | 3440        |
+|    total_timesteps      | 278368      |
+| train/                  |             |
+ase3RL\Scripts\v1.1(Reward System)\v1.1.1(Stochastic)\v1.1.1.0\Run 2 (Strong)\Run 1 (100k)\phase3ppo.py", line 304, in <module>
+    model.learn(
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\stable_baselines3\ppo\ppo.py", line 311, in learn
+    return super().learn(
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 324, in learn
+    continue_training = self.collect_rollouts(self.env, callback, self.rollout_buffer, n_rollout_steps=self.n_steps)
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\stable_baselines3\common\on_policy_algorithm.py", line 218, in collect_rollouts
+    new_obs, rewards, dones, infos = env.step(clipped_actions)
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\stable_baselines3\common\vec_env\base_vec_env.py", line 222, in step
+    return self.step_wait()
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\stable_baselines3\common\vec_env\dummy_vec_env.py", line 59, in step_wait
+    obs, self.buf_rews[env_idx], terminated, truncated, self.buf_infos[env_idx] = self.envs[env_idx].step(  # type: ignore[assignment]
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\stable_baselines3\common\monitor.py", line 94, in step
+    observation, reward, terminated, truncated, info = self.env.step(action)
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\shimmy\openai_gym_compatibility.py", line 250, in step
+    obs, reward, done, info = self.gym_env.step(action)
+  File "S:\MyProject\ControlPyScripts\WorkingScripts\MainSim\AnomalyLog (Post-Phases)\Phases\phase3RL\Scripts\v1.1(Reward System)\v1.1.1(Stochastic)\v1.1.1.0\Run 2 (Strong)\Run 1 (100k)\phase3ppo.py", line 174, in step
+    obs = self._get_obs()
+  File "S:\MyProject\ControlPyScripts\WorkingScripts\MainSim\AnomalyLog (Post-Phases)\Phases\phase3RL\Scripts\v1.1(Reward System)\v1.1.1(Stochastic)\v1.1.1.0\Run 2 (Strong)\Run 1 (100k)\phase3ppo.py", line 187, in _get_obs
+    state = self.client.getMultirotorState()
+  File "S:\MyProject\Plugins\Cosys-AirSim\PythonClient\cosysairsim\client.py", line 2380, in getMultirotorState
+    return MultirotorState.from_msgpack(self.client.call('getMultirotorState', vehicle_name))
+  File "S:\MyProject\ControlPyScripts\venv\lib\site-packages\msgpackrpc\session.py", line 44, in call
+    raise TransportError("Client is closed, connection could not be set")
+msgpackrpc.error.TransportError: Client is closed, connection could not be set
+(venv) PS S:\MyProject\ControlPyScripts\WorkingScripts\MainSim\AnomalyLog (Post-Phases)\Phases\phase3RL\Scripts\v1.1(Reward System)\v1.1.1(Stochastic)\v1.1.1.0\Run 2 (Strong)\Run 1 (100k)>

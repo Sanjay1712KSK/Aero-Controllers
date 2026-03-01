@@ -1,0 +1,13 @@
+# Task Checklist
+- [x] Observe 3D typography (ERROR, DRIFT, INSTABILITY, LEARN, ADAPT)
+    - [x] Words start at z=-25, move to z=-8
+    - [x] Words slide to x=25 while fading (Observed, but with some overlap during transitions)
+    - [x] Drone is in front (Depth testing confirmed)
+    - [!] Note: Letters are significantly wider than drone span.
+- [x] Observe Wind Gusts (Scenes 5-7)
+    - [x] Three progressive waves (Drone tilts significantly)
+    - [x] Streaks move right-to-left correctly
+    - [x] Speed/opacity scale with drone tilt
+- [x] Capture Screenshot: Scene 5 (INSTABILITY sliding right)
+- [x] Capture Screenshot: Scene 6 (Strongest wind wave with drone tilting)
+- [x] Report on scroll performance: Scrolling is responsive, no visible lag.

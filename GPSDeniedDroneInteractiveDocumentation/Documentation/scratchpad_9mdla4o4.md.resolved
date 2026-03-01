@@ -1,0 +1,18 @@
+# Task: Verify Cinematic Drone Storytelling Page
+
+## Plan
+1. [x] Navigate to http://localhost:3000/
+2. [/] Scroll through the page and observe scenes
+3. [/] Verify 3D typography (ERROR, DRIFT, INSTABILITY, FAILURE, LEARN, ADAPT)
+4. [/] Verify mountain environment (3 layers, jagged walls, twilight sky)
+5. [ ] Take screenshot at Scene 4 (DRIFT)
+6. [ ] Take screenshot at Scene 9 (ADAPT)
+7. [ ] Verify performance (60fps)
+8. [ ] Report findings
+
+## Observations
+- 3D Typography: "FAILURE" is visible in the background during the "Navigation collapses" scene. It is very large, deep red, and semi-transparent as requested.
+- Mountain Environment: Jagged mountain walls are visible on the sides during the collapse scene. The environment is dark, creating a cinematic feel.
+- Scene 4 Screenshot: Pending (need to scroll up)
+- Scene 9 Screenshot: Pending (need to scroll down)
+- Performance: Scrolling feels smooth, but need to confirm 60fps.

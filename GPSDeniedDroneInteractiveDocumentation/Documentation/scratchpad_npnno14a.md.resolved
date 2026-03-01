@@ -1,0 +1,15 @@
+# Verification Plan - Technical Stack & System Architecture Page
+
+- [ ] 1. Verify vertical spacing (96px) between sections.
+- [ ] 2. Verify Section 1 hover effects: 3D "pop" (0deg rotation, -6px lift) and cyan border.
+- [ ] 3. Verify Section 2 (Policy Optimization Cycle):
+    - [ ] Circular layout.
+    - [ ] Animated SVG dot tracing the loop.
+    - [ ] Hover over nodes (State Vector, Motor Commands) shows fading subtext.
+- [ ] 4. Verify Section 3 (RPC Communication):
+    - [ ] 6px cyan data packets moving left-to-right.
+    - [ ] Hover over blocks shows explanation tooltips.
+- [ ] 5. Verify Section 4 (Quadrotor Physics):
+    - [ ] Hover over nodes (Rotor Speeds, Updated Pose, Wind Model) shows tooltips.
+- [ ] 6. Verify absence of glow/gradients (especially Section 5).
+- [ ] 7. General performance check (60fps feel).

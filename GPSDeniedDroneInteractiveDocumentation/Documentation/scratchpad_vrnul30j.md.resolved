@@ -1,0 +1,15 @@
+# Task: Verify Architecture Page Interactivity
+
+## Section 9: Compute Infrastructure
+- [x] Scroll to Section 9
+- [x] Click "Host CPU" & verify cyan panel/CPU specs - **PASSED** (Panel changed to Host CPU Worker with cyan accents)
+- [x] Click "System RAM" & verify white/gray panel/RAM specs - **PASSED** (Panel changed to System Memory with gray accents)
+- [x] Click "NVIDIA GPU" & verify green panel/GPU specs - **PASSED** (Panel reverted to NVIDIA GPU Compute with green accents)
+
+## Section 11: Execution Sequence
+- [x] Scroll to Section 11
+- [x] Click Step 3 & verify Right Details Panel (title + code block) - **PASSED** (Panel updated to "Start Environment" with `$ simEnableApiControl(True)`)
+- [x] Click Step 5 & verify Right Details Panel (title + code block) - **PASSED** (Panel updated to "Optimize Policy" with `$ logger.record(...)` code block)
+
+## Theme Verification
+- [x] Confirm pure dark theme is maintained - **PASSED** (Background #050A14, Cards #0B1220/111827 across all sections)

@@ -1,0 +1,21 @@
+# Task Checklist: Verify 3D Typography
+
+- [x] Navigate to http://localhost:3000/
+- [x] Scroll and observe 3D typography (ERROR, DRIFT, INSTABILITY, FAILURE, LEARN, ADAPT)
+    - All words confirmed in the background during their respective phases.
+- [x] Verify animation:
+    - [x] Entry from background (scaling up) - Confirmed.
+    - [x] Stop behind drone - Confirmed.
+    - [x] Move to right and disappear - Confirmed.
+    - [x] Smooth opacity fade - Confirmed.
+    - [x] Correct depth/overlap with drone - Confirmed.
+- [x] Capture Screenshot: Scene 5 (INSTABILITY flying in)
+    - Saved as `scene_5_instability`.
+- [x] Capture Screenshot: Scene 10 (ADAPT flying away)
+    - Saved as `scene_10_adapt_flying_away`.
+- [x] Evaluate scroll performance and FPS
+    - Performance is smooth, feels like 60fps. No lag during scroll interaction.
+- [x] Record findings and summarize
+    - Animation matches the requested behavior perfectly (z-entry, stop, x-exit, fade).
+    - Drone depth layering is correct.
+    - Background mountain environment is layered and cinematic as per previous requests.

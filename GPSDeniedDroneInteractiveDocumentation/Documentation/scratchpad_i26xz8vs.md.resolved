@@ -1,0 +1,20 @@
+# Task: Review Drone Documentation Website
+
+## Checklist
+- [x] Open http://localhost:5173/
+- [x] Verify "GPS Signal Lost" screen is 100vh (Confirmed: fills viewport with centered text)
+- [x] Check for dark theme and cyan glow elements (Confirmed: black background with cyan glow borders)
+- [x] Scroll through Page 1 (Story) and observe GSAP animations
+    - [x] Scene 1: GPS Loss (Smooth fade-in)
+    - [x] Scene 2: Invisible Drift (Progressive line-by-line reveal)
+    - [x] Scene 3: Error Amplification (Split-screen visual: 'Expected' vs 'Actual Divergence')
+    - [x] Scene 4: Wind Disturbance (Red 'But too late' text for emphasis)
+    - [x] Scene 5: Collapse (Clean, centered bold text on black)
+    - [x] Scene 6: Our Question (Calm transition, cyan highlights)
+    - [x] Scene 7: Our Solution (Large cyan text highlighting learning steps)
+    - [x] Scene 8: The Next Leap (Diagram: IMU -> Learning Model -> Bias Correction -> EKF -> State Estimate)
+    - [x] Final Scene (Large bold 'When GPS disappears... our drone adapts.')
+- [x] Observe Page 2 (Technical Deep Dive) layout and consistency (Clean, structured, cyan accents)
+- [x] Check Page 3 (Simulation Showcase) placeholders (Confirmed: All placeholders present with clean styling)
+- [x] Identify any overlapping text or broken animations (None observed; animations were smooth and text remained legible)
+- [x] Report aesthetic quality and layout consistency (Premium, high-contrast dark theme, excellent use of GSAP ScrollTrigger for storytelling)

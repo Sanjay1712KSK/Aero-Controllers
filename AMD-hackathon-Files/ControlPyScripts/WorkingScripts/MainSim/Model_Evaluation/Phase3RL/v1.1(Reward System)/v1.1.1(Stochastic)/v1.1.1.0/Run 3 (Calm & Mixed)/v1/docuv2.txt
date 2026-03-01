@@ -1,0 +1,328 @@
+1️⃣ What This Script Is Testing
+
+You trained:
+
+phase3_stochastic_calm_mixed_600k_complete.zip
+
+That model was trained to:
+
+Stabilize roll and pitch
+
+Resist wind disturbances
+
+Reduce angular velocity oscillations
+
+Stay balanced under stochastic wind
+
+This script tests:
+
+“How well does the trained brain behave in real flight scenarios?”
+
+Across:
+
+Calm wind
+
+Strong wind
+
+Mixed wind
+
+2️⃣ High-Level Flow
+
+For each regime:
+
+Run multiple episodes
+
+Each episode runs full 200 steps
+
+Record everything
+
+Score stability
+
+Capture video
+
+Capture failures
+
+Capture strong recoveries
+
+Generate plots
+
+So it produces:
+
+Numerical performance
+
+Visual proof
+
+Failure documentation
+
+Recovery documentation
+
+This is research-grade evaluation.
+
+3️⃣ What Happens Inside Each Episode
+Step-by-step loop:
+1️⃣ Model predicts action
+action, _ = model.predict(obs, deterministic=True)
+
+This means:
+
+No randomness
+
+Pure learned behavior
+
+Real policy evaluation
+
+2️⃣ Wind is injected
+
+Wind is generated based on regime:
+
+Calm → small disturbance
+
+Strong → large disturbance
+
+Mixed → moderate disturbance
+
+This simulates environmental anomalies.
+
+3️⃣ Drone moves
+
+Velocity command:
+
+vx = action + wind
+
+So the model must:
+
+Counteract wind
+
+Stabilize itself
+
+4️⃣ Sensor logging
+
+Every step logs:
+
+roll
+
+pitch
+
+yaw
+
+linear velocity
+
+angular velocity
+
+wind vector
+
+This gives you full telemetry trace.
+
+You can reconstruct flight entirely from CSV.
+
+4️⃣ What the Script Measures
+
+It calculates 3 core metrics:
+
+A) Angle error
+abs(roll) + abs(pitch)
+
+Measures:
+How tilted the drone is.
+
+Lower = better stability.
+
+B) Angular velocity magnitude
+norm(ang_vel)
+
+Measures:
+How violently it is rotating.
+
+Lower = smoother control.
+
+C) Drift
+norm(linear_velocity)
+
+Measures:
+How much it is drifting or oscillating.
+
+Lower = tighter control.
+
+5️⃣ The Stability Score (/100)
+
+Each episode gets:
+
+25 points for angle stability
+
+25 for angular smoothness
+
+25 for drift control
+
+25 for surviving full 200 steps
+
+Total = 100 max
+
+This gives you a clear quantitative performance measure.
+
+6️⃣ Video Recording
+
+It records:
+
+Main full episode video
+
+Every frame, HD, 1280x720.
+
+Saved to:
+
+evaluation_phase3/videos/
+
+This shows full flight.
+
+7️⃣ Bad Behavior Detection
+
+Trigger condition:
+
+abs(roll) > 0.45 OR abs(pitch) > 0.45
+
+Meaning:
+Drone is dangerously tilted.
+
+When triggered:
+
+Save snapshot
+
+Record 5-second highlight video
+
+Saved to:
+
+snapshots/bad/
+highlight_videos/bad/
+
+This documents failure events.
+
+8️⃣ Good Recovery Detection
+
+Trigger condition:
+
+Wind strong AND
+roll & pitch very small for 25 consecutive steps
+
+Meaning:
+Drone is stable despite disturbance.
+
+When triggered:
+
+Save snapshot
+
+Record 5-second highlight
+
+Saved to:
+
+snapshots/good/
+highlight_videos/good/
+
+This documents robustness.
+
+9️⃣ What It Produces At The End
+
+You get:
+
+📁 CSV logs (per episode)
+
+Full sensor trace.
+
+📁 Videos (per episode)
+
+Complete flight recording.
+
+📁 Highlight clips
+
+Good & bad segments.
+
+📁 Snapshots
+
+Moment of failure or strong control.
+
+📁 performance_summary.csv
+
+Scores per episode.
+
+📁 score_plot.png
+
+Visual regime comparison.
+
+🔟 What It Actually Evaluates About Your Model
+
+It checks:
+
+Does the drone stay upright?
+
+Does it resist wind?
+
+Does it recover quickly?
+
+Does it oscillate?
+
+Does it survive full episode?
+
+Is it confident under anomaly?
+
+11️⃣ What It Does NOT Check
+
+Important:
+
+It does NOT test:
+
+GPS navigation
+
+Path following
+
+Waypoint reaching
+
+Mission planning
+
+It only evaluates:
+
+Stabilization under disturbance.
+
+Because that is what Phase 3 trained.
+
+12️⃣ What Your Model Is As Of Now
+
+Your Phase 3 model is:
+
+A learned wind-robust stabilization controller.
+
+It is not yet:
+
+A navigation controller
+
+A waypoint planner
+
+A full autonomous drone
+
+It is a disturbance-rejection brain.
+
+13️⃣ Why This Is Aligned With GPS-Denied Research
+
+In GPS-denied scenarios:
+
+You cannot rely on absolute position.
+
+So stability becomes critical.
+
+If the drone cannot stabilize under wind,
+navigation algorithms fail.
+
+So Phase 3 = robustness foundation.
+
+14️⃣ What This Evaluation Proves
+
+If results are good:
+
+You can claim:
+
+Learned disturbance rejection
+
+Generalization across wind regimes
+
+Stable under stochastic injection
+
+Behaviorally consistent control
+
+That is publishable-level groundwork.

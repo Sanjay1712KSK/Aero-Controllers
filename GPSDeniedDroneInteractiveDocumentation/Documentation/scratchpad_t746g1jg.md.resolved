@@ -1,0 +1,12 @@
+# Task: Verify 3D Drone Visibility
+
+## Checklist
+- [x] Navigate to http://localhost:5174/
+- [x] Capture screenshot to check visibility
+- [x] Check console logs for errors (WebGL/Model loading)
+- [x] Report findings
+
+## Observations
+- [x] Screenshot captured: The drone is NOT visible. Only a dark environment with pillars and glow is seen.
+- [x] Console logs checked: Found a React warning: `Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of DroneScene. at Drone (...)`.
+- [x] Scrolling: Scrolled to 1000px, but the drone still does not appear.

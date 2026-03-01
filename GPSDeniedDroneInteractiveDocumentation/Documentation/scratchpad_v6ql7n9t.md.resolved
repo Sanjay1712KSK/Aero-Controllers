@@ -1,0 +1,21 @@
+# Task: Verify Technical Deep Dive Page Redesign
+
+## Checklist
+- [x] Navigate to http://localhost:3000/technical
+- [x] Scroll through the entire page
+- [x] Verify Hero area (2 columns: Title/Abstract left, visual right)
+- [x] Verify System Architecture Pipeline (horizontal)
+- [x] Verify Mathematical Foundation (3-column grid)
+- [x] Verify PPO Optimization block (full-width/split-row)
+- [x] Verify Controller Comparison (side-by-side vertical split)
+- [x] Verify Performance Metrics band (4 thin columns)
+- [x] Verify Visual Styles (#0B1220 bg, #0F172A panels, no glow/blur)
+- [x] Capture screenshot of Hero and Pipeline
+- [x] Capture screenshot of Math Grid and PPO block
+
+## Notes
+- Background is `#02040a` (matte dark).
+- Panel background is `#0F172A`.
+- Math variables have tooltips (verified 49 variables with `data-tooltip`).
+- Controller comparison section uses `flex-row` with a vertical border divider.
+- Layout is strictly landscape/dashboard oriented.

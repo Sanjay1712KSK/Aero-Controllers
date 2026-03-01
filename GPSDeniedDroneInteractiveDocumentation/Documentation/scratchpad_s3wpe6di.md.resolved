@@ -1,0 +1,20 @@
+# Task Plan: Verify Technical Section 09
+
+- [/] Open http://localhost:3000/technical (Opened, but Section 09 isn't appearing as expected)
+- [ ] Locate Section 09: Mathematical Specification of the PPO-Based Stabilization Model
+- [ ] verify Section Header and Step 2: Policy Parameterization
+- [ ] Take screenshot of Header and Step 2
+- [ ] Hover over π_θ(a | s) and verify right-side sticky panel updates
+- [ ] Take screenshot of hover state
+- [ ] Verify Step 5: Learning Dynamics Over 600K Steps (timeline visualization)
+- [ ] Verify Final Conclusion (10)
+- [ ] Take screenshot of Final Conclusion
+- [ ] Check background color (#050E1C) and spacing
+
+## Findings
+- Initial check of `innerText` showed sections up to "09 — THEOREM CONCLUSION", but this doesn't match the new "Mathematical Specification" section described.
+- Page might not have refreshed with new content yet.
+- Scrolled to bottom but previous screenshot showed the top (likely viewport issue).
+- Keywords '600k' and 'PPO-Based' not found in `innerText` or HTML.
+- HMR is connected, but changes aren't appearing.
+- Re-opened in a new tab, still same results.

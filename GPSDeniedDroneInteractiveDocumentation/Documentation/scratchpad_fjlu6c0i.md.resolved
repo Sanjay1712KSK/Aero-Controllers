@@ -1,0 +1,18 @@
+# Task Plan: Redesign Verification - Technical Tab
+
+- [x] Open http://localhost:3000/technical
+- [x] Verify "Story" link points to `/`
+- [x] Navigate to `01 — Quadrotor Dynamics`
+- [x] Hover variable `m` and capture screenshot
+- [x] Verify nomenclature box appearance and fade-out
+- [x] Navigate to `04 — Reward Function Design` (verified red `||ω||²`)
+- [x] Hover red `||ω||²` and capture screenshot
+- [x] Report final visual experience and findings
+
+Findings:
+- Global Nav is correctly implemented with "Story" pointing to `/`.
+- Theme colors and layout match the specification (Background #040914, Accent Cyan #22D3EE, etc.).
+- Nomenclature system (hover logic) works perfectly, showing symbol, definition, units, and role.
+- Mathematical sections are centered with max-width 1200px and alternating bands.
+- Specific color coding in reward function (red for penalty, cyan for state error) is visible.
+- The interface feels futuristic and clean, meeting the "aerospace systems lab" requirement.

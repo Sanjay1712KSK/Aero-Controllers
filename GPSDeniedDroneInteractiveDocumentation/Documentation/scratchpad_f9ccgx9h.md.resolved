@@ -1,0 +1,22 @@
+# Task Checklist: Technical Page Verification
+
+- [x] Navigate to http://localhost:3000/technical
+- [x] Verify no build error overlay
+- [x] Verify Hero section (Title and Abstract)
+- [x] Verify System Stack pipeline
+- [x] Verify Problem Definition cards
+- [ ] Verify State Representation (interactive)
+    - [ ] Hover over variable and check definition panel
+- [ ] Verify Action Space equations
+- [ ] Verify Reward Function with performance bar
+- [ ] Verify PPO Objective
+- [ ] Verify Control Comparison (side-by-side)
+- [ ] Verify Training Pipeline steps
+- [ ] Verify Performance Metrics
+- [ ] Verify Phase-3 Verdict
+- [ ] Confirm no glows, gradients, or neon effects
+- [ ] Capture screenshots:
+    - [ ] Hero
+    - [ ] System Stack pipeline
+    - [ ] Interactive state representation (with hover)
+    - [ ] Verdict section

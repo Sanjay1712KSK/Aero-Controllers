@@ -1,0 +1,18 @@
+# Task Plan: Verify Cinematic Storytelling Page
+
+## Checklist
+- [ ] Navigate to http://localhost:3000/
+- [ ] Scroll through all 14 scenes (1400vh)
+- [ ] Verify Twilight Valley environment (mountains, horizon)
+- [ ] Verify Scene 3 (Error highlights) + Screenshot
+- [ ] Verify Scene 5 (Wind streaks: right-to-left, curved)
+- [ ] Verify Scene 7 (Navigation collapses) + Screenshot
+- [ ] Verify Scene 12 (Correct its own drift) + Screenshot
+- [ ] Verify all text highlights and colors
+- [ ] Check for scroll smoothness (target 60fps)
+
+## Findings
+- **Scroll Performance:** TBD
+- **Environment:** TBD
+- **Wind Visuals:** TBD
+- **Text Highlights:** TBD

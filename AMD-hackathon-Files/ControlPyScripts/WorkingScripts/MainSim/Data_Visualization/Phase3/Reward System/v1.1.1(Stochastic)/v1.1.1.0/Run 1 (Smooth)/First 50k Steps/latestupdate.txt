@@ -1,0 +1,49 @@
+🚀 EPISODE 251 | STOCHASTIC WIND
+----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 200        |
+|    ep_rew_mean          | -36.8      |
+| time/                   |            |
+|    fps                  | 3          |
+|    iterations           | 195        |
+|    time_elapsed         | 6563       |
+|    total_timesteps      | 190096     |
+| train/                  |            |
+|    approx_kl            | 0.04449038 |
+|    clip_fraction        | 0.342      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -0.148     |
+|    explained_variance   | 0.192      |
+|    learning_rate        | 0.0003     |
+|    loss                 | 2.16       |
+|    n_updates            | 14830      |
+|    policy_gradient_loss | -0.0283    |
+|    std                  | 0.254      |
+|    value_loss           | 8.36       |
+----------------------------------------
+-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 200         |
+|    ep_rew_mean          | -36.8       |
+| time/                   |             |
+|    fps                  | 3           |
+|    iterations           | 196         |
+|    time_elapsed         | 6592        |
+|    total_timesteps      | 190224      |
+| train/                  |             |
+|    approx_kl            | 0.018845044 |
+|    clip_fraction        | 0.252       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -0.144      |
+|    explained_variance   | 0.145       |
+|    learning_rate        | 0.0003      |
+|    loss                 | 4.4         |
+|    n_updates            | 14840       |
+|    policy_gradient_loss | -0.0316     |
+|    std                  | 0.254       |
+|    value_loss           | 8.01        |
+-----------------------------------------
+
+❄️ Cooling down for 5 minutes...
+
+🔥 Training 25000 steps (completed 50000/100000)

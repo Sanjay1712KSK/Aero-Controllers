@@ -1,0 +1,27 @@
+# Task Checklist
+- [x] Navigate to http://localhost:3000/
+- [x] Verify drone visibility in dark lighting
+- [ ] Verify text overlay:
+    - [ ] White and bold
+    - [ ] Readable on top of a dark semi-transparent circular gradient
+    - [ ] Fade-in effect correct
+    - [ ] Stays readable for a reasonable duration
+- [ ] Verify scroll-driven transitions/animations:
+    - [ ] Scene 1: Calm Flight
+    - [ ] Scene 2: Drift Begins
+    - [ ] Scene 3: Wind Disturbance
+    - [ ] Scene 4: Failure
+    - [ ] Scene 5: Learning
+    - [ ] Final Scene: Stabilized
+- [ ] Capture screenshots of key moments
+- [ ] Report on cinematic feel and performance
+
+# Observations
+- Drone is visible, stylized with central body and four arms. It has a blue glow.
+- Environment is dark with pillars/warehouse style.
+- Text overlays are present in DOM with opacity 1 but NOT visible in screenshots.
+- Investigating if text is behind the canvas or has overlapping issues.
+- Page height is 945 (not scrollable normally), but a scroll proxy and container with overflow hidden exist.
+- Manual scrollTop setting on container worked in JS but didn't show text yet.
+- Added z-index 9999 to ui-overlay via JS.
+- Navigation bar is present (Story, Technical, Simulation).

@@ -1,0 +1,16 @@
+# Task: Visual Verification of /technical page
+
+## Checklist
+- [x] Open http://localhost:3000/technical
+- [x] Verify Global Header (72px height, tabs, AERO-CONTROLLERS)
+- [x] Screenshot & Verify Hero Section (60/40 layout, status panel)
+- [x] Screenshot & Verify Closed-Loop Diagram (circular, 2px dashed stroke)
+- [x] Screenshot & Verify State Representation (equation, sticky right panel)
+- [x] Screenshot & Verify Action + Disturbance (equation blocks)
+- [x] Screenshot & Verify Reward Function (equation, bare progress bar)
+- [x] Screenshot & Verify PPO Objective (equation blocks)
+- [ ] Screenshot & Verify Control Comparison (50/50 split, vertical divider)
+- [ ] Screenshot & Verify Metrics Strip (full-width 4-column telemetry bar)
+- [ ] Screenshot & Verify Final Verdict (checklist)
+- [ ] Check background color alternating (#050A14 vs #0B1220)
+- [ ] Check section top borders (1px solid #1F2937)

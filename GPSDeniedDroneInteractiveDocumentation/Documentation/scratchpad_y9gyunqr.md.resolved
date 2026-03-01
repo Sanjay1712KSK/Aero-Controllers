@@ -1,0 +1,9 @@
+# Technical Deep Dive Verification Checklist
+
+- [x] Navigate to http://localhost:3000/technical
+- [x] Verify 1200px max-width layout (Confirmed via screenshot and DOM structure)
+- [x] Verify 6 sections (Hero, Architecture, Math, Comparison, Results, Tech Stack) - Found all in DOM and screenshot.
+- [x] Capture screenshot of Hero layout (Done: hero_layout_verification)
+- [x] Verify interactive tooltips on math variables (Verified 'm' triggers "mass of quadrotor" tooltip)
+- [x] Capture screenshot of hovered tooltip state (Done: hover_tooltip_verification)
+- [x] Check for "no heavy glowing/clutter" as per redesign requirements (Page looks much cleaner and professional)

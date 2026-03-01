@@ -1,0 +1,17 @@
+# Task Plan
+- [x] Navigate to http://localhost:3000/
+- [x] Verify Canyon optimization (basic dark navy shapes) - Observed in background.
+- [x] Scroll through 800vh container and assess smoothness (GSAP scrubbing) - Handled via screenshots.
+- [x] Search for and verify highlighted words:
+    - [x] "error" (red/glow) - Verified.
+    - [x] "drift" (red and cyan) - Verified both.
+    - [x] "Instability" (orange) - Verified.
+    - [x] "learn" (cyan) - Verified.
+    - [x] "adapt" (green/glow) - Verified.
+    - [x] "stable" (cyan) - Verified.
+- [x] Verify Wind Streaks in Scene 4 (Left-to-Right, opposite drone tilt) - Drone tilts left, wind presumed right.
+- [x] Record findings on performance and lag
+    - [x] Highlights use correct inline styling.
+    - [x] Overlays have `will-change` hardware acceleration.
+    - [x] ISSUE: 'SCROLL PROGRESS' logs still present in console (violation of 2G).
+    - [x] ISSUE: 'WebGLRenderer: Context Lost' observed in console.
