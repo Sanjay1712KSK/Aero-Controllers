@@ -221,7 +221,7 @@ export default function Phase2Page() {
                         <div style={{ flex: '1.5' }}>
                             {/* Max width here handled by flex layout, margins reset for split view */}
                             <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                                <Image src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Velocity Magnitude Comparison" width={800} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
+                                <Image src="/Aero-Controllers/phase-2/angular_velocity_magnitude.png" alt="Angular Velocity Magnitude Comparison" width={800} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
                             </div>
                         </div>
 
@@ -270,10 +270,10 @@ export default function Phase2Page() {
                 <FadeSection style={{ padding: '120px 40px', background: T.bgAlt, borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, width: '100%', maxWidth: 1100, marginBottom: 40 }}>
                         <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                            <Image src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
+                            <Image src="/Aero-Controllers/phase-2/barometer_altitude.png" alt="Barometer Altitude Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
                         </div>
                         <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: `1px solid ${T.border}`, background: T.bgBase }}>
-                            <Image src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Linear Acceleration Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block', unoptimized: true }} />
+                            <Image src="/Aero-Controllers/phase-2/imu_linear_acceleration_x.png" alt="IMU Linear Acceleration Comparison" width={600} height={400} style={{ width: '100%', height: 'auto', display: 'block' }} />
                         </div>
                     </div>
 
