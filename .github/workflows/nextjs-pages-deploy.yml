@@ -20,18 +20,15 @@ jobs:
     defaults:
       run:
         working-directory: GPSDeniedDroneInteractiveDocumentation/aero-controllers-3d
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          lfs: true
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
-          cache-dependency-path: GPSDeniedDroneInteractiveDocumentation/aero-controllers-3d/package-lock.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
