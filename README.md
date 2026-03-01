@@ -1,7 +1,7 @@
 ## GPS-Denied Autonomous Drone Stabilization
 Learning-Based Rotational & Translational Stability Under Stochastic Wind
 
-Overview
+# Overview
 
 Autonomous drones operating in GPS-denied environments (indoor, underground, urban canyon, disaster zones) rely on Inertial Navigation Systems (INS), which suffer cumulative drift due to IMU bias and integration error.
 
