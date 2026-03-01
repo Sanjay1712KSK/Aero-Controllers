@@ -47,18 +47,165 @@ Evaluation Metrics: RMSE, variance, angular energy, stability score
 
 ### Repository Structure
 
-GPSDeniedDrone/
-│
-├── ControlPyScripts/          # Training + Evaluation scripts
-│   ├── Phase1/                # Baseline instability
-│   ├── Phase2/                # Quantitative comparison
-│   ├── Phase3RL/              # Stochastic PPO training
-│
-├── InteractiveDocumentation/  # Next.js interactive frontend
-│
-├── Simulation Media/          # Evaluation videos & demo outputs
-│
-└── README.md
+# Repository Folder Structure
+
+## Top-Level
+S:\GPSDeniedDroneDocumentation
+- .github/
+- aero-controllers-3d/
+- AMD-hackathon-Files/
+- GPSDeniedDroneInteractiveDocumentation/
+- Simulation Media/
+
+## AMD Slingshot Hackathon (Detailed Folder Structure)
+S:\GPSDeniedDroneDocumentation\AMD-hackathon-Files
+- ControlPyScripts/
+- ControlPyScripts/Important Pre-Log files/
+- ControlPyScripts/Tutorial Scripts/
+- ControlPyScripts/WorkingScripts/
+- ControlPyScripts/Tutorial Scripts/Logged Datasets/
+- ControlPyScripts/Tutorial Scripts/Videos/
+- ControlPyScripts/WorkingScripts/MainSim/
+- ControlPyScripts/WorkingScripts/Pre-Final Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/
+- ControlPyScripts/WorkingScripts/MainSim/ClearLog (Pre-Phase)/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/Phase2/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/Phase_1/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/Phase2/Datasets/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/Phase2/Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.0(Normal Stabilization)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.0(Deterministic)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.1(Stochastic)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.2(Clear)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.0(Deterministic)/First Run/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.0(Deterministic)/Second Run/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/Run 1 (Smooth)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/Run 2 (Strong)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Datasets/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/Run 3 (Calm & Mixed)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.0(Normal Stabilization)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.0(Deterministic)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.1(Stochastic)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.2(Clear)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.0(Deterministic)/First Run/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.0(Deterministic)/Second Run/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/Run 1 (Smooth)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/Run 2 (Strong)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/PPO_Model/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.1/Run 3 (Calm & Mixed)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.0(Normal Stabilization)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.2(Clear)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/__pycache__/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/v1.1.0.1/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/v1.1.0.1/First Run/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/v1.1.0.1/Second Run/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/v1.1.0.1/First Run/autosaves/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/v1.1.0.1/Second Run/autosaves/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.0(Deterministic)/v1.1.0.1/Second Run/__pycache__/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/First 50k Steps/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Second 50k Steps/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Verdict/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/First 50k Steps/autosaves/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Second 50k Steps/autosaves/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/Run 1 (100k)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/Run 2 (50k)/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/Run 1 (100k)/autosaves_strong/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/Run 1 (100k)/Stochastic Strong Post crash/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/Run 1 (100k)/Stochastic Strong Pre Crash/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/phase3RL/Scripts/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/Run 2 (50k)/autosaves_strong_continue/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/Phase_1/Datasets/
+- ControlPyScripts/WorkingScripts/MainSim/AnomalyLog (Post-Phases)/Phases/Phase_1/Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/ClearLog (Pre-Phase)/Logged Datasets/
+- ControlPyScripts/WorkingScripts/MainSim/ClearLog (Pre-Phase)/Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase1/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase2/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase4/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase1/visualized_outputs/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase2/visualized_outputs/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/Deterministic/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Evaluations/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/First 50k Steps/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Second 50k Steps/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Verdict/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/First 50k Steps/autosaves/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Second 50k Steps/autosaves/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/Evaluation/
+- ControlPyScripts/WorkingScripts/MainSim/Data_Visualization/Phase3/Reward System/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/Training/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.0(Normal Stabilization)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.0(Normal Stabilization)/Evaluation/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.0(Deterministic)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.2(Clear)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.0(Deterministic)/Evaluation/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.0(Deterministic)/Evaluation/First Run/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.0(Deterministic)/Evaluation/Second Run/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.0(Deterministic)/Evaluation/Second Run/Evaluation Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 2 (Strong)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Evaluation Scripts/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Model Files/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Evaluation Scripts/Evaluation 1/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Evaluation Scripts/Evaluation 2/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Evaluation Scripts/Evaluation 2/Checkpoint 5 Crash Log/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Model Files/First 50k/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Model Files/Second 50k/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 1 (Smooth)/Model Files/Verdict/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v2/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/highlight_videos/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/logs/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/plots/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/snapshots/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/highlight_videos/bad/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/highlight_videos/good/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/snapshots/bad/
+- ControlPyScripts/WorkingScripts/MainSim/Model_Evaluation/Phase3RL/v1.1(Reward System)/v1.1.1(Stochastic)/v1.1.1.0/Run 3 (Calm & Mixed)/v1/evaluation_phase3/snapshots/good/
+
+## Other Frontend Modules (Top Directories Only)
+S:\GPSDeniedDroneDocumentation\GPSDeniedDroneInteractiveDocumentation\Frontend
+- Logo/
+- node_modules/
+
+S:\GPSDeniedDroneDocumentation\GPSDeniedDroneInteractiveDocumentation\Frontend3D
+- dist/
+- node_modules/
+- src/
+
+S:\GPSDeniedDroneDocumentation\GPSDeniedDroneInteractiveDocumentation\aero-controllers-3d
+- .next/
+- app/
+- node_modules/
+- out/
+- public/
+
 
 ## Phase Breakdown
 ### Phase-1 — Baseline Instability
