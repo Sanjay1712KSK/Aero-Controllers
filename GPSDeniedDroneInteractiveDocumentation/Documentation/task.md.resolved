@@ -1,27 +1,22 @@
-# Phase-1 Simulation Phase Page Tasks
+# Phase-3 Stochastic Robustness & Policy Generalization
 
-- [x] Investigate current routing and decide whether Phase-1 is a separate route (`/simulation/phase-1`) or a section in `/simulation`.
-- [x] Investigate existing styling techniques and dependencies (`framer-motion`, `gsap`, vanilla CSS vs Tailwind).
-- [x] Transfer necessary media (images and video) from `Simulation Media` to the `public/` directory of the Next.js app.
-- [x] Implement the Page Layout (Hero Section, Core Metric, Interactive Axis Breakdown, Event Detection, Engineering Interpretation, Video Showcase, Mathematical metric, Summary Panel).
-- [x] Apply interactivity (fade-in on scroll, hover lifts, clean section separations).
-- [x] Verify functionality and aesthetics match the provided design requirements.
-
-# Phase-2 Quantitative Stability Validation
-- [x] Copy Phase-2 video and Mid Evolution graph assets to `public/Aero-Controllers/phase-2`.
-- [x] Create `/simulation/phase-2` and build the 8 Sections structure.
-- [x] Sec 1: Hero Introduction (Full width + Side-by-side run preview).
-- [x] Sec 2: Stability Metrics Dashboard (2-row grid).
-- [x] Sec 3: Trajectory Repeatability (XY Plane).
-- [x] Sec 4: Angular Velocity Behavior (Split section).
-- [x] Sec 5: Per-Axis Control Behavior.
-- [x] Sec 6: Sensor-Level Consistency.
-- [x] Sec 7: Mathematical Interpretation.
-- [x] Sec 8: Engineering Conclusion.
-- [x] Final visual polish, GSAP animations, spacing rules.
-
-# Phase-3 Robust Stabilization
-- [/] Collect Phase-3 datasets and media.
-- [ ] Build `/simulation/phase-3` page structure.
-- [ ] Implement final metric validation and conclusions.
-- [ ] Ensure seamless GSAP animations and responsive design.
+[ ] View Phase 2 `page.jsx` for design reference.
+[ ] Create `public/simulation/phase-3` directory and copy image assets to it.
+    - [ ] `Phase 3 Evaluation ( Early) Drone Crashed.png` -> `crash.png`
+    - [ ] `PC under Training.jpeg` -> `training.jpeg`
+    - [ ] `score_plot.png` -> `score-plot.png`
+    - [ ] `Angular Velocity Magnitude (Rotational Stability).png` -> `angular-velocity-magnitude.png`
+    - [ ] `Roll and pitch Stability.png` -> `roll-pitch-stability.png`
+    - [ ] `Wind Vs Response.png` -> `wind-response.png`
+    - [ ] `Mean Angular Velocity per checkpoint.png` -> `checkpoint-convergence.png`
+[ ] Create `app/simulation/phase-3/page.jsx`
+    - [ ] 1️⃣ Hero — Robustness Statement (60 / 40 split)
+    - [ ] 2️⃣ Early Failure (Crash Under Strong Wind)
+    - [ ] 3️⃣ Training Evolution (BTS + Learning Progression)
+    - [ ] 4️⃣ Stability Score Across Regimes (Core Graph)
+    - [ ] 5️⃣ Rotational Stability (Magnitude and Per-Axis)
+    - [ ] 6️⃣ Wind vs Response Coupling
+    - [ ] 7️⃣ Checkpoint Convergence
+    - [ ] 8️⃣ Simulation Video (YouTube Embed)
+    - [ ] 9️⃣ Engineering Conclusion
+[ ] Update Navigation to include Phase 3 (if it is not already auto-included or if the Navbar needs updating).
