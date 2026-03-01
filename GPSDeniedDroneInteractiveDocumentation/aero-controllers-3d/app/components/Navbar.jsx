@@ -42,7 +42,8 @@ export function Navbar({ activePath }) {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '0 5rem',
-            fontFamily: 'sans-serif'
+            fontFamily: 'sans-serif',
+            pointerEvents: 'auto'
         }}>
             <div style={{ letterSpacing: '0.14em', fontWeight: 700, color: T.textPri, textTransform: 'uppercase' }}>
                 AERO-CONTROLLERS
