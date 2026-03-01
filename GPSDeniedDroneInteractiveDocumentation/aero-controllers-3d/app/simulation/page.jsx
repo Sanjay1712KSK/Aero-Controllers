@@ -1,7 +1,7 @@
 "use client"
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { Navbar } from '../../components/Navbar' // Adjusted relative path as Navbar is in app/components
+import { Navbar } from '../components/Navbar' // Adjusted relative path as Navbar is in app/components
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
@@ -305,47 +305,36 @@ export default function Phase1Page() {
                     </ul>
 
                     {/* 🎥 OPTIONAL VIDEO SECTION */}
-                    <div style={{ width: '100%', maxWidth: 1200, marginBottom: 80 }}>
-                        <LandscapeRow gap={48}>
-                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-                                <div style={{ border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: T.bgBase, position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-                                    <iframe
-                                        src="https://www.youtube.com/embed/MDs1X7NSu_I"
-                                        allowFullScreen
-                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                                    ></iframe>
-                                </div>
-                                <div style={{ color: T.textSec, fontSize: '1.1rem', letterSpacing: 1 }}>Manual Checkpoint Simulation</div>
+                    <div style={{ width: '100%', maxWidth: 800, marginBottom: 80 }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                            <div style={{ border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: T.bgBase, position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                                <iframe
+                                    src="https://www.youtube.com/embed/MDs1X7NSu_I"
+                                    allowFullScreen
+                                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                                ></iframe>
                             </div>
-                            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-                                <div style={{ border: `1px solid ${T.border}`, borderRadius: 8, overflow: 'hidden', background: T.bgBase, position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-                                    <iframe
-                                        src="https://www.youtube.com/embed/MDs1X7NSu_I"
-                                        allowFullScreen
-                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-                                    ></iframe>
-                                </div>
-                                <div style={{ color: T.textSec, fontSize: '1.1rem', letterSpacing: 1 }}>Wind Injection Uncontrolled Response</div>
-                            </div>
-                        </LandscapeRow>
-                    </div>
-
-                    {/* 8️⃣ TRANSITION TO PHASE-2 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '32px 48px', border: `1px solid ${T.border}`, borderRadius: 8, background: T.bgAlt, width: '100%', maxWidth: 800 }}>
-                        <div style={{ display: 'flex', gap: 24, alignItems: 'center', width: '100%', justifyContent: 'center' }}>
-                            <div style={{ color: T.textMuted }}>Phase-1 <br /><span style={{ color: T.textPri }}>Baseline Instability</span></div>
-                            <div style={{ color: T.textMuted }}>➔</div>
-                            <div style={{ color: T.textPri }}>Phase-2 <br /><span style={{ color: T.cyan }}>Quantified Improvement</span></div>
-                            <div style={{ color: T.textMuted }}>➔</div>
-                            <div style={{ color: T.textMuted }}>Phase-3 <br /><span style={{ color: T.textSec }}>Multi-Wind Robustness</span></div>
-                        </div>
-                        <div style={{ color: T.textSec, fontSize: '1rem', borderTop: `1px solid ${T.border}`, paddingTop: 24, textAlign: 'center' }}>
-                            Phase-2 introduces quantitative validation of stabilization improvement across repeated disturbance injection trials.
+                            <div style={{ color: T.textSec, fontSize: '1.1rem', letterSpacing: 1 }}>Wind Injection Uncontrolled Response</div>
                         </div>
                     </div>
-                </FadeSection>
+                </div>
 
-            </main>
-        </div>
+                {/* 8️⃣ TRANSITION TO PHASE-2 */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '32px 48px', border: `1px solid ${T.border}`, borderRadius: 8, background: T.bgAlt, width: '100%', maxWidth: 800 }}>
+                    <div style={{ display: 'flex', gap: 24, alignItems: 'center', width: '100%', justifyContent: 'center' }}>
+                        <div style={{ color: T.textMuted }}>Phase-1 <br /><span style={{ color: T.textPri }}>Baseline Instability</span></div>
+                        <div style={{ color: T.textMuted }}>➔</div>
+                        <div style={{ color: T.textPri }}>Phase-2 <br /><span style={{ color: T.cyan }}>Quantified Improvement</span></div>
+                        <div style={{ color: T.textMuted }}>➔</div>
+                        <div style={{ color: T.textMuted }}>Phase-3 <br /><span style={{ color: T.textSec }}>Multi-Wind Robustness</span></div>
+                    </div>
+                    <div style={{ color: T.textSec, fontSize: '1rem', borderTop: `1px solid ${T.border}`, paddingTop: 24, textAlign: 'center' }}>
+                        Phase-2 introduces quantitative validation of stabilization improvement across repeated disturbance injection trials.
+                    </div>
+                </div>
+            </FadeSection>
+
+        </main>
+        </div >
     )
 }
