@@ -155,7 +155,7 @@ Technical documentation includes:
 - Graph-based analysis panels
 - Embedded simulation videos
 
-## Live Demo
+## Live Interactive Documentation
 
 https://sanjay1712ksk.github.io/Aero-Controllers/
 
