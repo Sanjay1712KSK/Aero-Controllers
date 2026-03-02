@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 
@@ -54,7 +54,7 @@ const inspirationGroups = [
     items: [
       { title: "Death Stranding Series", year: "2019 & 2025", poster: "/posters/death-stranding-series.jpg" },
       { title: "The Matrix Awakens - Unreal Engine 5 Demo", year: "2021", poster: "/posters/matrix-awakens-ue5.jpg" },
-      { title: "Decima Engine Performance", year: "Guerrilla Games & Kojima Productions", poster: "/posters/decima-engine-performance.png" },
+      { title: "Decima Engine Performance", year: "Guerrilla Games & Kojima Productions", poster: "/posters/decima-engine-updated.jpg" },
     ],
   },
   {
@@ -222,6 +222,20 @@ export default function AboutUsPage() {
         <p className="inspiration-subquote">We don&apos;t build by watching. We build by trying.</p>
       </section>
 
+      <section className="emotional-note" aria-label="Closing note">
+        <p>
+          There were phases where the model failed repeatedly.
+        </p>
+        <p>
+          In those hours, Anirudh music helped maintain flow -<br />
+          reminding me that persistence has rhythm.
+        </p>
+        <p>
+          Confidence is built the same way as control systems:<br />
+          one iteration at a time.
+        </p>
+      </section>
+
       <footer className="footer">Aero-Controllers</footer>
 
       <style jsx>{`
@@ -357,7 +371,7 @@ export default function AboutUsPage() {
           text-align: center;
           opacity: 0;
           transform: translateY(40px);
-          animation: fadeUp 1s ease forwards;
+          animation: fadeUpFull 1s ease forwards;
         }
 
         .inspiration-label {
@@ -410,7 +424,7 @@ export default function AboutUsPage() {
           margin-top: 80px;
           opacity: 0;
           transform: translateY(60px);
-          animation: fadeUp 1.2s ease forwards;
+          animation: fadeUpFull 1.2s ease forwards;
         }
 
         .inspiration-card {
@@ -481,6 +495,24 @@ export default function AboutUsPage() {
           font-size: 18px;
           color: rgba(255, 255, 255, 0.7);
           line-height: 1.6;
+        }
+
+        .emotional-note {
+          max-width: 720px;
+          margin: 140px auto 160px auto;
+          padding: 0 24px;
+          text-align: center;
+          font-size: 18px;
+          line-height: 1.9;
+          color: rgba(255,255,255,0.8);
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeUpSoft 1.2s ease forwards;
+          animation-delay: 0.3s;
+        }
+
+        .emotional-note p {
+          margin-bottom: 24px;
         }
 
         .footer {
@@ -657,7 +689,14 @@ export default function AboutUsPage() {
           }
         }
 
-        @keyframes fadeUp {
+        @keyframes fadeUpSoft {
+          to {
+            opacity: 0.85;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeUpFull {
           to {
             opacity: 1;
             transform: translateY(0);
@@ -675,4 +714,7 @@ export default function AboutUsPage() {
     </main>
   );
 }
+
+
+
 

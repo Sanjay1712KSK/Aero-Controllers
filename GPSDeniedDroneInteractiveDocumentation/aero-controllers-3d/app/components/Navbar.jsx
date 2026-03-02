@@ -24,6 +24,7 @@ export function Navbar({ activePath }) {
         { name: 'Phase-1: Baseline Instability', path: '/simulation' },
         { name: 'Phase-2: Mild Wind Learning', path: '/simulation/phase-2' },
         { name: 'Phase-3: Robust Stabilization', path: '/simulation/phase-3' },
+        { name: 'Phase-4: Learning-Aided INS Drift Suppression', path: '/simulation/phase-4' },
     ]
 
     // Is current path a simulation path?

@@ -18,8 +18,13 @@ export default function MacMenuBar() {
 
   return (
     <div className="mac-menubar">
-      <div className="mac-menubar-brand">Aero-Controllers</div>
-      <div className="mac-menubar-clock">{clock}</div>
+      <div className="menubar-left">AERO-CONTROLLERS</div>
+
+      <div className="menubar-center">
+        <span className="menubar-title">A Live Interactive Documentation By Team Aero-Controllers</span>
+      </div>
+
+      <div className="menubar-right">{clock}</div>
     </div>
   );
 }

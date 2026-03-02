@@ -143,6 +143,13 @@ export default function MacWindow({ children, title, isFullscreen, onFullscreenC
           >
             Phase 3
           </button>
+          <button
+            type="button"
+            className={`mac-segment-btn${pathname === "/simulation/phase-4" ? " is-active" : ""}`}
+            onClick={() => router.push("/simulation/phase-4")}
+          >
+            Phase 4
+          </button>
         </div>
       )}
 

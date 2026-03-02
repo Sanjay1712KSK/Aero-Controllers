@@ -15,6 +15,7 @@ const TITLES = {
   "/simulation": "Simulation - Phase 1",
   "/simulation/phase-2": "Simulation - Phase 2",
   "/simulation/phase-3": "Simulation - Phase 3",
+  "/simulation/phase-4": "Simulation - Phase 4",
 };
 
 export default function MacDesktopProvider({ children }) {

@@ -35,6 +35,18 @@ body.apple-doc-theme,
     sans-serif;
 }
 
+:root {
+  --apple-doc-font-stack:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
 .ui-overlay {
   position: absolute;
   top: 0;
@@ -197,35 +209,75 @@ body.apple-doc-theme,
 
 .mac-menubar {
   position: fixed;
-  top: 8px;
-  left: 10px;
-  right: 10px;
-  height: 30px;
-  padding: 0 12px;
-  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 44px;
+  padding: 0 20px;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(36, 36, 48, 0.42);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
-  border-radius: 10px;
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.16), 0 8px 18px rgba(8, 8, 12, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 15, 20, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   pointer-events: none;
 }
 
-.mac-menubar-brand {
+.menubar-left {
   color: rgba(255, 255, 255, 0.92);
-  font-size: 0.7rem;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
   text-transform: uppercase;
 }
 
-.mac-menubar-clock {
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+.menubar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: calc(100vw - 320px);
+  overflow: hidden;
+}
+
+.menubar-title {
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menubar-subtitle {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menubar-subtitle::before {
+  content: "•";
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.menubar-right {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
 }
 
 .mac-dock {
@@ -424,6 +476,14 @@ body.apple-doc-theme,
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
+  font-family: var(--apple-doc-font-stack);
+}
+
+/* Align all tab content typography with the How To Use page style.
+   Keep equation blocks untouched. */
+.mac-window-content :is(p, li, a, label, small, em, span):not(.eq-box):not(.eq-box *) {
+  font-family: var(--apple-doc-font-stack);
+  font-weight: 500;
 }
 
 .mac-window.is-fullscreen .mac-window-content {
@@ -489,19 +549,25 @@ body.mac-mode .app-navbar {
 
 @media (max-width: 900px) {
   .mac-menubar {
-    top: 6px;
-    left: 6px;
-    right: 6px;
-    height: 28px;
-    border-radius: 8px;
+    height: 44px;
+    padding: 0 12px;
   }
 
-  .mac-menubar-brand {
-    font-size: 0.62rem;
+  .menubar-left {
+    font-size: 11px;
+    letter-spacing: 0.04em;
   }
 
-  .mac-menubar-clock {
-    font-size: 0.64rem;
+  .menubar-title {
+    font-size: 11px;
+  }
+
+  .menubar-subtitle {
+    display: none;
+  }
+
+  .menubar-right {
+    font-size: 11px;
   }
 
   .mac-window-titlebar {
@@ -597,7 +663,7 @@ body.mac-mode .app-navbar {
   }
 
   .mac-menubar {
-    height: 34px;
+    height: 44px;
   }
 }
 
