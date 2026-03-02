@@ -166,14 +166,14 @@ https://sanjay1712ksk.github.io/Aero-Controllers/
 - Training progression snapshots
 - Phase-3 robust flight recordings
 - Multi-regime evaluation videos
+ 
+https://www.youtube.com/watch?v=I__WB5NJ0XI -  Aero-Controllers | Demo Video Showcasing Model Training and Simulation of Drone in Unreal Engine
 
-https://www.youtube.com/watch?v=I__WB5NJ0XI
+https://www.youtube.com/watch?v=5MEbBffcv7E - calm and mixed training and simulation in Unreal Engine 5.5.4
 
-https://www.youtube.com/watch?v=5MEbBffcv7E
+https://www.youtube.com/watch?v=MDs1X7NSu_I - Phase 1
 
-https://www.youtube.com/watch?v=MDs1X7NSu_I
-
-https://www.youtube.com/watch?v=Vugx3RBhP7Q
+https://www.youtube.com/watch?v=Vugx3RBhP7Q - Weather Anomaly Run 1
 
 ## Notes
 
