@@ -121,6 +121,7 @@ All regimes remain above **85/100**, indicating robust generalization.
 - No policy collapse under strong disturbances
 - Stable performance across training checkpoints
 
+
 ## Mathematical Stability View
 
 \[
@@ -128,7 +129,7 @@ All regimes remain above **85/100**, indicating robust generalization.
 \]
 
 \[
-\int \|\omega(t)\|^2 dt < \infty
+\int \|\omega(t)\|^2\, dt < \infty
 \]
 
 \[
