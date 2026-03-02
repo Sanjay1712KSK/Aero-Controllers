@@ -11,6 +11,7 @@ const APPS = [
   { id: "docs", label: "DOCUMENTATION", path: "/documentation", Icon: IconDocs },
   { id: "guide", label: "HOW TO USE", path: "/how-to-use", Icon: IconGuide },
   { id: "about", label: "ABOUT US", path: "/about-us", Icon: IconAbout },
+  { id: "github", label: "GITHUB", href: "https://github.com/Sanjay1712KSK/Aero-Controllers", Icon: IconGithub },
 ];
 
 function IconStory() {
@@ -80,6 +81,14 @@ function IconSimulation() {
   );
 }
 
+function IconGithub() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 19c-4 1.3-4-2.2-6-2.5m12 5v-3.2a2.8 2.8 0 0 0-.8-2.2c2.6-.3 5.3-1.2 5.3-5.5a4.2 4.2 0 0 0-1.1-2.9 3.8 3.8 0 0 0-.1-2.9s-1-.3-3.2 1.1a11 11 0 0 0-5.8 0C7 4.5 6 4.8 6 4.8a3.8 3.8 0 0 0-.1 2.9A4.2 4.2 0 0 0 4.8 10.6c0 4.3 2.7 5.2 5.3 5.5a2.8 2.8 0 0 0-.8 2.2v3.2" />
+    </svg>
+  );
+}
+
 export default function MacDock({ activePath }) {
   const router = useRouter();
   const [hovered, setHovered] = useState(null);
@@ -104,7 +113,8 @@ export default function MacDock({ activePath }) {
   return (
     <div className="mac-dock" role="toolbar" aria-label="Dock">
       {APPS.map((app, idx) => {
-        const isActive = app.path === "/" ? activePath === "/" : activePath?.startsWith(app.path);
+        const isExternal = Boolean(app.href);
+        const isActive = isExternal ? false : app.path === "/" ? activePath === "/" : activePath?.startsWith(app.path);
         const scale = getScale(idx);
         const lift = getLift(idx);
         const isBouncing = bouncing === app.id;
@@ -121,6 +131,10 @@ export default function MacDock({ activePath }) {
             onClick={() => {
               setBouncing(app.id);
               setTimeout(() => setBouncing(null), 380);
+              if (isExternal) {
+                window.open(app.href, "_blank", "noopener,noreferrer");
+                return;
+              }
               router.push(app.path);
             }}
           >

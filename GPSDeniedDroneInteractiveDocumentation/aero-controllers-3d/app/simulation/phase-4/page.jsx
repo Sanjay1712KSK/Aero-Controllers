@@ -93,6 +93,7 @@ export default function Phase4Page() {
 
   return (
     <div
+      className="sim-page"
       style={{
         background: T.bgBase,
         color: T.textPri,
@@ -119,13 +120,13 @@ export default function Phase4Page() {
             <div style={{ color: T.cyan, textTransform: 'uppercase', letterSpacing: 2, fontSize: '0.85rem', marginBottom: 16 }}>
               Phase-4
             </div>
-            <h1 style={{ fontSize: '3rem', fontWeight: 300, lineHeight: 1.1, margin: '0 0 16px' }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 10vw, 3rem)', fontWeight: 300, lineHeight: 1.1, margin: '0 0 16px' }}>
               Learning-Aided INS Drift Suppression Layer
             </h1>
-            <p style={{ fontSize: '1.2rem', color: T.textSec, lineHeight: 1.55, margin: '0 0 24px', maxWidth: 760 }}>
+            <p style={{ fontSize: 'clamp(1rem, 4.6vw, 1.2rem)', color: T.textSec, lineHeight: 1.55, margin: '0 0 24px', maxWidth: 760 }}>
               Extending stabilization into full GPS-denied navigation reliability.
             </p>
-            <p style={{ color: T.textSec, lineHeight: 1.75, fontSize: '1.06rem', margin: 0, maxWidth: 920 }}>
+            <p style={{ color: T.textSec, lineHeight: 1.75, fontSize: 'clamp(0.98rem, 4.1vw, 1.06rem)', margin: 0, maxWidth: 920 }}>
               Phase 4 extends the stabilization framework into a long-duration navigation support system. While Phase 3 ensured robust disturbance rejection, this phase introduces an intelligence layer that actively suppresses cumulative inertial drift over time.
             </p>
           </div>

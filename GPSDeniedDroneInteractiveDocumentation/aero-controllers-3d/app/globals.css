@@ -162,6 +162,64 @@ body.apple-doc-theme,
   letter-spacing: 1px;
 }
 
+@media (max-width: 900px) {
+  .story-wrapper {
+    width: 100%;
+  }
+
+  .story-section {
+    height: 100dvh;
+  }
+
+  .canvas-container {
+    inset: 0;
+  }
+
+  .scene-text-container {
+    padding: 64px 18px calc(116px + env(safe-area-inset-bottom));
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.02) 62%);
+  }
+
+  .scene-line {
+    font-size: clamp(30px, 9.2vw, 44px);
+    line-height: 1.16;
+    margin-bottom: 0.8rem;
+  }
+
+  .scene-subline {
+    font-size: clamp(18px, 5.2vw, 25px);
+    line-height: 1.3;
+    margin-top: 0.7rem;
+  }
+
+  .scene-smallcap {
+    font-size: clamp(13px, 3.8vw, 17px);
+    line-height: 1.45;
+    margin-top: 1.2rem;
+    letter-spacing: 0.6px;
+  }
+}
+
+@media (max-width: 560px) {
+  .scene-text-container {
+    padding: 58px 14px calc(110px + env(safe-area-inset-bottom));
+  }
+
+  .scene-line {
+    font-size: clamp(27px, 9.5vw, 38px);
+  }
+
+  .scene-subline {
+    font-size: clamp(16px, 5vw, 22px);
+  }
+
+  .scene-smallcap {
+    font-size: clamp(12px, 3.6vw, 15px);
+  }
+}
+
 @keyframes mac-window-open {
   from {
     opacity: 0;
@@ -548,6 +606,16 @@ body.mac-mode .app-navbar {
 }
 
 @media (max-width: 900px) {
+  .mac-window {
+    top: 44px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 44px) !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
   .mac-menubar {
     height: 44px;
     padding: 0 12px;
@@ -580,9 +648,16 @@ body.mac-mode .app-navbar {
     height: auto;
     min-height: 40px;
     flex: 0 0 auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 8px;
     padding: 8px 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .mac-window-phasebar::-webkit-scrollbar {
+    display: none;
   }
 
   .mac-segment-btn {
@@ -607,8 +682,8 @@ body.mac-mode .app-navbar {
   }
 
   .mac-dock-icon {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 10px;
   }
 
@@ -626,6 +701,45 @@ body.mac-mode .app-navbar {
 
   .mac-window-content {
     --mac-page-max-width: 100%;
+    padding-bottom: calc(118px + env(safe-area-inset-bottom));
+  }
+
+  /* Simulation-only mobile hardening */
+  .sim-page main {
+    padding-top: 56px !important;
+  }
+
+  .sim-page main > section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .sim-page main > section:first-child {
+    height: auto !important;
+    min-height: 460px !important;
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .sim-page main > section [style*="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .sim-page h1 {
+    line-height: 1.08 !important;
+  }
+
+  .sim-page h2 {
+    font-size: clamp(1.5rem, 7vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .sim-page p {
+    line-height: 1.55 !important;
+  }
+
+  .sim-page iframe {
+    min-height: 220px;
   }
 }
 
@@ -641,8 +755,28 @@ body.mac-mode .app-navbar {
   }
 
   .mac-segment-btn {
-    padding: 6px 10px;
-    font-size: 0.68rem;
+    padding: 6px 9px;
+    font-size: 0.66rem;
+    white-space: nowrap;
+  }
+
+  .sim-page main > section {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .sim-page main > section:first-child {
+    min-height: 420px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .sim-page h1 {
+    font-size: clamp(1.75rem, 9.4vw, 2.35rem) !important;
+  }
+
+  .sim-page h2 {
+    font-size: clamp(1.35rem, 7.2vw, 1.9rem) !important;
   }
 }
 

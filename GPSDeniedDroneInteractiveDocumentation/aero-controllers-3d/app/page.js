@@ -1,5 +1,5 @@
 "use client"
-import React, { useLayoutEffect, useRef, useState, forwardRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState, forwardRef } from 'react'
 import Link from 'next/link'
 import { Navbar } from './components/Navbar'
 import { Canvas, useFrame } from '@react-three/fiber'
@@ -15,7 +15,7 @@ import { WindParticles } from './components/WindParticles'
 gsap.registerPlugin(ScrollTrigger)
 
 // --- 3D Scene Composition ---
-const DroneScene = forwardRef(({ proxy }, ref) => {
+const DroneScene = forwardRef(({ proxy, isMobile = false }, ref) => {
   const droneRef = useRef()
   const cameraRef = useRef()
   const dirLightRef = useRef()
@@ -102,7 +102,7 @@ const DroneScene = forwardRef(({ proxy }, ref) => {
 
       {/* High-perf 100-particle wind streaks matching intensity */}
       <group position={[0, 0, 0]}>
-        <WindParticles intensity={proxy.windIntensity} count={100} />
+        <WindParticles intensity={proxy.windIntensity} count={isMobile ? 60 : 100} />
       </group>
 
       <fog ref={fogRef} attach="fog" args={['#020308', 20, 150]} />
@@ -115,6 +115,7 @@ DroneScene.displayName = 'DroneScene'
 export default function Page() {
   const containerRef = useRef()
   const sceneRefs = useRef({})
+  const [isMobile, setIsMobile] = useState(false)
 
   // 14 scenes -> 1400vh
   const [proxy] = useState(() => ({
@@ -129,6 +130,17 @@ export default function Page() {
     cameraShake: 0,
     fogDensity: 150 // default far away
   }))
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768)
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  useEffect(() => {
+    ScrollTrigger.refresh()
+  }, [isMobile])
 
   useLayoutEffect(() => {
     // Enable GSAP global lag smoothing
@@ -230,7 +242,7 @@ export default function Page() {
     <div ref={containerRef} style={{ backgroundColor: "#02040a" }}>
 
       {/* Scroll container (14 scenes * 100vh = 1400vh) */}
-      <div className="story-wrapper" style={{ height: '1400vh' }}>
+      <div className={`story-wrapper${isMobile ? ' story-wrapper-mobile' : ''}`} style={{ height: isMobile ? '980vh' : '1400vh' }}>
 
         {/* Sticky viewport section */}
         <section className="story-section">
@@ -241,9 +253,9 @@ export default function Page() {
             <Canvas gl={{ antialias: false, powerPreference: "high-performance", alpha: false }} dpr={[1, 1.5]}
               onCreated={({ gl }) => {
                 gl.shadowMap.enabled = false
-                gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
+                gl.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.15 : 1.5))
               }}>
-              <DroneScene ref={sceneRefs} proxy={proxy} />
+              <DroneScene ref={sceneRefs} proxy={proxy} isMobile={isMobile} />
             </Canvas>
           </div>
 

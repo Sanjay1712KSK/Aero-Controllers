@@ -111,7 +111,7 @@ const FlowBox = ({ children, logo, title, desc, tooltip, color = T.textPri, bord
                 background: T.bgEq,
                 color: color,
                 textAlign: 'center',
-                width: width,
+                width: `min(${width}px, 100%)`,
                 height: height,
                 display: 'flex',
                 flexDirection: 'column',
@@ -254,6 +254,12 @@ export default function ArchitecturePage() {
     const [activeHw, setActiveHw] = useState('gpu')
     const [viewportWidth, setViewportWidth] = useState(1440)
     const isNarrow = viewportWidth < 980
+    const isPhone = viewportWidth < 760
+    const loopSize = isPhone ? Math.max(320, Math.min(viewportWidth - 32, 520)) : 660
+    const loopCenter = loopSize / 2
+    const loopRadius = loopSize * 0.39
+    const loopNodeW = isPhone ? 120 : 180
+    const loopNodeH = isPhone ? 68 : 90
 
     const executionSteps = [
         { title: 'Launch Engine', desc: 'Initialize Unreal Engine 5.5.4 in headless or editor mode.', code: 'UnrealEditor.exe "AeroProject.uproject" -game' },
@@ -346,11 +352,11 @@ export default function ArchitecturePage() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 textAlign: 'center',
-                padding: '0 40px'
+                padding: isPhone ? '0 18px' : '0 40px'
             }} className="arch-section">
                 <div className="arch-step" style={{ maxWidth: 800 }}>
                     <h1 style={{
-                        fontSize: 'clamp(40px, 5vw, 64px)',
+                        fontSize: isPhone ? 'clamp(34px, 12vw, 48px)' : 'clamp(40px, 5vw, 64px)',
                         fontWeight: 300,
                         letterSpacing: '-1px',
                         marginBottom: 24,
@@ -359,7 +365,7 @@ export default function ArchitecturePage() {
                         Technical Stack &<br />System Architecture
                     </h1>
                     <p style={{
-                        fontSize: '1.5rem',
+                        fontSize: isPhone ? '1.15rem' : '1.5rem',
                         color: T.textSec,
                         fontWeight: 300,
                         lineHeight: 1.6
@@ -404,7 +410,7 @@ export default function ArchitecturePage() {
                         <div style={{ fontSize: '1.2rem', fontWeight: 500, color: T.textPri, marginBottom: 8 }}>Python PPO Engine</div>
                         <div style={{ fontSize: '0.9rem', color: T.textSec, marginBottom: 32 }}>Policy Optimization Backend</div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32, width: '100%', textAlign: 'left' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: isNarrow ? '1fr' : 'repeat(3, 1fr)', gap: isPhone ? 22 : 32, width: '100%', textAlign: 'left' }}>
                             <div>
                                 <div style={{ color: T.textPri, fontSize: '0.9rem', marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>Core RL</div>
                                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -469,15 +475,15 @@ export default function ArchitecturePage() {
                 <div className="arch-step" style={{
                     position: 'relative',
                     background: T.bgEq, border: `1px solid ${T.border}`,
-                    borderRadius: '50%', width: 660, height: 660,
+                    borderRadius: '50%', width: loopSize, height: loopSize,
                     transform: 'perspective(1000px) rotateX(2deg)',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.4)',
                 }}>
                     {/* SVG Flow Trace */}
-                    <svg viewBox="0 0 660 660" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-                        <circle cx="330" cy="330" r="260" fill="none" stroke={T.border} strokeWidth="1.5" strokeDasharray="4 8" />
-                        <circle cx="330" cy="70" r="6" fill={T.cyan}>
-                            <animateTransform attributeName="transform" type="rotate" from="0 330 330" to="360 330 330" dur="12s" repeatCount="indefinite" />
+                    <svg viewBox={`0 0 ${loopSize} ${loopSize}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
+                        <circle cx={loopCenter} cy={loopCenter} r={loopRadius} fill="none" stroke={T.border} strokeWidth="1.5" strokeDasharray="4 8" />
+                        <circle cx={loopCenter} cy={loopCenter - loopRadius} r="6" fill={T.cyan}>
+                            <animateTransform attributeName="transform" type="rotate" from={`0 ${loopCenter} ${loopCenter}`} to={`360 ${loopCenter} ${loopCenter}`} dur="12s" repeatCount="indefinite" />
                         </circle>
                     </svg>
 
@@ -490,14 +496,13 @@ export default function ArchitecturePage() {
                         { title: 'AirSim Physics', sub: 'Rigid Body Sim', angle: 150, color: T.textSec },
                         { title: 'Updated State', sub: 'Next Iteration', angle: 210, color: T.cyan }
                     ].map((node, i) => {
-                        const r = 260; // radius
-                        const left = 330 + r * Math.cos(node.angle * Math.PI / 180) - 90;
-                        const top = 330 + r * Math.sin(node.angle * Math.PI / 180) - 45;
+                        const left = loopCenter + loopRadius * Math.cos(node.angle * Math.PI / 180) - (loopNodeW / 2);
+                        const top = loopCenter + loopRadius * Math.sin(node.angle * Math.PI / 180) - (loopNodeH / 2);
 
                         return (
                             <div key={i} className="hover-lift-node" style={{
                                 position: 'absolute', left, top,
-                                width: 180, height: 90, background: T.bgExpl, border: `1px solid ${T.border}`,
+                                width: loopNodeW, height: loopNodeH, background: T.bgExpl, border: `1px solid ${T.border}`,
                                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                                 transition: 'all 0.2s ease', cursor: 'default'
                             }}
@@ -511,9 +516,9 @@ export default function ArchitecturePage() {
                                     e.currentTarget.style.borderColor = T.border
                                     e.currentTarget.children[1].style.opacity = '0'
                                 }}>
-                                <div style={{ fontSize: '1.2rem', color: node.color, fontWeight: 500 }}>{node.title}</div>
+                                <div style={{ fontSize: isPhone ? '0.98rem' : '1.2rem', color: node.color, fontWeight: 500, textAlign: 'center', padding: '0 6px' }}>{node.title}</div>
                                 <div style={{
-                                    position: 'absolute', bottom: -28, fontSize: '0.9rem', color: T.textSec,
+                                    position: 'absolute', bottom: isPhone ? -22 : -28, fontSize: isPhone ? '0.74rem' : '0.9rem', color: T.textSec,
                                     opacity: 0, transition: 'opacity 0.2s ease', whiteSpace: 'nowrap'
                                 }}>
                                     {node.sub}
@@ -523,8 +528,8 @@ export default function ArchitecturePage() {
                     })}
 
                     <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', zIndex: 10 }}>
-                        <div style={{ fontSize: '1.8rem', color: T.textPri, marginBottom: 8, fontWeight: 300, lineHeight: 1.4 }}>Real-Time<br />Cyber-Physical<br />Learning Loop</div>
-                        <div style={{ fontSize: '0.9rem', color: T.cyan, textTransform: 'uppercase', letterSpacing: 1 }}>600,000 Iterative Updates</div>
+                        <div style={{ fontSize: isPhone ? '1rem' : '1.8rem', color: T.textPri, marginBottom: 8, fontWeight: 300, lineHeight: 1.3 }}>Real-Time<br />Cyber-Physical<br />Learning Loop</div>
+                        <div style={{ fontSize: isPhone ? '0.72rem' : '0.9rem', color: T.cyan, textTransform: 'uppercase', letterSpacing: 1 }}>600,000 Iterative Updates</div>
                     </div>
                 </div>
             </SectionWrapper>
@@ -536,20 +541,20 @@ export default function ArchitecturePage() {
                 altBg
             >
                 <div className="arch-step" style={{ width: '100%', maxWidth: 1000, textAlign: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 64 }}>
+                    <div style={{ display: 'flex', flexDirection: isNarrow ? 'column' : 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 64 }}>
 
                         <FlowBox title="Python Agent" desc="PyTorch Policy" tooltip="Receives sensor data, outputs actions." />
 
-                        <div style={{ position: 'relative', width: 120, height: 2, background: T.border, margin: '0 16px' }}>
+                        <div style={{ position: 'relative', width: isNarrow ? 2 : 120, height: isNarrow ? 70 : 2, background: T.border, margin: isNarrow ? '14px 0' : '0 16px' }}>
                             <div style={{ fontSize: '0.8rem', position: 'absolute', top: -20, left: '50%', transform: 'translateX(-50%)', color: T.textPri, letterSpacing: 1 }}>RPC</div>
-                            <div style={{ width: 6, height: 6, background: T.cyan, borderRadius: '50%', position: 'absolute', top: -2, animation: 'dataFlow 3s infinite linear' }} />
+                            <div style={{ width: 6, height: 6, background: T.cyan, borderRadius: '50%', position: 'absolute', top: isNarrow ? 0 : -2, left: isNarrow ? -2 : 0, animation: `dataFlow${isNarrow ? 'Vertical' : ''} 3s infinite linear` }} />
                         </div>
 
                         <FlowBox title="AirSim API" desc="C++ Wrapper" color={T.green} borderColor={T.green} tooltip="Bridges Python RPC to Unreal physics layer." />
 
-                        <div style={{ position: 'relative', width: 120, height: 2, background: T.border, margin: '0 16px' }}>
+                        <div style={{ position: 'relative', width: isNarrow ? 2 : 120, height: isNarrow ? 70 : 2, background: T.border, margin: isNarrow ? '14px 0' : '0 16px' }}>
                             <div style={{ fontSize: '0.8rem', position: 'absolute', top: -20, left: '50%', transform: 'translateX(-50%)', color: T.textPri, letterSpacing: 1 }}>NATIVE</div>
-                            <div style={{ width: 6, height: 6, background: T.cyan, borderRadius: '50%', position: 'absolute', top: -2, animation: 'dataFlow 3s infinite linear 1s' }} />
+                            <div style={{ width: 6, height: 6, background: T.cyan, borderRadius: '50%', position: 'absolute', top: isNarrow ? 0 : -2, left: isNarrow ? -2 : 0, animation: `dataFlow${isNarrow ? 'Vertical' : ''} 3s infinite linear 1s` }} />
                         </div>
 
                         <FlowBox title="UE5 Physics" desc="Rigid Body Env" tooltip="Computes collisions, aerodynamics, constraints." />
@@ -557,8 +562,8 @@ export default function ArchitecturePage() {
                     </div>
 
                     <div style={{
-                        background: T.bgEq, border: `1px solid ${T.border}`, padding: '40px 60px',
-                        textAlign: 'left', lineHeight: 2, fontSize: '1.25rem', color: T.textSec
+                        background: T.bgEq, border: `1px solid ${T.border}`, padding: isPhone ? '24px 20px' : '40px 60px',
+                        textAlign: 'left', lineHeight: 2, fontSize: isPhone ? '1.05rem' : '1.25rem', color: T.textSec
                     }}>
                         <ul style={{ margin: 0, paddingLeft: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
                             <li><span style={{ color: T.textPri }}>Python</span> sends motor command</li>
@@ -578,6 +583,12 @@ export default function ArchitecturePage() {
                         85% { opacity: 1; }
                         100% { transform: translateX(114px); opacity: 0; }
                     }
+                    @keyframes dataFlowVertical {
+                        0% { transform: translateY(0); opacity: 0; }
+                        15% { opacity: 1; }
+                        85% { opacity: 1; }
+                        100% { transform: translateY(64px); opacity: 0; }
+                    }
                 `}} />
             </SectionWrapper>
 
@@ -587,7 +598,7 @@ export default function ArchitecturePage() {
                 title="Force-to-State Integration Flow"
                 subtitle="Full nonlinear rigid body simulation with aerodynamic disturbance injection."
             >
-                <div className="arch-step" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 64, width: '100%', maxWidth: 1000 }}>
+                <div className="arch-step" style={{ display: 'flex', flexDirection: isNarrow ? 'column' : 'row', alignItems: 'center', justifyContent: 'center', gap: isNarrow ? 28 : 64, width: '100%', maxWidth: 1000 }}>
 
                     {/* Left Flow - Mechanical */}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -602,7 +613,7 @@ export default function ArchitecturePage() {
                     </div>
 
                     {/* Middle Merging */}
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 180 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: isNarrow ? 0 : 180 }}>
                         <div style={{ display: 'flex', width: 200, justifyContent: 'space-between', marginBottom: 16 }}>
                             <div style={{ width: '50%', borderTop: `1.5px solid ${T.textSec}`, borderRight: `1.5px solid ${T.textSec}` }} />
                             <div style={{ width: '50%', borderTop: `1.5px solid ${T.textSec}`, borderLeft: `1.5px solid ${T.textSec}` }} />
@@ -636,7 +647,7 @@ export default function ArchitecturePage() {
             >
                 <div className="arch-step" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: 1000 }}>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 24, width: '100%', marginBottom: 32 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: isPhone ? '1fr' : isNarrow ? '1fr 1fr' : '1fr 1fr 1fr 1fr', gap: 24, width: '100%', marginBottom: 32 }}>
                         {['Calm', 'Stochastic Smooth', 'Strong Gust', 'Mixed'].map((type, i) => (
                             <div key={i} style={{
                                 background: T.bgEq,

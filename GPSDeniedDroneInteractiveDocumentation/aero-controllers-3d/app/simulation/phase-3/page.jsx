@@ -140,7 +140,7 @@ const ExpandableGraph = ({ src, alt, width = 800, height = 500, style = {} }) =>
 // ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 export default function Phase3Page() {
     return (
-        <div style={{ background: T.bgBase, color: T.textPri, fontFamily: 'sans-serif', overflowX: 'hidden' }}>
+        <div className="sim-page" style={{ background: T.bgBase, color: T.textPri, fontFamily: 'sans-serif', overflowX: 'hidden' }}>
             <Navbar activePath="/simulation/phase-3" />
 
             {/* INTERACTIVE STYLES */}
@@ -194,10 +194,10 @@ export default function Phase3Page() {
                         {/* LEFT 60% */}
                         <div style={{ flex: '6' }}>
                             <div style={{ color: T.green, textTransform: 'uppercase', letterSpacing: 2, fontSize: '0.85rem', marginBottom: 16 }}>Phase-3</div>
-                            <h1 style={{ fontSize: '3rem', fontWeight: 300, marginBottom: 16, lineHeight: 1.1 }}>
+                            <h1 style={{ fontSize: 'clamp(2rem, 10vw, 3rem)', fontWeight: 300, marginBottom: 16, lineHeight: 1.1 }}>
                                 Stochastic Multi-Wind Robustness
                             </h1>
-                            <p style={{ fontSize: '1.2rem', color: T.textSec, marginBottom: 32, lineHeight: 1.5, maxWidth: 600 }}>
+                            <p style={{ fontSize: 'clamp(1rem, 4.6vw, 1.2rem)', color: T.textSec, marginBottom: 32, lineHeight: 1.5, maxWidth: 600 }}>
                                 Policy trained under aggressive wind randomization to achieve disturbance-invariant stabilization.
                             </p>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12, color: T.textSec }}>
