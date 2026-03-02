@@ -124,9 +124,17 @@ All regimes remain above **85/100**, indicating robust generalization.
 
 ## Mathematical Stability View
 
-- sup_t ||omega(t)|| < omega_max
-- integral ||omega(t)||^2 dt is finite
-- ||Delta p(t)|| < epsilon
+$$
+\sup_t \|\omega(t)\| < \omega_{\max}
+$$
+
+$$
+\int \|\omega(t)\|^2 \, dt < \infty
+$$
+
+$$
+\|\Delta p(t)\| < \varepsilon
+$$
 
 ## Training Details
 
