@@ -22,6 +22,8 @@ const T = {
     red: '#FF3333'
 }
 
+const ABOUT_BG_GRADE = 'radial-gradient(circle at 30% 20%, #1b2946 0%, #141426 42%, #101018 100%)'
+
 // ─── NOMENCLATURE DICTIONARY ─────────────────────────────────────────────────
 const DICT = {
     // 1: Dynamics
@@ -135,8 +137,8 @@ function HoverVar({ id, children, hoverId, setHover, color = '#F8FAFC' }) {
 function SectionWrapper({ children, bg, id }) {
     return (
         <section id={id} className="tech-section" style={{
-            background: bg,
-            borderTop: `1px solid ${T.border}`,
+            background: 'transparent',
+            borderTop: 'none',
             padding: '120px 0',
             minHeight: '85vh',
             display: 'flex',
@@ -173,7 +175,7 @@ export default function MathematicalConsole() {
     }, [h])
 
     return (
-        <div style={{ background: T.bgBase, color: T.textPri, minHeight: '100vh', fontFamily: 'sans-serif', paddingTop: 72 }}>
+        <div style={{ background: ABOUT_BG_GRADE, backgroundAttachment: 'fixed', backgroundSize: 'cover', color: T.textPri, minHeight: '100vh', fontFamily: 'sans-serif', paddingTop: 72 }}>
             <Navbar activePath="/technical" />
 
             {/* FLOATING HOVER PANEL (Fixed relative to center column) */}
