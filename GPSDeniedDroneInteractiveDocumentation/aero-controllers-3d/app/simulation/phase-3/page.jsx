@@ -1,7 +1,8 @@
 "use client"
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Navbar } from '../../components/Navbar'
+import { createPortal } from 'react-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
@@ -64,31 +65,69 @@ const FadeSection = ({ children, delay = 0, yOffset = 40, className = "", style 
 // ─── EXPANDABLE GRAPH COMPONENT ──────────────────────────────────────────────
 const ExpandableGraph = ({ src, alt, width = 800, height = 500, style = {} }) => {
     const [isExpanded, setIsExpanded] = useState(false)
+    const [zoom, setZoom] = useState(1)
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    const openModal = () => {
+        setZoom(1)
+        setIsExpanded(true)
+    }
+
+    const zoomIn = () => setZoom((z) => Math.min(z + 0.25, 3))
+    const zoomOut = () => setZoom((z) => Math.max(z - 0.25, 1))
+    const resetZoom = () => setZoom(1)
 
     return (
         <>
-            <div style={{ cursor: 'pointer', ...style }} onClick={() => setIsExpanded(true)}>
+            <div style={{ cursor: 'pointer', ...style }} onClick={openModal}>
                 <Image src={src} alt={alt} width={width} height={height}
                     style={{ width: '100%', height: 'auto', borderRadius: 4, display: 'block' }} />
             </div>
 
-            {isExpanded && (
+            {isExpanded && isClient && createPortal(
                 <div
                     style={{
                         position: 'fixed', inset: 0, zIndex: 9999,
-                        background: 'rgba(2, 5, 10, 0.95)', backdropFilter: 'blur(8px)',
+                        background: 'rgba(2, 5, 10, 0.97)', backdropFilter: 'blur(8px)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        padding: '40px', cursor: 'pointer'
+                        padding: '12px'
                     }}
-                    onClick={() => setIsExpanded(false)}
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) setIsExpanded(false)
+                    }}
                 >
-                    <div style={{ position: 'relative', width: '90vw', height: '90vh', maxWidth: 1200, display: 'flex', alignItems: 'center', justifyContent: 'center', background: T.bgBase, border: `1px solid ${T.border}`, borderRadius: 12, padding: 24, boxShadow: `0 20px 40px rgba(0,0,0,0.5)` }}>
-                        <Image src={src} alt={alt} fill style={{ objectFit: 'contain', padding: 24 }} />
-                        <div style={{ position: 'absolute', top: -30, right: 0, color: T.textMuted, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase' }}>
-                            Click anywhere to close
+                    <div style={{ width: '98vw', height: '96vh', display: 'flex', flexDirection: 'column', background: T.bgBase, border: `1px solid ${T.border}`, borderRadius: 12, boxShadow: `0 20px 40px rgba(0,0,0,0.5)`, overflow: 'hidden' }}>
+                        <div style={{ height: 56, borderBottom: `1px solid ${T.border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', background: T.bgAlt }}>
+                            <div style={{ color: T.textSec, fontSize: '0.9rem', letterSpacing: 1, textTransform: 'uppercase', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                {alt}
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                <button type="button" onClick={zoomOut} style={{ padding: '6px 10px', border: `1px solid ${T.border}`, background: T.bgBase, color: T.textPri, borderRadius: 6, cursor: 'pointer' }}>-</button>
+                                <button type="button" onClick={resetZoom} style={{ padding: '6px 10px', border: `1px solid ${T.border}`, background: T.bgBase, color: T.textPri, borderRadius: 6, cursor: 'pointer' }}>{Math.round(zoom * 100)}%</button>
+                                <button type="button" onClick={zoomIn} style={{ padding: '6px 10px', border: `1px solid ${T.border}`, background: T.bgBase, color: T.textPri, borderRadius: 6, cursor: 'pointer' }}>+</button>
+                                <button type="button" onClick={() => setIsExpanded(false)} style={{ padding: '6px 10px', border: `1px solid ${T.border}`, background: T.redBox, color: T.redText, borderRadius: 6, cursor: 'pointer' }}>Close</button>
+                            </div>
+                        </div>
+                        <div style={{ flex: 1, overflow: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12 }}>
+                            <img
+                                src={src}
+                                alt={alt}
+                                style={{
+                                    width: zoom === 1 ? 'auto' : `${zoom * 100}%`,
+                                    maxWidth: zoom === 1 ? '100%' : 'none',
+                                    maxHeight: zoom === 1 ? '100%' : 'none',
+                                    height: 'auto',
+                                    objectFit: 'contain'
+                                }}
+                            />
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     )

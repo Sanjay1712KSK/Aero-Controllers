@@ -138,3 +138,41 @@ html {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
   letter-spacing: 1px;
 }
+
+/* ─── macOS Desktop UI ────────────────────────────────────────────────────── */
+
+/* Window open animation — opacity only, no transform, preserves fixed-position children */
+@keyframes macWindowOpen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Navbar suppression in mac-mode — hides original nav, avoids stacking with MenuBar */
+body.mac-mode .app-navbar {
+  display: none !important;
+}
+
+/* Remove paddingTop compensation for hidden Navbar inside window content */
+body.mac-mode .mac-window-content > div:first-child,
+body.mac-mode .mac-window-content > main:first-child {
+  padding-top: 0 !important;
+}
+
+/* Thin macOS-style scrollbar for window content */
+.mac-window-content::-webkit-scrollbar {
+  width: 6px;
+}
+.mac-window-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mac-window-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 3px;
+}
+.mac-window-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}

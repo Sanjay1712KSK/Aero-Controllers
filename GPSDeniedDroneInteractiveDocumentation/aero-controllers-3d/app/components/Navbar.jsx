@@ -47,7 +47,7 @@ export function Navbar({ activePath }) {
     }
 
     return (
-        <nav style={navStyle}>
+        <nav className="app-navbar" style={navStyle}>
             <div style={{ letterSpacing: '0.14em', fontWeight: 700, color: T.textPri, textTransform: 'uppercase' }}>
                 AERO-CONTROLLERS
             </div>
