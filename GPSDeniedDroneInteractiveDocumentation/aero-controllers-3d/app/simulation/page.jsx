@@ -35,7 +35,7 @@ const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, m
         alignItems: align,
         justifyContent: 'space-between',
         width: '100%',
-        maxWidth: 1200,
+        maxWidth: 'var(--mac-page-max-width, 1200px)',
         margin: `${marginTop}px auto 0 auto`,
         gap: `${gap}px`
     }}>
@@ -46,12 +46,15 @@ const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, m
 const FadeSection = ({ children, delay = 0, yOffset = 40, className = "", style = {} }) => {
     const sectionRef = useRef(null)
     useLayoutEffect(() => {
+        if (!sectionRef.current) return
+        const scrollerEl = sectionRef.current.closest('.mac-window-content') || undefined
+
         let ctx = gsap.context(() => {
             gsap.fromTo(sectionRef.current,
                 { opacity: 0, y: yOffset },
                 {
                     opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay,
-                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
+                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', scroller: scrollerEl }
                 }
             )
         }, sectionRef)
@@ -175,7 +178,7 @@ export default function Phase1Page() {
 
                 {/* 1️⃣ HERO SECTION */}
                 <section style={{ height: '65vh', minHeight: 600, background: T.bgAlt, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: 'flex', width: '100%', maxWidth: 1200, gap: 40, alignItems: 'center' }}>
+                    <div style={{ display: 'flex', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', gap: 40, alignItems: 'center' }}>
 
                         {/* LEFT (60%) */}
                         <div style={{ flex: '6' }}>
@@ -215,7 +218,7 @@ export default function Phase1Page() {
 
                 {/* 2️⃣ METRICS STRIP */}
                 <section style={{ height: 120, background: T.secStrip, borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 1200, height: '100%' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', height: '100%' }}>
                         {[
                             { l: "Mean ||ω||", v: "High" }, { l: "Var ||ω||", v: "High" }, { l: "Max Spike", v: "> 1.0 rad/s" },
                             { l: "Spike Count", v: "Frequent" }, { l: "Damping", v: "Poor" }, { l: "Convergence", v: "None" }
@@ -371,3 +374,4 @@ export default function Phase1Page() {
         </div >
     )
 }
+

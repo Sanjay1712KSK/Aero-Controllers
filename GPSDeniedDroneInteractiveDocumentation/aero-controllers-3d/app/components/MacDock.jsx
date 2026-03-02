@@ -1,137 +1,139 @@
-"use client"
-import { useState } from 'react'
-import Link from 'next/link'
+"use client";
 
-// ─── SVG Icons ────────────────────────────────────────────────────────────────
-const IconWaveform = () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
-        <polyline points="2,12 5,6 8,12 11,18 14,12 17,6 20,12 22,12" />
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const APPS = [
+  { id: "story", label: "STORY", path: "/", Icon: IconStory },
+  { id: "technical", label: "Control & Stability Framework", path: "/technical", Icon: IconControl },
+  { id: "architecture", label: "System Architecture", path: "/architecture", Icon: IconArchitecture },
+  { id: "simulation", label: "Simulation", path: "/simulation", Icon: IconSimulation },
+  { id: "docs", label: "DOCUMENTATION", path: "/documentation", Icon: IconDocs },
+  { id: "guide", label: "HOW TO USE", path: "/how-to-use", Icon: IconGuide },
+  { id: "about", label: "ABOUT US", path: "/about-us", Icon: IconAbout },
+];
+
+function IconStory() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="4" y="5" width="16" height="14" rx="2" />
+      <path d="M8 9h8M8 12h6M8 15h5" />
     </svg>
-)
+  );
+}
 
-const IconArchitecture = () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
-        <rect x="9" y="2" width="6" height="4" rx="1" />
-        <rect x="2" y="10" width="5" height="4" rx="1" />
-        <rect x="17" y="10" width="5" height="4" rx="1" />
-        <rect x="9" y="18" width="6" height="4" rx="1" />
-        <line x1="12" y1="6" x2="12" y2="10" />
-        <line x1="7" y1="12" x2="9" y2="12" />
-        <line x1="15" y1="12" x2="17" y2="12" />
-        <line x1="4.5" y1="14" x2="9" y2="19" />
-        <line x1="19.5" y1="14" x2="15" y2="19" />
+function IconControl() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 12h3l2-5 4 10 2-5h7" />
     </svg>
-)
+  );
+}
 
-const IconSimulation = () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-        strokeLinecap="round" strokeLinejoin="round" width="26" height="26">
-        <circle cx="12" cy="12" r="10" />
-        <polygon fill="currentColor" stroke="none" points="10,8.5 16,12 10,15.5" />
+function IconGuide() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.25" />
+      <path d="M9.5 9.2a2.5 2.5 0 1 1 3.6 2.25c-.82.4-1.3.97-1.3 1.8v.35" />
+      <circle cx="12" cy="16.8" r="0.7" fill="currentColor" stroke="none" />
     </svg>
-)
+  );
+}
 
-// ─── Dock Items ───────────────────────────────────────────────────────────────
-const ITEMS = [
-    { id: 'technical', label: 'Control & Stability', path: '/technical', Icon: IconWaveform },
-    { id: 'architecture', label: 'System Architecture', path: '/architecture', Icon: IconArchitecture },
-    { id: 'simulation', label: 'Simulation', path: '/simulation', Icon: IconSimulation },
-]
+function IconDocs() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z" />
+      <path d="M14 3.5V8h4" />
+      <path d="M9 12h6M9 15h6M9 18h4" />
+    </svg>
+  );
+}
+
+function IconAbout() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="3.25" />
+      <path d="M5 19.5c1.4-3 4-4.5 7-4.5s5.6 1.5 7 4.5" />
+    </svg>
+  );
+}
+
+function IconArchitecture() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="9" y="2.5" width="6" height="4" rx="1" />
+      <rect x="2.5" y="10" width="5" height="4" rx="1" />
+      <rect x="16.5" y="10" width="5" height="4" rx="1" />
+      <rect x="9" y="17.5" width="6" height="4" rx="1" />
+      <path d="M12 6.5V10M7.5 12h1.5M15 12h1.5M7 14l2.5 3.5M17 14l-2.5 3.5" />
+    </svg>
+  );
+}
+
+function IconSimulation() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.25" />
+      <path d="M10 8.5L16 12l-6 3.5z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
 
 export default function MacDock({ activePath }) {
-    const [hoveredIdx, setHoveredIdx] = useState(null)
+  const router = useRouter();
+  const [hovered, setHovered] = useState(null);
+  const [bouncing, setBouncing] = useState(null);
 
-    // Wave scale / lift per index
-    const getScale = (i) => {
-        if (hoveredIdx === null) return 1
-        const d = Math.abs(i - hoveredIdx)
-        if (d === 0) return 1.28
-        if (d === 1) return 1.10
-        return 1.0
-    }
-    const getLift = (i) => {
-        if (hoveredIdx === null) return 0
-        const d = Math.abs(i - hoveredIdx)
-        if (d === 0) return -10
-        if (d === 1) return -4
-        return 0
-    }
+  const getScale = (idx) => {
+    if (hovered === null) return 1;
+    const d = Math.abs(idx - hovered);
+    if (d === 0) return 1.2;
+    if (d === 1) return 1.1;
+    return 1;
+  };
 
-    const isActive = (path) =>
-        activePath?.startsWith(path) && path !== '/'
+  const getLift = (idx) => {
+    if (hovered === null) return 0;
+    const d = Math.abs(idx - hovered);
+    if (d === 0) return -8;
+    if (d === 1) return -4;
+    return 0;
+  };
 
-    return (
-        <div style={{
-            position: 'fixed',
-            bottom: 18,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 800,
-            display: 'flex',
-            alignItems: 'flex-end',
-            gap: 10,
-            padding: '12px 18px',
-            background: 'rgba(255,255,255,0.10)',
-            backdropFilter: 'blur(40px)',
-            WebkitBackdropFilter: 'blur(40px)',
-            borderRadius: 24,
-            border: '1px solid rgba(255,255,255,0.16)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.5), inset 0 0.5px 0 rgba(255,255,255,0.22)',
-        }}>
-            {ITEMS.map(({ id, label, path, Icon }, i) => {
-                const active = isActive(path)
-                const scale = getScale(i)
-                const lift = getLift(i)
+  return (
+    <div className="mac-dock" role="toolbar" aria-label="Dock">
+      {APPS.map((app, idx) => {
+        const isActive = app.path === "/" ? activePath === "/" : activePath?.startsWith(app.path);
+        const scale = getScale(idx);
+        const lift = getLift(idx);
+        const isBouncing = bouncing === app.id;
+        const showLabel = hovered === idx;
 
-                return (
-                    <div
-                        key={id}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5 }}
-                        onMouseEnter={() => setHoveredIdx(i)}
-                        onMouseLeave={() => setHoveredIdx(null)}
-                    >
-                        <div
-                            title={label}
-                            style={{
-                                transform: `scale(${scale}) translateY(${lift}px)`,
-                                transition: 'transform 0.22s cubic-bezier(0.34,1.56,0.64,1)',
-                                transformOrigin: 'bottom center',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            }}
-                        >
-                            <Link href={path} style={{ textDecoration: 'none', display: 'block' }}>
-                                <div style={{
-                                    width: 54, height: 54,
-                                    background: active
-                                        ? 'rgba(0,229,100,0.14)'
-                                        : hoveredIdx === i
-                                            ? 'rgba(255,255,255,0.14)'
-                                            : 'rgba(255,255,255,0.08)',
-                                    borderRadius: 14,
-                                    display: 'flex',
-                                    alignItems: 'center', justifyContent: 'center',
-                                    color: active ? '#00E564' : 'rgba(255,255,255,0.85)',
-                                    border: `1px solid ${active ? 'rgba(0,229,100,0.30)' : 'rgba(255,255,255,0.08)'}`,
-                                    transition: 'background 0.2s, border-color 0.2s, color 0.2s',
-                                    boxShadow: active ? 'inset 0 0 0 1px rgba(0,229,100,0.15)' : 'none',
-                                }}>
-                                    <Icon />
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Active dot */}
-                        <div style={{
-                            width: 4, height: 4, borderRadius: '50%',
-                            background: active ? '#00E564' : 'transparent',
-                            transition: 'background 0.25s ease',
-                            flexShrink: 0,
-                        }} />
-                    </div>
-                )
-            })}
-        </div>
-    )
+        return (
+          <button
+            key={app.id}
+            type="button"
+            title={app.label}
+            className={`mac-dock-item${isActive ? " is-active" : ""}${isBouncing ? " is-bouncing" : ""}`}
+            onMouseEnter={() => setHovered(idx)}
+            onMouseLeave={() => setHovered(null)}
+            onClick={() => {
+              setBouncing(app.id);
+              setTimeout(() => setBouncing(null), 380);
+              router.push(app.path);
+            }}
+          >
+            {showLabel && <span className="mac-dock-label">{app.label}</span>}
+            <span className="mac-dock-item-shell" style={{ transform: `translateY(${lift}px) scale(${scale})` }}>
+              <span className="mac-dock-icon">
+                <app.Icon />
+              </span>
+            </span>
+            <span className="mac-dock-dot" />
+          </button>
+        );
+      })}
+    </div>
+  );
 }

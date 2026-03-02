@@ -51,7 +51,7 @@ const SectionWrapper = ({ id, title, subtitle, children, altBg = false }) => {
             }} />
             <div style={{
                 width: '100%',
-                maxWidth: 1200,
+                maxWidth: 'var(--mac-page-max-width, 1200px)',
                 padding: '0 40px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -297,9 +297,11 @@ export default function ArchitecturePage() {
     }
 
     useLayoutEffect(() => {
+        const scrollerEl = containerRef.current?.closest('.mac-window-content') || undefined
+
         let ctx = gsap.context(() => {
             gsap.utils.toArray('.arch-section').forEach((sec) => {
-                const elements = sec.querySelectorAll('.arch-step')
+                const elements = Array.from(sec.querySelectorAll('.arch-step')).filter(Boolean)
                 if (elements.length > 0) {
                     gsap.fromTo(elements,
                         { opacity: 0, y: 16 },
@@ -311,6 +313,7 @@ export default function ArchitecturePage() {
                             scrollTrigger: {
                                 trigger: sec,
                                 start: 'top 75%',
+                                scroller: scrollerEl,
                             }
                         }
                     )
@@ -934,3 +937,4 @@ export default function ArchitecturePage() {
         </div>
     )
 }
+

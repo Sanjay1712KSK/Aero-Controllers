@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import MacDesktopProvider from "./components/MacDesktopProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,8 +15,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased`} suppressHydrationWarning>
-        {children}
+      <body className={`${inter.variable} antialiased mac-mode`} suppressHydrationWarning>
+        <MacDesktopProvider>{children}</MacDesktopProvider>
       </body>
     </html>
   );

@@ -35,7 +35,7 @@ const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, m
         alignItems: align,
         justifyContent: 'space-between',
         width: '100%',
-        maxWidth: 1200,
+        maxWidth: 'var(--mac-page-max-width, 1200px)',
         margin: `${marginTop}px auto 0 auto`,
         gap: `${gap}px`
     }}>
@@ -46,12 +46,15 @@ const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, m
 const FadeSection = ({ children, delay = 0, yOffset = 40, className = "", style = {} }) => {
     const sectionRef = useRef(null)
     useLayoutEffect(() => {
+        if (!sectionRef.current) return
+        const scrollerEl = sectionRef.current.closest('.mac-window-content') || undefined
+
         let ctx = gsap.context(() => {
             gsap.fromTo(sectionRef.current,
                 { opacity: 0, y: yOffset },
                 {
                     opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay,
-                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' }
+                    scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', scroller: scrollerEl }
                 }
             )
         }, sectionRef)
@@ -175,7 +178,7 @@ export default function Phase2Page() {
 
                 {/* 1️⃣ HERO SECTION */}
                 <section style={{ height: '65vh', minHeight: 600, background: T.bgAlt, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: 'flex', width: '100%', maxWidth: 1200, gap: 40, alignItems: 'center' }}>
+                    <div style={{ display: 'flex', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', gap: 40, alignItems: 'center' }}>
 
                         {/* LEFT (60%) */}
                         <div style={{ flex: '6' }}>
@@ -214,7 +217,7 @@ export default function Phase2Page() {
 
                 {/* 2️⃣ METRICS STRIP */}
                 <section style={{ height: 120, background: T.secStrip, borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 1200, height: '100%' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', height: '100%' }}>
                         {[
                             { l: "RMSE X", v: "3.0076" }, { l: "RMSE Y", v: "3.8208" }, { l: "RMSE Z", v: "0.3661" },
                             { l: "RMSE Ω", v: "0.1203" }, { l: "Var ωx", v: "0.00677" }, { l: "Var ωy", v: "0.00769" }
@@ -330,7 +333,7 @@ export default function Phase2Page() {
 
                 {/* 6️⃣ SENSOR VALIDATION SECTION */}
                 <FadeSection style={{ padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ width: '100%', maxWidth: 1200 }}>
+                    <div style={{ width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)' }}>
                         <h2 style={{ fontSize: '2.5rem', fontWeight: 300, marginBottom: 64, textAlign: 'center' }}>Sensor Flow Consistency</h2>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
@@ -381,7 +384,7 @@ export default function Phase2Page() {
 
                 {/* 8️⃣ MATHEMATICAL INTERPRETATION BLOCK */}
                 <FadeSection style={{ background: T.secStrip, padding: '96px 40px', borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center' }}>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, width: '100%', maxWidth: 1200, justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', justifyContent: 'center' }}>
                         {[
                             { title: "Variance Reduction", eq: "Var(ω) ↓", desc: "Stabilizes oscillation" },
                             { title: "Bounded State", eq: "||x(t)|| ≤ C", desc: "Prevent divergence" },
@@ -420,3 +423,5 @@ export default function Phase2Page() {
         </div>
     )
 }
+
+

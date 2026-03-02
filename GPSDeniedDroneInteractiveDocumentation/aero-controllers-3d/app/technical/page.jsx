@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
@@ -144,7 +144,7 @@ function SectionWrapper({ children, bg, id }) {
             justifyContent: 'center',
             alignItems: 'center'
         }}>
-            <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 80, alignItems: 'center' }}>
+            <div style={{ width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 80, alignItems: 'center' }}>
                 {children}
             </div>
         </section>
@@ -161,7 +161,7 @@ export default function MathematicalConsole() {
         gsap.utils.toArray('.tech-step').forEach(el => {
             gsap.fromTo(el, { opacity: 0, y: 12 }, {
                 opacity: 1, y: 0, duration: 0.6, ease: 'power1.out',
-                scrollTrigger: { trigger: el, start: 'top 85%' }
+                scrollTrigger: { trigger: el, start: 'top 85%', scroller: '.mac-window-content' }
             })
         })
     }, [])
@@ -304,10 +304,10 @@ export default function MathematicalConsole() {
                     <div style={{ height: 1, width: 200, background: T.border }} />
 
                     <div style={{ background: T.bgEq, border: `1px solid ${T.border}`, padding: '32px', fontFamily: 'monospace', fontSize: '1.8rem', textAlign: 'center', width: '100%', maxWidth: 800 }}>
-                        <HoverVar id="J_theta" hoverId={h} setHover={setH}>J(θ)</HoverVar> = E[ Σ <HoverVar id="gamma" hoverId={h} setHover={setH}>γ</HoverVar>ᵀ <HoverVar id="R_t" hoverId={h} setHover={setH}>R_t</HoverVar> ]
+                        <HoverVar id="J_theta" hoverId={h} setHover={setH}>J(θ)</HoverVar> = E[ Σ <HoverVar id="gamma" hoverId={h} setHover={setH}>γ</HoverVar>ᵗ <HoverVar id="R_t" hoverId={h} setHover={setH}>R_t</HoverVar> ]
                     </div>
                     <div style={{ background: T.bgEq, border: `1px solid ${T.border}`, padding: '32px', fontFamily: 'monospace', fontSize: '1.6rem', textAlign: 'center', width: '100%', maxWidth: 800 }}>
-                        <HoverVar id="L_CLIP" hoverId={h} setHover={setH} color={T.cyan}>L^CLIP(θ)</HoverVar> = E[ min( r_t(θ)Â_t , clip(...) ) ]
+                        <HoverVar id="L_CLIP" hoverId={h} setHover={setH} color={T.cyan}>L^CLIP(θ)</HoverVar> = E[ min( r_t(θ)A_t , clip(...) ) ]
                     </div>
                     <div style={{ background: T.bgExpl, border: `1px solid ${T.border}`, padding: 32, width: '100%', maxWidth: 800, textAlign: 'center', lineHeight: 1.8, color: T.textSec }}>
                         Proximal Policy Optimization maximizes long-term discounted rewards while binding updates with a trust region penalty, preventing catastrophic unlearning during volatile aerodynamic moments.
@@ -493,3 +493,5 @@ export default function MathematicalConsole() {
         </div>
     )
 }
+
+

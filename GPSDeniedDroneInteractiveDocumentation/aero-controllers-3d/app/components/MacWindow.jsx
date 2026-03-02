@@ -1,203 +1,143 @@
-"use client"
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+"use client";
 
-const TITLEBAR_H = 44
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
-// ─── Traffic Light Button ─────────────────────────────────────────────────────
-function TrafficBtn({ color, hoverColor, onClick, symbol }) {
-    const [hovered, setHovered] = useState(false)
-    return (
-        <button
-            onClick={onClick}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            style={{
-                width: 13, height: 13, borderRadius: '50%',
-                background: hovered ? hoverColor : color,
-                border: 'none', cursor: 'pointer', padding: 0,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                transition: 'background 0.15s ease, transform 0.1s ease',
-                transform: hovered ? 'scale(1.12)' : 'scale(1)',
-                flexShrink: 0, color: 'rgba(0,0,0,0.6)', fontSize: 8, fontWeight: 900,
-            }}
-        >
-            {hovered && symbol}
-        </button>
-    )
+function TrafficButton({ color, onClick }) {
+  return (
+    <button
+      type="button"
+      aria-label="window control"
+      onClick={onClick}
+      style={{
+        width: 12,
+        height: 12,
+        borderRadius: "50%",
+        border: "none",
+        background: color,
+        cursor: "pointer",
+      }}
+    />
+  );
 }
 
-// ─── Mac Window ───────────────────────────────────────────────────────────────
 export default function MacWindow({ children, title, isFullscreen, onFullscreenChange }) {
-    const router = useRouter()
-    const windowRef = useRef(null)
-    const dragOffset = useRef({ x: 0, y: 0 })
+  const router = useRouter();
+  const pathname = usePathname();
+  const frameRef = useRef(null);
+  const dragRef = useRef({ active: false, offsetX: 0, offsetY: 0 });
 
-    const [dragging, setDragging] = useState(false)
-    const [hasDragged, setHasDragged] = useState(false)
-    const [pos, setPos] = useState({ x: 0, y: 0 })
-    const [minimizing, setMinimizing] = useState(false)
-    const [mounted, setMounted] = useState(false)
+  const [position, setPosition] = useState({ x: null, y: null });
+  const [isMinimizing, setIsMinimizing] = useState(false);
+  const [isEntering, setIsEntering] = useState(true);
+  const isSimulationRoute = pathname.startsWith("/simulation");
 
-    useEffect(() => { setMounted(true) }, [])
+  useEffect(() => {
+    setIsEntering(true);
+    setIsMinimizing(false);
+    setPosition({ x: null, y: null });
+    onFullscreenChange(false);
+    const timer = setTimeout(() => setIsEntering(false), 240);
+    return () => clearTimeout(timer);
+  }, [pathname, onFullscreenChange]);
 
-    // Reset drag state on route / title change
-    useEffect(() => {
-        setHasDragged(false)
-        setPos({ x: 0, y: 0 })
-        setMinimizing(false)
-    }, [title])
+  useEffect(() => {
+    const onMove = (event) => {
+      if (!dragRef.current.active || isFullscreen) return;
+      setPosition({
+        x: event.clientX - dragRef.current.offsetX,
+        y: event.clientY - dragRef.current.offsetY,
+      });
+    };
 
-    // ── Drag Events ───────────────────────────────────────────────────────────
-    const handleMove = useCallback((e) => {
-        if (!dragging) return
-        setPos({
-            x: e.clientX - dragOffset.current.x,
-            y: e.clientY - dragOffset.current.y,
-        })
-    }, [dragging])
+    const onUp = () => {
+      dragRef.current.active = false;
+    };
 
-    const handleUp = useCallback(() => setDragging(false), [])
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, [isFullscreen]);
 
-    useEffect(() => {
-        window.addEventListener('mousemove', handleMove)
-        window.addEventListener('mouseup', handleUp)
-        return () => {
-            window.removeEventListener('mousemove', handleMove)
-            window.removeEventListener('mouseup', handleUp)
-        }
-    }, [handleMove, handleUp])
+  const onDragStart = (event) => {
+    if (isFullscreen) return;
+    const rect = frameRef.current?.getBoundingClientRect();
+    if (!rect) return;
 
-    const handleDragStart = (e) => {
-        if (isFullscreen) return
-        // Capture actual rendered position for seamless drag start
-        const rect = windowRef.current?.getBoundingClientRect()
-        if (!rect) return
-        dragOffset.current = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-        }
-        setPos({ x: rect.left, y: rect.top })
-        setHasDragged(true)
-        setDragging(true)
-    }
+    dragRef.current.active = true;
+    dragRef.current.offsetX = event.clientX - rect.left;
+    dragRef.current.offsetY = event.clientY - rect.top;
+    setPosition({ x: rect.left, y: rect.top });
+  };
 
-    // ── Traffic Light Handlers ─────────────────────────────────────────────────
-    const handleClose = () => router.push('/')
+  const closeWindow = () => {
+    router.push("/");
+  };
 
-    const handleMinimize = () => {
-        setMinimizing(true)
-        setTimeout(() => router.push('/'), 340)
-    }
+  const minimizeWindow = () => {
+    setIsMinimizing(true);
+    setTimeout(() => router.push("/"), 280);
+  };
 
-    const handleFullscreen = () => {
-        onFullscreenChange(!isFullscreen)
-        setHasDragged(false)
-    }
+  const frameStyle = isFullscreen
+    ? { inset: 0, borderRadius: 0, width: "100vw", height: "100vh" }
+    : {
+        width: "min(94vw, 1360px)",
+        height: "min(88vh, 980px)",
+        left: position.x === null ? 0 : `${position.x}px`,
+        right: position.x === null ? 0 : "auto",
+        margin: position.x === null ? "0 auto" : 0,
+        top: position.y === null ? "52px" : `${position.y}px`,
+        borderRadius: 16,
+      };
 
-    // ── Window Geometry ────────────────────────────────────────────────────────
-    // Strategy: center without CSS transform so fixed-position children (e.g. Technical hover panel)
-    // remain relative to viewport (transforms create stacking contexts that break fixed positions)
-    const baseWindow = {
-        position: 'fixed',
-        zIndex: 900,
-        display: 'flex',
-        flexDirection: 'column',
-        background: 'rgba(16, 16, 26, 0.90)',
-        backdropFilter: 'blur(32px)',
-        WebkitBackdropFilter: 'blur(32px)',
-        border: '1px solid rgba(255,255,255,0.10)',
-        boxShadow: '0 24px 64px rgba(0,0,0,0.65), 0 0 0 0.5px rgba(255,255,255,0.05)',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif',
-        overflow: 'hidden',
-    }
-
-    let positionStyle = {}
-    if (isFullscreen) {
-        positionStyle = {
-            top: 0, left: 0, right: 0, bottom: 0,
-            width: '100vw', height: '100vh',
-            borderRadius: 0,
-            transition: 'all 0.28s cubic-bezier(0.4,0,0.2,1)',
-        }
-    } else if (hasDragged) {
-        positionStyle = {
-            top: pos.y, left: pos.x,
-            width: 'min(88vw, 1300px)',
-            height: 'calc(100vh - 80px)',
-            borderRadius: 16,
-        }
-    } else {
-        // Center using left:0/right:0/margin:auto — no transform, no stacking context
-        positionStyle = {
-            top: 44, left: 0, right: 0,
-            margin: '0 auto',
-            width: 'min(88vw, 1300px)',
-            height: 'calc(100vh - 80px)',
-            borderRadius: 16,
-            animation: mounted ? 'macWindowOpen 0.3s cubic-bezier(0.34,1.1,0.64,1) both' : 'none',
-        }
-    }
-
-    const minimizeStyle = minimizing ? {
-        transform: 'translateY(60vh) scale(0.15)',
-        opacity: 0,
-        transition: 'transform 0.32s cubic-bezier(0.4,0,1,1), opacity 0.28s ease',
-    } : {}
-
-    const windowStyle = { ...baseWindow, ...positionStyle, ...minimizeStyle }
-
-    return (
-        <div ref={windowRef} style={windowStyle}>
-
-            {/* ── Title Bar ──────────────────────────────────────────── */}
-            <div
-                onMouseDown={handleDragStart}
-                style={{
-                    height: TITLEBAR_H, minHeight: TITLEBAR_H,
-                    display: 'flex', alignItems: 'center',
-                    padding: '0 14px',
-                    background: 'rgba(255,255,255,0.04)',
-                    borderBottom: '1px solid rgba(255,255,255,0.07)',
-                    cursor: dragging ? 'grabbing' : 'grab',
-                    userSelect: 'none', position: 'relative', flexShrink: 0,
-                }}
-            >
-                {/* Traffic lights */}
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center', zIndex: 1, position: 'relative' }}>
-                    <TrafficBtn color="#FF5F57" hoverColor="#e0433c" onClick={handleClose} symbol="✕" />
-                    <TrafficBtn color="#FEBC2E" hoverColor="#e0a020" onClick={handleMinimize} symbol="−" />
-                    <TrafficBtn color="#28C840" hoverColor="#1fa832" onClick={handleFullscreen} symbol={isFullscreen ? '⊙' : '⊕'} />
-                </div>
-
-                {/* Centered window title */}
-                <div style={{
-                    position: 'absolute', inset: 0,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.8rem', color: 'rgba(255,255,255,0.50)',
-                    letterSpacing: '0.04em', fontWeight: 500,
-                    pointerEvents: 'none',
-                }}>
-                    {title}
-                </div>
-            </div>
-
-            {/* ── Scrollable Content ──────────────────────────────────── */}
-            <div
-                className="mac-window-content"
-                style={{
-                    flex: 1,
-                    overflowY: 'auto',
-                    overflowX: 'hidden',
-                    height: `calc(100% - ${TITLEBAR_H}px)`,
-                    // Custom scrollbar
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: 'rgba(255,255,255,0.15) transparent',
-                }}
-            >
-                {children}
-            </div>
-
+  return (
+    <div
+      ref={frameRef}
+      className={`mac-window${isEntering ? " is-open" : ""}${isMinimizing ? " is-minimizing" : ""}${isFullscreen ? " is-fullscreen" : ""}`}
+      style={frameStyle}
+    >
+      <div className="mac-window-titlebar" onMouseDown={onDragStart}>
+        <div className="mac-traffic-lights">
+          <TrafficButton color="#FF5F57" onClick={closeWindow} />
+          <TrafficButton color="#FEBC2E" onClick={minimizeWindow} />
+          <TrafficButton color="#28C840" onClick={() => onFullscreenChange(!isFullscreen)} />
         </div>
-    )
+        <div className="mac-window-title">{title}</div>
+      </div>
+
+      {isSimulationRoute && (
+        <div className="mac-window-phasebar">
+          <button
+            type="button"
+            className={`mac-segment-btn${pathname === "/simulation" ? " is-active" : ""}`}
+            onClick={() => router.push("/simulation")}
+          >
+            Phase 1
+          </button>
+          <button
+            type="button"
+            className={`mac-segment-btn${pathname === "/simulation/phase-2" ? " is-active" : ""}`}
+            onClick={() => router.push("/simulation/phase-2")}
+          >
+            Phase 2
+          </button>
+          <button
+            type="button"
+            className={`mac-segment-btn${pathname === "/simulation/phase-3" ? " is-active" : ""}`}
+            onClick={() => router.push("/simulation/phase-3")}
+          >
+            Phase 3
+          </button>
+        </div>
+      )}
+
+      <div className="mac-window-content">
+        {children}
+      </div>
+    </div>
+  );
 }
