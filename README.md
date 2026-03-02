@@ -219,7 +219,7 @@ The simulation runs a multirotor rigid-body dynamics model inside Unreal Engine,
 - **GPU:** NVIDIA RTX 4070 Super (12GB GDDR6X, CUDA-enabled)  
 - **Memory:** 32GB DDR5 RAM  
 
-Training utilized GPU acceleration for PPO optimization and physics-intensive multi-wind simulation rollouts.
+Training utilized CPU acceleration for PPO optimization and GPU Accelerated physics-intensive multi-wind simulation rollouts.
 
 ## Interactive Documentation
 
