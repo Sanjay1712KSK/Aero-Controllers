@@ -34,6 +34,7 @@ const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, m
     <div style={{
         display: 'flex',
         flexDirection: reverse ? 'row-reverse' : 'row',
+        flexWrap: 'wrap',
         alignItems: align,
         justifyContent: 'space-between',
         width: '100%',
@@ -188,7 +189,7 @@ export default function Phase3Page() {
 
                 {/* ─── 1️⃣ HERO SECTION ────────────────────────────────────── */}
                 <section style={{ height: '65vh', minHeight: 620, background: T.bgAlt, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: 'flex', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', gap: 40, alignItems: 'center' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', gap: 40, alignItems: 'center' }}>
 
                         {/* LEFT 60% */}
                         <div style={{ flex: '6' }}>

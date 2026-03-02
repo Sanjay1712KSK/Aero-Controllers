@@ -469,4 +469,136 @@ body.mac-mode .app-navbar {
   display: none !important;
 }
 
+/* Device-adaptive layout foundation */
+@media (max-width: 1200px) {
+  .mac-window-content {
+    --mac-page-max-width: 1100px;
+  }
+
+  .mac-dock {
+    gap: 8px;
+    padding: 9px 10px 7px;
+  }
+
+  .mac-dock-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mac-menubar {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    height: 28px;
+    border-radius: 8px;
+  }
+
+  .mac-menubar-brand {
+    font-size: 0.62rem;
+  }
+
+  .mac-menubar-clock {
+    font-size: 0.64rem;
+  }
+
+  .mac-window-titlebar {
+    height: 40px;
+    min-height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .mac-window-phasebar {
+    height: auto;
+    min-height: 40px;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .mac-segment-btn {
+    padding: 7px 12px;
+    font-size: 0.72rem;
+  }
+
+  .mac-dock {
+    left: 50%;
+    bottom: 6px;
+    max-width: calc(100vw - 12px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 8px 6px;
+    gap: 7px;
+    border-radius: 18px;
+    scrollbar-width: none;
+  }
+
+  .mac-dock::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mac-dock-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+
+  .mac-dock-item:hover .mac-dock-icon {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+  }
+
+  .mac-dock-label {
+    display: none;
+  }
+
+  .mac-credit {
+    display: none;
+  }
+
+  .mac-window-content {
+    --mac-page-max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .mac-traffic-lights {
+    gap: 6px;
+    margin-left: 10px;
+  }
+
+  .mac-window-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+  }
+
+  .mac-segment-btn {
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .mac-window-content {
+    --mac-page-max-width: 1680px;
+  }
+
+  .mac-dock-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+  }
+
+  .mac-dock {
+    gap: 12px;
+    padding: 12px 14px 10px;
+  }
+
+  .mac-menubar {
+    height: 34px;
+  }
+}
+
 

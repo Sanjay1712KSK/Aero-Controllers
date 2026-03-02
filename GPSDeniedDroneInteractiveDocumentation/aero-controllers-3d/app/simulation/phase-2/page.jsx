@@ -32,6 +32,7 @@ const LandscapeRow = ({ children, reverse = false, align = 'center', gap = 48, m
     <div style={{
         display: 'flex',
         flexDirection: reverse ? 'row-reverse' : 'row',
+        flexWrap: 'wrap',
         alignItems: align,
         justifyContent: 'space-between',
         width: '100%',
@@ -178,7 +179,7 @@ export default function Phase2Page() {
 
                 {/* 1️⃣ HERO SECTION */}
                 <section style={{ height: '65vh', minHeight: 600, background: T.bgAlt, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px', borderBottom: `1px solid ${T.border}` }}>
-                    <div style={{ display: 'flex', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', gap: 40, alignItems: 'center' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', gap: 40, alignItems: 'center' }}>
 
                         {/* LEFT (60%) */}
                         <div style={{ flex: '6' }}>
@@ -217,7 +218,7 @@ export default function Phase2Page() {
 
                 {/* 2️⃣ METRICS STRIP */}
                 <section style={{ height: 120, background: T.secStrip, borderBottom: `1px solid ${T.border}`, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', height: '100%' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', width: '100%', maxWidth: 'var(--mac-page-max-width, 1200px)', height: '100%' }}>
                         {[
                             { l: "RMSE X", v: "3.0076" }, { l: "RMSE Y", v: "3.8208" }, { l: "RMSE Z", v: "0.3661" },
                             { l: "RMSE Ω", v: "0.1203" }, { l: "Var ωx", v: "0.00677" }, { l: "Var ωy", v: "0.00769" }

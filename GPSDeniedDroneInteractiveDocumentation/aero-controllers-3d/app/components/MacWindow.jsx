@@ -30,7 +30,9 @@ export default function MacWindow({ children, title, isFullscreen, onFullscreenC
   const [position, setPosition] = useState({ x: null, y: null });
   const [isMinimizing, setIsMinimizing] = useState(false);
   const [isEntering, setIsEntering] = useState(true);
+  const [viewport, setViewport] = useState({ w: 0, h: 0 });
   const isSimulationRoute = pathname.startsWith("/simulation");
+  const isCompact = viewport.w > 0 && viewport.w <= 900;
 
   useEffect(() => {
     setIsEntering(true);
@@ -40,6 +42,15 @@ export default function MacWindow({ children, title, isFullscreen, onFullscreenC
     const timer = setTimeout(() => setIsEntering(false), 240);
     return () => clearTimeout(timer);
   }, [pathname, onFullscreenChange]);
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setViewport({ w: window.innerWidth, h: window.innerHeight });
+    };
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    return () => window.removeEventListener("resize", updateViewport);
+  }, []);
 
   useEffect(() => {
     const onMove = (event) => {
@@ -63,7 +74,7 @@ export default function MacWindow({ children, title, isFullscreen, onFullscreenC
   }, [isFullscreen]);
 
   const onDragStart = (event) => {
-    if (isFullscreen) return;
+    if (isFullscreen || isCompact) return;
     const rect = frameRef.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -85,13 +96,13 @@ export default function MacWindow({ children, title, isFullscreen, onFullscreenC
   const frameStyle = isFullscreen
     ? { inset: 0, borderRadius: 0, width: "100vw", height: "100vh" }
     : {
-        width: "min(94vw, 1360px)",
-        height: "min(88vh, 980px)",
+        width: isCompact ? "calc(100vw - 10px)" : "min(94vw, 1360px)",
+        height: isCompact ? "calc(100vh - 84px)" : "min(88vh, 980px)",
         left: position.x === null ? 0 : `${position.x}px`,
         right: position.x === null ? 0 : "auto",
         margin: position.x === null ? "0 auto" : 0,
-        top: position.y === null ? "52px" : `${position.y}px`,
-        borderRadius: 16,
+        top: position.y === null ? (isCompact ? "38px" : "52px") : `${position.y}px`,
+        borderRadius: isCompact ? 12 : 16,
       };
 
   return (

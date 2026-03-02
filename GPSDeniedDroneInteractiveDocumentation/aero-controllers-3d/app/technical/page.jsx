@@ -158,6 +158,7 @@ function SectionWrapper({ children, bg, id }) {
 export default function MathematicalConsole() {
     const [h, setH] = useState(null) // Global hover state
     const [panelData, setPanelData] = useState(null) // Keeps the last hovered item so that fade down is smooth
+    const [showHoverPanel, setShowHoverPanel] = useState(false)
 
     useEffect(() => {
         gsap.utils.toArray('.tech-step').forEach(el => {
@@ -173,6 +174,15 @@ export default function MathematicalConsole() {
             setPanelData(DICT[h])
         }
     }, [h])
+
+    useEffect(() => {
+        const onResize = () => {
+            setShowHoverPanel(window.innerWidth >= 1400)
+        }
+        onResize()
+        window.addEventListener('resize', onResize)
+        return () => window.removeEventListener('resize', onResize)
+    }, [])
 
     return (
         <div style={{ background: ABOUT_BG_GRADE, backgroundAttachment: 'fixed', backgroundSize: 'cover', color: T.textPri, minHeight: '100vh', fontFamily: 'sans-serif', paddingTop: 72 }}>
@@ -190,7 +200,7 @@ export default function MathematicalConsole() {
                     background: T.bgExpl,
                     border: `1px solid ${T.border}`,
                     padding: panelData ? 18 : 0, // Only pad if we have ever had data
-                    opacity: h ? 1 : 0,
+                    opacity: (h && showHoverPanel) ? 1 : 0,
                     pointerEvents: 'none',
                     transition: 'opacity 0.2s ease, padding 0.2s ease',
                     zIndex: 9999,

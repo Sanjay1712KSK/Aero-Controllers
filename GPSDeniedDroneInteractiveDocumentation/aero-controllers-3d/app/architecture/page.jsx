@@ -1,5 +1,5 @@
 "use client"
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Navbar } from '../components/Navbar'
 import { gsap } from 'gsap'
@@ -252,6 +252,8 @@ export default function ArchitecturePage() {
     const containerRef = useRef(null)
     const [activeStep, setActiveStep] = useState(0)
     const [activeHw, setActiveHw] = useState('gpu')
+    const [viewportWidth, setViewportWidth] = useState(1440)
+    const isNarrow = viewportWidth < 980
 
     const executionSteps = [
         { title: 'Launch Engine', desc: 'Initialize Unreal Engine 5.5.4 in headless or editor mode.', code: 'UnrealEditor.exe "AeroProject.uproject" -game' },
@@ -323,6 +325,13 @@ export default function ArchitecturePage() {
             })
         }, containerRef)
         return () => ctx.revert()
+    }, [])
+
+    useEffect(() => {
+        const onResize = () => setViewportWidth(window.innerWidth)
+        onResize()
+        window.addEventListener('resize', onResize)
+        return () => window.removeEventListener('resize', onResize)
     }, [])
 
     return (
@@ -715,8 +724,8 @@ export default function ArchitecturePage() {
                 id="08 — Toolchain & Version Table"
                 title="Software Stack"
             >
-                <div className="arch-step" style={{ width: '100%', maxWidth: 800 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) 2fr', borderBottom: `1px solid ${T.border}`, paddingBottom: 16, marginBottom: 16, color: T.textSec, textTransform: 'uppercase', letterSpacing: 1, fontSize: '0.9rem' }}>
+                <div className="arch-step" style={{ width: '100%', maxWidth: 800, overflowX: 'auto' }}>
+                    <div style={{ minWidth: isNarrow ? 560 : 'auto', display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) 2fr', borderBottom: `1px solid ${T.border}`, paddingBottom: 16, marginBottom: 16, color: T.textSec, textTransform: 'uppercase', letterSpacing: 1, fontSize: '0.9rem' }}>
                         <div>Component</div>
                         <div>Version</div>
                     </div>
@@ -728,7 +737,7 @@ export default function ArchitecturePage() {
                         ['MSVC', '14.43', T.textSec],
                         ['Windows SDK', '10.0.22621.0', T.textSec]
                     ].map((row, i) => (
-                        <div key={i} style={{ display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) 2fr', padding: '16px 0', borderBottom: `1px solid ${T.border}`, color: row[2], fontSize: '1.2rem', alignItems: 'center' }}>
+                        <div key={i} style={{ minWidth: isNarrow ? 560 : 'auto', display: 'grid', gridTemplateColumns: 'minmax(200px, 1fr) 2fr', padding: '16px 0', borderBottom: `1px solid ${T.border}`, color: row[2], fontSize: '1.2rem', alignItems: 'center' }}>
                             <div>{row[0]}</div>
                             <div style={{ fontFamily: 'monospace' }}>{row[1]}</div>
                         </div>
@@ -742,7 +751,7 @@ export default function ArchitecturePage() {
                 title="Compute Infrastructure"
                 altBg
             >
-                <div className="arch-step" style={{ display: 'flex', width: '100%', maxWidth: 1000, gap: 40, alignItems: 'stretch' }}>
+                <div className="arch-step" style={{ display: 'flex', flexDirection: isNarrow ? 'column' : 'row', width: '100%', maxWidth: 1000, gap: isNarrow ? 24 : 40, alignItems: 'stretch' }}>
 
                     {/* Interactive Node Graph */}
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 32, justifyContent: 'center' }}>
@@ -752,7 +761,7 @@ export default function ArchitecturePage() {
                                 background: T.bgEq, border: `1px solid ${activeHw === 'gpu' ? T.green : T.border}`,
                                 padding: '32px 24px', borderRadius: 8, cursor: 'pointer',
                                 display: 'flex', alignItems: 'center', gap: 20,
-                                transform: activeHw === 'gpu' ? 'translateX(12px)' : 'none',
+                                transform: !isNarrow && activeHw === 'gpu' ? 'translateX(12px)' : 'none',
                                 transition: 'all 0.3s ease',
                                 opacity: activeHw === 'gpu' ? 1 : 0.6
                             }}>
@@ -769,7 +778,7 @@ export default function ArchitecturePage() {
                                 background: T.bgEq, border: `1px solid ${activeHw === 'cpu' ? T.cyan : T.border}`,
                                 padding: '32px 24px', borderRadius: 8, cursor: 'pointer',
                                 display: 'flex', alignItems: 'center', gap: 20,
-                                transform: activeHw === 'cpu' ? 'translateX(12px)' : 'none',
+                                transform: !isNarrow && activeHw === 'cpu' ? 'translateX(12px)' : 'none',
                                 transition: 'all 0.3s ease',
                                 opacity: activeHw === 'cpu' ? 1 : 0.6
                             }}>
@@ -788,7 +797,7 @@ export default function ArchitecturePage() {
                                 background: T.bgEq, border: `1px solid ${activeHw === 'ram' ? T.textPri : T.border}`,
                                 padding: '32px 24px', borderRadius: 8, cursor: 'pointer',
                                 display: 'flex', alignItems: 'center', gap: 20,
-                                transform: activeHw === 'ram' ? 'translateX(12px)' : 'none',
+                                transform: !isNarrow && activeHw === 'ram' ? 'translateX(12px)' : 'none',
                                 transition: 'all 0.3s ease',
                                 opacity: activeHw === 'ram' ? 1 : 0.6
                             }}>
@@ -855,7 +864,7 @@ export default function ArchitecturePage() {
                 title="Execution Sequence"
                 altBg
             >
-                <div className="arch-step" style={{ display: 'flex', width: '100%', maxWidth: 1000, gap: 64 }}>
+                <div className="arch-step" style={{ display: 'flex', flexDirection: isNarrow ? 'column' : 'row', width: '100%', maxWidth: 1000, gap: isNarrow ? 28 : 64 }}>
 
                     {/* Left Timeline */}
                     <div style={{ flex: 1, position: 'relative', paddingLeft: 32 }}>
@@ -907,7 +916,7 @@ export default function ArchitecturePage() {
                     {/* Right Details Panel */}
                     <div style={{ flex: 1 }}>
                         <div style={{
-                            position: 'sticky', top: 120,
+                            position: isNarrow ? 'relative' : 'sticky', top: isNarrow ? 'auto' : 120,
                             background: T.bgEq, border: `1px solid ${T.cyan}`,
                             padding: '40px', borderRadius: 8,
                             boxShadow: '0 10px 30px rgba(0,229,255,0.05)'

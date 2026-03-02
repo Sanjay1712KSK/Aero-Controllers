@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 
@@ -35,6 +35,39 @@ const members = [
   },
 ];
 
+const inspirationGroups = [
+  {
+    heading: "Aerospace & Engineering",
+    description:
+      "Stories of engineers and entrepreneurs who refused to accept technical limitations.",
+    items: [
+      { title: "Rocketry: The Nambi Effect", year: "2022", poster: "/posters/rocketry-the-nambi-effect.jpg" },
+      { title: "Soorarai Pottru", year: "2020", poster: "/posters/soorarai-pottru.jpg" },
+      { title: "Simply Fly: The Deccan Air Odyssey", year: "2010", poster: "/posters/simply-fly-deccan-air-odyssey.jpg" },
+      { title: "F1", year: "Motorsport Inspiration", poster: "/posters/f1-2025.jpg" },
+    ],
+  },
+  {
+    heading: "Systems, Simulation & Worldbuilding",
+    description:
+      "Large-scale simulations and elegant complex systems.",
+    items: [
+      { title: "Death Stranding Series", year: "2019 & 2025", poster: "/posters/death-stranding-series.jpg" },
+      { title: "The Matrix Awakens - Unreal Engine 5 Demo", year: "2021", poster: "/posters/matrix-awakens-ue5.jpg" },
+      { title: "Decima Engine Performance", year: "Guerrilla Games & Kojima Productions", poster: "/posters/decima-engine-performance.png" },
+    ],
+  },
+  {
+    heading: "Human + Machine Ambition",
+    description:
+      "Where engineering meets courage and technology becomes personal.",
+    items: [
+      { title: "Top Gun: Maverick", year: "2022", poster: "/posters/top-gun-maverick-2022.jpg" },
+      { title: "Enthiran", year: "2010", poster: "/posters/enthiran-2010.jpg" },
+      { title: "Mission: Impossible - Dead Reckoning", year: "2023", poster: "/posters/mission-impossible-dead-reckoning-2023.jpg" },
+    ],
+  },
+];
 function initials(name) {
   const parts = name.split(" ").filter(Boolean);
   if (parts.length === 1) return parts[0].slice(0, 1).toUpperCase();
@@ -155,6 +188,38 @@ export default function AboutUsPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="inspiration-section" aria-label="Built on Inspiration">
+        <p className="inspiration-label">Creative Influences</p>
+        <h2>Built on Inspiration</h2>
+        <p className="inspiration-intro">
+          Innovation rarely begins with equations. It begins with imagination. The following works shaped the mindset behind Aero-Controllers - reinforcing that complex systems can be built, broken, and rebuilt through persistence.
+        </p>
+
+        {inspirationGroups.map((group) => (
+          <div className="inspiration-category" key={group.heading}>
+            <h3>{group.heading}</h3>
+            <p>{group.description}</p>
+            <div className="inspiration-grid">
+              {group.items.map((item) => (
+                <div className="inspiration-card" key={`${group.heading}-${item.title}`}>
+                  <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? "/Aero-Controllers"}${item.poster}`} alt={item.title} />
+                  <div className="inspiration-overlay">
+                    <h4>{item.title}</h4>
+                    <p>{group.heading}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <div className="inspiration-quote">
+          <p>Hard problems are not barriers.</p>
+          <p>They are invitations.</p>
+        </div>
+        <p className="inspiration-subquote">We don&apos;t build by watching. We build by trying.</p>
       </section>
 
       <footer className="footer">Aero-Controllers</footer>
@@ -283,6 +348,139 @@ export default function AboutUsPage() {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 40px;
+        }
+
+        .inspiration-section {
+          max-width: 1100px;
+          margin: 140px auto 120px auto;
+          padding: 0 24px;
+          text-align: center;
+          opacity: 0;
+          transform: translateY(40px);
+          animation: fadeUp 1s ease forwards;
+        }
+
+        .inspiration-label {
+          margin: 0 0 10px;
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.58);
+        }
+
+        .inspiration-section h2 {
+          font-size: 38px;
+          font-weight: 600;
+          margin-bottom: 24px;
+          letter-spacing: -0.02em;
+        }
+
+        .inspiration-intro {
+          margin: 0 auto;
+          max-width: 900px;
+          font-size: 18px;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.78);
+        }
+
+        .inspiration-category {
+          margin-top: 60px;
+          text-align: left;
+        }
+
+        .inspiration-category h3 {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 12px;
+          color: rgba(255, 255, 255, 0.95);
+        }
+
+        .inspiration-category p {
+          color: rgba(255, 255, 255, 0.7);
+          margin-bottom: 10px;
+          font-size: 17px;
+          line-height: 1.6;
+        }
+
+        .inspiration-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 40px;
+          justify-items: center;
+          margin-top: 80px;
+          opacity: 0;
+          transform: translateY(60px);
+          animation: fadeUp 1.2s ease forwards;
+        }
+
+        .inspiration-card {
+          position: relative;
+          width: 230px;
+          aspect-ratio: 2 / 3;
+          overflow: hidden;
+          border-radius: 18px;
+          transition: transform 0.4s cubic-bezier(.22,.61,.36,1), box-shadow 0.4s ease;
+          background: #0d1020;
+        }
+
+        .inspiration-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .inspiration-card:hover {
+          transform: translateY(-10px) scale(1.03);
+          box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+
+        .inspiration-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          padding: 20px;
+          background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        .inspiration-card:hover .inspiration-overlay {
+          opacity: 1;
+        }
+
+        .inspiration-overlay h4 {
+          margin: 0 0 6px;
+          font-size: 18px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.96);
+          line-height: 1.3;
+        }
+
+        .inspiration-overlay p {
+          margin: 0;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.72);
+        }
+
+        .inspiration-quote {
+          margin-top: 100px;
+          font-size: 24px;
+          font-weight: 500;
+          opacity: 0.9;
+          line-height: 1.45;
+        }
+
+        .inspiration-quote p {
+          margin: 0;
+        }
+
+        .inspiration-subquote {
+          margin: 16px 0 0;
+          font-size: 18px;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.6;
         }
 
         .footer {
@@ -458,6 +656,13 @@ export default function AboutUsPage() {
             transform: scale(1);
           }
         }
+
+        @keyframes fadeUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       `}</style>
       <style jsx global>{`
         @keyframes cardRise {
@@ -470,3 +675,4 @@ export default function AboutUsPage() {
     </main>
   );
 }
+

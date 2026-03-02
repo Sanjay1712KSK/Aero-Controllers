@@ -7,9 +7,9 @@ export default function DocumentationPage() {
     <main
       style={{
         minHeight: "100%",
-        background: "#070c18",
+        background: "var(--app-bg-grade)",
         color: "#f8fafc",
-        padding: "24px",
+        padding: "clamp(12px, 2.4vw, 24px)",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
       }}
     >
@@ -37,8 +37,8 @@ export default function DocumentationPage() {
             border: "1px solid #23314d",
             borderRadius: 14,
             overflow: "hidden",
-            height: "calc(100vh - 220px)",
-            minHeight: 560,
+            height: "min(72vh, calc(100svh - 210px))",
+            minHeight: "clamp(340px, 52vh, 560px)",
           }}
         >
           <iframe
