@@ -21,6 +21,8 @@ const T = {
     red: '#FF3333'         // High-saturation penalty red
 }
 
+const ABOUT_BG_GRADE = 'radial-gradient(circle at 30% 20%, #1b2946 0%, #141426 42%, #101018 100%)'
+
 // ─── HELPER COMPONENTS ───────────────────────────────────────────────────────
 const SectionWrapper = ({ id, title, subtitle, children, altBg = false }) => {
     return (
@@ -29,8 +31,8 @@ const SectionWrapper = ({ id, title, subtitle, children, altBg = false }) => {
             className="arch-section"
             style={{
                 minHeight: '85vh',
-                backgroundColor: altBg ? T.bgAlt : T.bgBase,
-                borderTop: `1px solid ${T.border}`,
+                backgroundColor: 'transparent',
+                borderTop: 'none',
                 padding: '96px 0',
                 display: 'flex',
                 flexDirection: 'column',
@@ -45,7 +47,7 @@ const SectionWrapper = ({ id, title, subtitle, children, altBg = false }) => {
                 top: 0, left: 0, right: 0, bottom: 0,
                 backgroundImage: `radial-gradient(circle, ${T.border}80 1px, transparent 1px)`,
                 backgroundSize: '32px 32px',
-                opacity: 0.15,
+                opacity: 0.06,
                 pointerEvents: 'none',
                 zIndex: 0
             }} />
@@ -324,7 +326,7 @@ export default function ArchitecturePage() {
     }, [])
 
     return (
-        <div ref={containerRef} style={{ background: T.bgBase, minHeight: '100vh', color: T.textPri, fontFamily: 'sans-serif', paddingTop: 72 }}>
+        <div ref={containerRef} style={{ background: ABOUT_BG_GRADE, backgroundAttachment: 'fixed', backgroundSize: 'cover', minHeight: '100vh', color: T.textPri, fontFamily: 'sans-serif', paddingTop: 72 }}>
 
             <Navbar activePath="/architecture" />
 
