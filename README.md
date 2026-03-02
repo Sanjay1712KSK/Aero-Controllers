@@ -3,7 +3,7 @@
 
 A reinforcement-learning-based stabilization framework for autonomous multirotor drones operating in GPS-denied environments (indoor, underground, urban canyons, disaster zones).
 
-The **600k-timestep model** is available under **GitHub Pre-releases**, along with performance metric graphs and logs.
+> The **600k-timestep model** is available under **GitHub Pre-releases**, along with performance metric graphs and logs.
 
 ---
 
