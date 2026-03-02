@@ -1,4 +1,4 @@
-```markdown
+
 # GPS-Denied Autonomous Drone Stabilization
 Learning-Based Rotational & Translational Stability Under Stochastic Wind
 
@@ -48,7 +48,7 @@ S:\GPSDeniedDroneDocumentation
 ├── AMD-hackathon-Files/
 ├── GPSDeniedDroneInteractiveDocumentation/
 └── Simulation Media/
-```
+
 
 ### Main Experimental Workspace
 
