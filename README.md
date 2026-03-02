@@ -149,19 +149,23 @@ All regimes remain above **85/100**, indicating robust generalization.
 ---
 
 ## Mathematical Stability View
-
+$$
 \[
 \sup_t \|\omega(t)\| < \omega_{\max}
 \]
+$$
 
+$$
 \[
 \int \|\omega(t)\|^2 \, dt < \infty
 \]
+$$
 
+$$
 \[
 \|\Delta p(t)\| < \varepsilon
 \]
-
+$$
 ---
 
 ## Training Details
@@ -175,6 +179,52 @@ All regimes remain above **85/100**, indicating robust generalization.
 - **Policy Strategy:** Trained under stochastic wind randomization
 
 ---
+
+## Machine Learning & Control Stack
+
+Python 3.10
+
+Stable-Baselines3 (PPO)
+
+PyTorch (CUDA-enabled)
+
+OpenAI Gym-compatible custom environment design
+
+NumPy
+
+Matplotlib
+
+### The training loop integrates stochastic wind injection, state logging, and reward shaping within a Gym-compatible environment wrapper connected to Unreal Engine.
+
+## Simulation & Engine Stack
+
+Unreal Engine 5.5.4
+
+Cosys-AirSim (April 2025 release)
+
+RPC-based client–server communication layer
+
+The simulation runs a multirotor rigid-body dynamics model inside Unreal Engine, interfaced through Cosys-AirSim using a Python RPC client.
+
+## Development Environment
+
+Operating System: Windows 11
+
+IDE / Toolchain: Visual Studio 2022 (v17.13.6)
+
+Compiler: MSVC 14.43.34808
+
+Windows SDK: 10.0.22621.0
+
+Hardware Configuration
+
+CPU: AMD Ryzen 5 7600X
+
+GPU: NVIDIA RTX 4070 Super (12GB GDDR6X, CUDA-enabled)
+
+Memory: 32GB DDR5 RAM
+
+### Training utilized GPU acceleration for PPO optimization and physics-intensive multi-wind simulation rollouts.
 
 ## Interactive Documentation
 
