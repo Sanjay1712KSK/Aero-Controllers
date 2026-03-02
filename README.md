@@ -1,6 +1,6 @@
 ```markdown
 # GPS-Denied Autonomous Drone Stabilization
-**Learning-Based Rotational & Translational Stability Under Stochastic Wind**
+Learning-Based Rotational & Translational Stability Under Stochastic Wind
 
 A reinforcement-learning-based stabilization framework for autonomous multirotor drones operating in **GPS-denied environments** (indoor, underground, urban canyons, disaster zones).
 
@@ -170,5 +170,3 @@ https://sanjay1712ksk.github.io/Aero-Controllers/
 
 This project is simulation-first and designed as a robust foundation for transferring stabilization policies toward real-world GPS-denied autonomy workflows.
 ```
-
-If you want, I can also give you a second version tailored specifically for GitHub recruiters/judges (shorter, punchier, with “How to Run” and “Results at a Glance” up top).
