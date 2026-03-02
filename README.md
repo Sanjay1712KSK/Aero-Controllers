@@ -2,9 +2,9 @@
 # GPS-Denied Autonomous Drone Stabilization
 Learning-Based Rotational & Translational Stability Under Stochastic Wind
 
-A reinforcement-learning-based stabilization framework for autonomous multirotor drones operating in **GPS-denied environments** (indoor, underground, urban canyons, disaster zones).
+A reinforcement-learning-based stabilization framework for autonomous multirotor drones operating in GPS-denied environments (indoor, underground, urban canyons, disaster zones).
 
-> The **600k-timestep model** is available under **GitHub Pre-releases**, along with performance metric graphs and logs.
+> The 600k-timestep model is available under GitHub Pre-releases, along with performance metric graphs and logs.
 
 ## Overview
 
@@ -31,11 +31,11 @@ This repository implements a real-time RL stabilizer to maintain bounded state b
 
 ## System Architecture
 
-- **Simulation Engine:** Unreal Engine 5.5 + Cosys-AirSim
-- **Physics Layer:** Multirotor rigid-body dynamics
-- **Control Algorithm:** PPO (Stable-Baselines3)
-- **Disturbance Model:** Stochastic wind injection
-- **Evaluation Metrics:** RMSE, variance, angular energy, stability score
+- Simulation Engine: Unreal Engine 5.5 + Cosys-AirSim
+- Physics Layer: Multirotor rigid-body dynamics
+- Control Algorithm: PPO (Stable-Baselines3)
+- Disturbance Model: Stochastic wind injection
+- Evaluation Metrics: RMSE, variance, angular energy, stability score
 
 ## Repository Structure
 
