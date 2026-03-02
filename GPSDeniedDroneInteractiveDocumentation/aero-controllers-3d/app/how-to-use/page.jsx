@@ -22,6 +22,7 @@ export default function HowToUsePage() {
             <li>The Story page functions as the desktop background.</li>
             <li>All other sections open as floating application windows.</li>
             <li>Windows can be moved, minimized, closed, or expanded.</li>
+            <li>The top menu bar displays app identity, documentation title, and live clock.</li>
           </ul>
         </div>
 
@@ -34,6 +35,10 @@ export default function HowToUsePage() {
             <li>Control &amp; Stability Framework</li>
             <li>System Architecture</li>
             <li>Simulation</li>
+            <li>Documentation</li>
+            <li>How To Use</li>
+            <li>About Us</li>
+            <li>GitHub (external repository link)</li>
           </ul>
           <p>Hover to preview. Click to open.</p>
         </div>
@@ -42,9 +47,9 @@ export default function HowToUsePage() {
           <h2>Window Controls</h2>
           <p>Each application window includes macOS-style controls:</p>
           <ul>
-            <li><strong>Red</strong> - Close and return to desktop</li>
-            <li><strong>Yellow</strong> - Minimize window</li>
-            <li><strong>Green</strong> - Toggle fullscreen mode</li>
+            <li><span className="traffic-dot traffic-dot-red" aria-hidden="true" /><strong>Red</strong> - Close and return to desktop</li>
+            <li><span className="traffic-dot traffic-dot-yellow" aria-hidden="true" /><strong>Yellow</strong> - Minimize window</li>
+            <li><span className="traffic-dot traffic-dot-green" aria-hidden="true" /><strong>Green</strong> - Toggle fullscreen mode</li>
           </ul>
           <p>Windows are scrollable internally when content exceeds height.</p>
         </div>
@@ -53,7 +58,7 @@ export default function HowToUsePage() {
           <h2>Simulation Phases</h2>
           <p>Inside Simulation:</p>
           <ul>
-            <li>Use the internal phase selector to switch between Phase 1, Phase 2, and Phase 3</li>
+            <li>Use the internal phase selector to switch between Phase 1, Phase 2, Phase 3, and Phase 4</li>
             <li>Each phase contains independent graphs, metrics, and evaluation videos</li>
             <li>Content loads within the active window</li>
           </ul>
@@ -184,6 +189,28 @@ export default function HowToUsePage() {
           line-height: 1.6;
           color: rgba(255, 255, 255, 0.85);
           max-width: 76ch;
+        }
+
+        .traffic-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align: -1px;
+          border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .traffic-dot-red {
+          background: #ff5f57;
+        }
+
+        .traffic-dot-yellow {
+          background: #febc2e;
+        }
+
+        .traffic-dot-green {
+          background: #28c840;
         }
 
         @media (min-width: 1180px) {
