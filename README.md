@@ -1,4 +1,4 @@
-# GPS-Denied Autonomous Drone Stabilization  
+# GPS-Denied Autonomous Drone Stabilization  (For AMD SlingShot Hackathon)
 ## Learning-Based Rotational & Translational Stability Under Stochastic Wind
 
 A reinforcement-learning-based stabilization framework for autonomous multirotor drones operating in GPS-denied environments (indoor, underground, urban canyons, disaster zones).
