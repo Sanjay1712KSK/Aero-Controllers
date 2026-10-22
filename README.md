@@ -5,7 +5,7 @@ A reinforcement-learning-based stabilization framework for autonomous multirotor
 
 > The **600k-timestep model** is available under **GitHub Pre-releases**, along with performance metric graphs and logs.
 
----
+---msdn jsdxn jbsdn
 
 ## Project Components
 
